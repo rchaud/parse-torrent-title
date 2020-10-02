@@ -91,4 +91,82 @@ describe("Parsing date", () => {
 
         expect(parse(releaseName)).to.deep.include({ date: "2020-01-16" });
     });
+
+    it("AEW DARK 4th December 2020 WEBRip h264-TJ", () => {
+        const releaseName = "AEW DARK 4th December 2020 WEBRip h264-TJ";
+
+        expect(parse(releaseName)).to.deep.include({ date: "2020-12-04" });
+    });
+
+    it("AEW DARK 4th November 2020 WEBRip h264-TJ", () => {
+        const releaseName = "AEW DARK 4th November 2020 WEBRip h264-TJ";
+
+        expect(parse(releaseName)).to.deep.include({ date: "2020-11-04" });
+    });
+
+    it("AEW DARK 4th October 2020 WEBRip h264-TJ", () => {
+        const releaseName = "AEW DARK 4th October 2020 WEBRip h264-TJ";
+
+        expect(parse(releaseName)).to.deep.include({ date: "2020-10-04" });
+    });
+
+    it("WWE NXT 30th Sept 2020 WEBRip h264-TJ", () => {
+        const releaseName = "WWE NXT 30th Sept 2020 WEBRip h264-TJ";
+
+        expect(parse(releaseName)).to.deep.include({ date: "2020-09-30" });
+    });
+
+    it("AEW DARK 4th September 2020 WEBRip h264-TJ", () => {
+        const releaseName = "AEW DARK 4th September 2020 WEBRip h264-TJ";
+
+        expect(parse(releaseName)).to.deep.include({ date: "2020-09-04" });
+    });
+
+    it("WWE Main Event 6th August 2020 WEBRip h264-TJ", () => {
+        const releaseName = "WWE Main Event 6th August 2020 WEBRip h264-TJ";
+
+        expect(parse(releaseName)).to.deep.include({ date: "2020-08-06" });
+    });
+
+    it("WWE Main Event 4th July 2020 WEBRip h264-TJ", () => {
+        const releaseName = "WWE Main Event 4th July 2020 WEBRip h264-TJ";
+
+        expect(parse(releaseName)).to.deep.include({ date: "2020-07-04" });
+    });
+
+    it("WWE Main Event 4th June 2020 WEBRip h264-TJ", () => {
+        const releaseName = "WWE Main Event 4th June 2020 WEBRip h264-TJ";
+
+        expect(parse(releaseName)).to.deep.include({ date: "2020-06-04" });
+    });
+
+    it("WWE Main Event 4th May 2020 WEBRip h264-TJ", () => {
+        const releaseName = "WWE Main Event 4th May 2020 WEBRip h264-TJ";
+
+        expect(parse(releaseName)).to.deep.include({ date: "2020-05-04" });
+    });
+
+    it("WWE Main Event 4th April 2020 WEBRip h264-TJ", () => {
+        const releaseName = "WWE Main Event 4th April 2020 WEBRip h264-TJ";
+
+        expect(parse(releaseName)).to.deep.include({ date: "2020-04-04" });
+    });
+
+    it("WWE Main Event 3rd March 2020 WEBRip h264-TJ", () => {
+        const releaseName = "WWE Main Event 3rd March 2020 WEBRip h264-TJ";
+
+        expect(parse(releaseName)).to.deep.include({ date: "2020-03-03" });
+    });
+
+    it("WWE Main Event 2nd February 2020 WEBRip h264-TJ", () => {
+        const releaseName = "WWE Main Event 2nd February 2020 WEBRip h264-TJ";
+
+        expect(parse(releaseName)).to.deep.include({ date: "2020-02-02" });
+    });
+
+    it("WWE Main Event 1st January 2020 WEBRip h264-TJ", () => {
+        const releaseName = "WWE Main Event 1st January 2020 WEBRip h264-TJ";
+
+        expect(parse(releaseName)).to.deep.include({ date: "2020-01-01" });
+    });
 });
