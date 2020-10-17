@@ -12,8 +12,23 @@ describe("Parsing season", () => {
         expect(parse(releaseName)).to.deep.include({ season: 1 });
     });
 
-    it("should detect regular episode with a space between", () => {
+    it("should detect regular season with a space between", () => {
         const releaseName = "Dragon Ball Super S01 E23 French 1080p HDTV H264-Kesni";
+        expect(parse(releaseName)).to.deep.include({ season: 1 });
+    });
+
+    it("should detect regular season with a letter a suffix", () => {
+        const releaseName = "The Twilight Zone 1985 S01E23a Shadow Play.mp4";
+        expect(parse(releaseName)).to.deep.include({ season: 1 });
+    });
+
+    it("should detect regular season with a letter b suffix", () => {
+        const releaseName = "Mash S10E01b Thats Show Biz Part 2 1080p H.264 (moviesbyrizzo upload).mp4";
+        expect(parse(releaseName)).to.deep.include({ season: 10 });
+    });
+
+    it("should detect regular season with a letter c suffix", () => {
+        const releaseName = "The Twilight Zone 1985 S01E22c The Library.mp4";
         expect(parse(releaseName)).to.deep.include({ season: 1 });
     });
 

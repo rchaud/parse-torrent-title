@@ -17,6 +17,21 @@ describe("Parsing episode", () => {
         expect(parse(releaseName)).to.deep.include({ episode: 23 });
     });
 
+    it("should detect regular episode with a letter a suffix", () => {
+        const releaseName = "The Twilight Zone 1985 S01E23a Shadow Play.mp4";
+        expect(parse(releaseName)).to.deep.include({ episode: 23 });
+    });
+
+    it("should detect regular episode with a letter b suffix", () => {
+        const releaseName = "Mash S10E01b Thats Show Biz Part 2 1080p H.264 (moviesbyrizzo upload).mp4";
+        expect(parse(releaseName)).to.deep.include({ episode: 1 });
+    });
+
+    it("should detect regular episode with a letter c suffix", () => {
+        const releaseName = "The Twilight Zone 1985 S01E22c The Library.mp4";
+        expect(parse(releaseName)).to.deep.include({ episode: 22 });
+    });
+
     it("should detect episode with SxEE format correctly", () => {
         const releaseName = "Doctor.Who.2005.8x11.Dark.Water.720p.HDTV.x264-FoV";
         expect(parse(releaseName)).to.deep.include({ episode: 11 });
@@ -222,6 +237,11 @@ describe("Parsing episode", () => {
         expect(parse(releaseName)).to.deep.include({ episode: 4 });
     });
 
+    it("should detect detect absolute episode with a version and ep suffix", () => {
+        const releaseName = "[Exiled-Destiny]_Tokyo_Underground_Ep02v2_(41858470).mkv";
+        expect(parse(releaseName)).to.deep.include({ episode: 2 });
+    });
+
     it("should detect detect absolute episode and not detect any season modifier", () => {
         const releaseName = "[a-s]_fairy_tail_-_003_-_infiltrate_the_everlue_mansion__rs2_[1080p_bd-rip][4CB16872].mkv";
         expect(parse(releaseName)).to.deep.include({ episode: 3 });
@@ -365,6 +385,11 @@ describe("Parsing episode", () => {
 
     it("should detect multiple episode with tilde separator", () => {
         const releaseName = "[Erai-raws] Carole and Tuesday - 01 ~ 12 [1080p][Multiple Subtitle]";
+        expect(parse(releaseName)).to.deep.include({ episodes: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] });
+    });
+
+    it("should detect multiple episode with tilde separator and season prefix", () => {
+        const releaseName = "[Erai-raws] 3D Kanojo - Real Girl 2nd Season - 01 ~ 12 [720p]";
         expect(parse(releaseName)).to.deep.include({ episodes: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] });
     });
 
