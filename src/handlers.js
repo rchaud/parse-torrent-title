@@ -183,6 +183,7 @@ exports.addDefaults = /** @type Parser */ parser => {
                 return { matchIndex: title.indexOf(matches[0]) };
             }
         }
+        return null;
     });
 
     // adds single season info if its there's only single season
