@@ -101,7 +101,7 @@ exports.addDefaults = /** @type Parser */ parser => {
     parser.addHandler("container", /(?:\.)?[[(]?\b(MKV|AVI|MP4|WMV|MPG|MPEG)\b[\])]?/i, lowercase, { remove: true });
 
     // Episode code
-    parser.addHandler("episodeCode", /[[(]([A-Z0-9]{8})[\])](?:\.[a-zA-Z0-9]{1,5}|$)/, none, { remove: true });
+    parser.addHandler("episodeCode", /[[(]([a-zA-Z0-9]{8})[\])](?:\.[a-zA-Z0-9]{1,5}|$)/, none, { remove: true });
 
     // Volumes
     parser.addHandler("volumes", /vol(?:s|umes?)?[. -]*(?:\d{1,2}[., +/\\&-]+)+\d{1,2}\b/i, range, { remove: true });
