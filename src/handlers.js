@@ -88,11 +88,11 @@ exports.addDefaults = /** @type Parser */ parser => {
 
     // Audio
     parser.addHandler("audio", /\b(?:mp3|FLAC|Atmos|DTS(?:-HD)?|TrueHD)\b/i, lowercase);
-    parser.addHandler("audio", /EAC-?3(?:[. -]?[256]\.[01])?/i, value("eac3"), { remove: true });
-    parser.addHandler("audio", /AC-?3(?:[.-]5\.1)?/i, value("ac3"), { remove: true });
+    parser.addHandler("audio", /\bEAC-?3(?:[. -]?[256]\.[01])?/i, value("eac3"), { remove: true });
+    parser.addHandler("audio", /\bAC-?3(?:[.-]5\.1)?\b/i, value("ac3"), { remove: true });
     parser.addHandler("audio", /\b5\.1ch\b/i, value("ac3"), { remove: true });
-    parser.addHandler("audio", /DD5[. ]?1/i, value("dd5.1"), { remove: true });
-    parser.addHandler("audio", /AAC(?:[. ]?2[. ]0)?/, value("aac"), { remove: true });
+    parser.addHandler("audio", /\bDD5[. ]?1\b/i, value("dd5.1"), { remove: true });
+    parser.addHandler("audio", /\bAAC(?:[. ]?2[. ]0\b)?/, value("aac"), { remove: true });
 
     // Group
     parser.addHandler("group", /- ?(?!\d+$|S\d+|\d+x|ep?\d+)([^\-. ]+)$/i, { remove: true });
