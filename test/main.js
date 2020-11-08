@@ -254,4 +254,17 @@ describe("Random releases", () => {
             source: "WEBRip",
         });
     });
+
+    it("[neoHEVC] Student Council's Discretion / Seitokai no Ichizon [Season 1] [BD 1080p x265 HEVC AAC]", () => {
+        const releaseName = "[neoHEVC] Student Council's Discretion / Seitokai no Ichizon [Season 1] [BD 1080p x265 HEVC AAC]";
+        expect(parse(releaseName)).to.deep.equal({
+            title: "Student Council's Discretion / Seitokai no Ichizon",
+            seasons: [1],
+            season: 1,
+            resolution: "1080p",
+            source: "BDRip",
+            audio: "aac",
+            codec: "hevc"
+        });
+    });
 });

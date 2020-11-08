@@ -79,4 +79,22 @@ describe("Parsing audio", () => {
 
         expect(parse(releaseName)).to.not.have.property("audio");
     });
+
+    it("should detect 2.0x2 audio", () => {
+        const releaseName = "Buttobi!! CPU - 02 (DVDRip 720x480p x265 HEVC AC3x2 2.0x2)(Dual Audio)[sxales].mkv";
+
+        expect(parse(releaseName)).to.deep.include({ audio: "2.0" });
+    });
+
+    it("should detect qaac2 audio", () => {
+        const releaseName = "[naiyas] Fate Stay Night - Unlimited Blade Works Movie [BD 1080P HEVC10 QAACx2 Dual Audio]";
+
+        expect(parse(releaseName)).to.deep.include({ audio: "aac" });
+    });
+
+    it("should detect 2.0x5.1 audio", () => {
+        const releaseName = "Sakura Wars the Movie (2001) (BDRip 1920x1036p x265 HEVC FLACx2, AC3 2.0+5.1x2)(Dual Audio)[sxales].mkv\t";
+
+        expect(parse(releaseName)).to.deep.include({ audio: "2.0" });
+    });
 });

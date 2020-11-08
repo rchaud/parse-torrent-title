@@ -79,7 +79,8 @@ exports.addDefaults = /** @type Parser */ parser => {
 
     // Codec
     parser.addHandler("codec", /[xh][-. ]?26[45]/i, lowercase, { remove: true });
-    parser.addHandler("codec", /dvix|mpeg2|divx|xvid|avc|hevc/i, lowercase, { remove: true, skipIfAlreadyFound: false });
+    parser.addHandler("codec", /\bhevc(?:\s?10(?:\s?bit)?)?\b/i, value("hevc"), { remove: true, skipIfAlreadyFound: false });
+    parser.addHandler("codec", /\b(?:dvix|mpeg2|divx|xvid|avc)\b/i, lowercase, { remove: true, skipIfAlreadyFound: false });
     parser.addHandler("codec", ({ result }) => {
         if (result.codec) {
             result.codec = result.codec.replace(/[ .-]/, "");
@@ -87,12 +88,14 @@ exports.addDefaults = /** @type Parser */ parser => {
     });
 
     // Audio
-    parser.addHandler("audio", /\b(?:mp3|FLAC|Atmos|DTS(?:-HD)?|TrueHD)\b/i, lowercase);
-    parser.addHandler("audio", /\bEAC-?3(?:[. -]?[256]\.[01])?/i, value("eac3"), { remove: true });
-    parser.addHandler("audio", /\bAC-?3(?:[.-]5\.1)?\b/i, value("ac3"), { remove: true });
-    parser.addHandler("audio", /\b5\.1ch\b/i, value("ac3"), { remove: true });
+    parser.addHandler("audio", /\b(?:mp3|Atmos|DTS(?:-HD)?|TrueHD)\b/i, lowercase);
+    parser.addHandler("audio", /\bFLAC(?:x2)?\b/i, value("flac"));
+    parser.addHandler("audio", /\bEAC-?3(?:[. -]?[256]\.[01])?/i, value("eac3"), { remove: true, skipIfAlreadyFound: false });
+    parser.addHandler("audio", /\bAC-?3(?:[.-]5\.1|x2\.?0?)?\b/i, value("ac3"), { remove: true, skipIfAlreadyFound: false });
+    parser.addHandler("audio", /\b2\.0(?:x2|\+5\.1(?:x2)?)\b/i, value("2.0"), { remove: true, skipIfAlreadyFound: false });
+    parser.addHandler("audio", /\b5\.1ch\b/i, value("ac3"), { remove: true, skipIfAlreadyFound: false });
     parser.addHandler("audio", /\bDD5[. ]?1\b/i, value("dd5.1"), { remove: true });
-    parser.addHandler("audio", /\bAAC(?:[. ]?2[. ]0\b)?/, value("aac"), { remove: true });
+    parser.addHandler("audio", /\bQ?AAC(?:[. ]?2[. ]0|x2)?\b/, value("aac"), { remove: true });
 
     // Group
     parser.addHandler("group", /- ?(?!\d+$|S\d+|\d+x|ep?\d+)([^\-. ]+)$/i, { remove: true });

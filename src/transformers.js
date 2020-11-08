@@ -15,6 +15,8 @@ exports.boolean = () => true;
 
 exports.lowercase = input => input.toLowerCase();
 
+exports.uppercase = input => input.toUpperCase();
+
 exports.date = dateFormat => input => {
     const sanitized = input.replace(/\W+/g, " ").trim();
     const date = moment(sanitized, dateFormat);
