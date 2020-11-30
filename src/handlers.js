@@ -208,6 +208,7 @@ exports.addDefaults = /** @type Parser */ parser => {
     // Language
     parser.addHandler("languages", /\bmulti(?:ple)?[ .-]*(?:su?$|sub\w*)\b|msub/i, uniqConcat(value("multi subs")), { skipIfAlreadyFound: false, remove: true });
     parser.addHandler("languages", /\bmulti(?:ple)?[ .-]*(?:lang(?:uages?)?|audio|VF2)?\b/i, uniqConcat(value("multi audio")), { skipIfAlreadyFound: false });
+    parser.addHandler("languages", /\btri?[ .-]*audio\b/i, uniqConcat(value("multi audio")));
     parser.addHandler("languages", /\bdual[ .-]*(?:au?$|[aá]udio|line)\b/i, uniqConcat(value("dual audio")));
     parser.addHandler("languages", /\bdual\b(?![ .-]*sub)/i, uniqConcat(value("dual audio")));
     parser.addHandler("languages", /\bengl?(?:sub[a-zA-Z]*)?\b/i, uniqConcat(value("english")), { skipIfAlreadyFound: false });

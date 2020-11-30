@@ -692,6 +692,12 @@ describe("Parsing language", () => {
         expect(parse(releaseName)).to.deep.include({ languages: ["dual audio"] });
     });
 
+    it("Cowboy Bebop The Movie (2001) BD 1080p.x265.Tri-Audio.Ita.Eng.Jap [Rady]", () => {
+        const releaseName = "Cowboy Bebop The Movie (2001) BD 1080p.x265.Tri-Audio.Ita.Eng.Jap [Rady]";
+
+        expect(parse(releaseName)).to.deep.include({ languages: ["multi audio", "english", "japanese", "italian"] });
+    });
+
     it("My Big Fat Greek Wedding (2002) 720p BrRip x264 - YIFY", () => {
         const releaseName = "My Big Fat Greek Wedding (2002) 720p BrRip x264 - YIFY";
 
