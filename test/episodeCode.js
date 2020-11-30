@@ -29,6 +29,6 @@ describe("Parsing episode code", () => {
     it("Gankutsuou.-.The.Count.Of.Monte.Cristo[2005].-.04.-.[720p.BD.HEVC.x265].[FLAC].[Jd].[DHD].[b6e6e648].mkv", () => {
         const releaseName = "Gankutsuou.-.The.Count.Of.Monte.Cristo[2005].-.04.-.[720p.BD.HEVC.x265].[FLAC].[Jd].[DHD].[b6e6e648].mkv";
 
-        expect(parse(releaseName)).to.deep.include({ episodeCode: "b6e6e648" });
+        expect(parse(releaseName)).to.deep.include({ episodeCode: "B6E6E648" });
     });
 });

@@ -1,6 +1,9 @@
-const { none, value, integer, boolean, lowercase, date, range, yearRange, array, uniqConcat } = require("./transformers");
+const { value, integer, boolean, lowercase, uppercase, date, range, yearRange, array, uniqConcat } = require("./transformers");
 
 exports.addDefaults = /** @type Parser */ parser => {
+
+    // Episode code
+    parser.addHandler("episodeCode", /[[(]([a-zA-Z0-9]{8})[\])](?:\.[a-zA-Z0-9]{1,5}|$)/, uppercase, { remove: true });
 
     // Resolution
     parser.addHandler("resolution", /\b[([]?4k[)\]]?\b/i, value("4k"), { remove: true });
@@ -102,9 +105,6 @@ exports.addDefaults = /** @type Parser */ parser => {
 
     // Container
     parser.addHandler("container", /(?:\.)?[[(]?\b(MKV|AVI|MP4|WMV|MPG|MPEG)\b[\])]?/i, lowercase, { remove: true });
-
-    // Episode code
-    parser.addHandler("episodeCode", /[[(]([a-zA-Z0-9]{8})[\])](?:\.[a-zA-Z0-9]{1,5}|$)/, none, { remove: true });
 
     // Volumes
     parser.addHandler("volumes", /vol(?:s|umes?)?[. -]*(?:\d{1,2}[., +/\\&-]+)+\d{1,2}\b/i, range, { remove: true });

@@ -267,4 +267,17 @@ describe("Random releases", () => {
             codec: "hevc"
         });
     });
+
+    it("[Commie] Chihayafuru 3 - 21 [BD 720p AAC] [5F1911ED].mkv", () => {
+        const releaseName = "[Commie] Chihayafuru 3 - 21 [BD 720p AAC] [5F1911ED].mkv";
+        expect(parse(releaseName)).to.deep.equal({
+            title: "Chihayafuru 3",
+            episodes: [21],
+            episode: 21,
+            resolution: "720p",
+            source: "BDRip",
+            audio: "aac",
+            episodeCode: "5F1911ED"
+        });
+    });
 });
