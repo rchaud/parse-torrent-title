@@ -353,6 +353,11 @@ describe("Parsing episode", () => {
         expect(parse(releaseName)).to.deep.include({ episode: 23 });
     });
 
+    it("should detect episode after ordinal season and hyphen separator and multiple spaces", () => {
+        const releaseName = "[224] Shingeki no Kyojin - S03 - Part 1 -  13 [BDRip.1080p.x265.FLAC].mkv";
+        expect(parse(releaseName)).to.deep.include({ episode: 13 });
+    });
+
     it("should detect spanish full episode identifier", () => {
         const releaseName = "El Chema Temporada 1 Capitulo 25";
         expect(parse(releaseName)).to.deep.include({ episode: 25 });
