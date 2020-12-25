@@ -67,4 +67,10 @@ describe("Parsing dubbed", () => {
 
         expect(parse(releaseName)).to.not.have.property("dubbed");
     });
+
+    it("should not detect multi-dub", () => {
+        const releaseName = "[IceBlue] Naruto (Season 01) - [Multi-Dub][Multi-Sub][HEVC 10Bits] 800p BD";
+
+        expect(parse(releaseName)).to.deep.include({ dubbed: true });
+    });
 });

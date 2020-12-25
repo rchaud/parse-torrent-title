@@ -93,8 +93,15 @@ describe("Parsing audio", () => {
     });
 
     it("should detect 2.0x5.1 audio", () => {
-        const releaseName = "Sakura Wars the Movie (2001) (BDRip 1920x1036p x265 HEVC FLACx2, AC3 2.0+5.1x2)(Dual Audio)[sxales].mkv\t";
+        const releaseName = "Sakura Wars the Movie (2001) (BDRip 1920x1036p x265 HEVC FLACx2, AC3 2.0+5.1x2)(Dual Audio)[sxales].mkv";
 
         expect(parse(releaseName)).to.deep.include({ audio: "2.0" });
+    });
+
+    it("should detect 5.1x2.0 audio", () => {
+        const releaseName = "Macross ~ Do You Remember Love (1984) (BDRip 1920x1036p x265 HEVC DTS-HD MA, FLAC, AC3x2 5.1+2.0x3)(Dual Audio)[sxales].mkv";
+
+        expect(parse(releaseName)).to.deep.include({ audio: "2.0" });
+        expect(parse(releaseName)).to.not.have.property("episodes");
     });
 });

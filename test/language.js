@@ -698,6 +698,18 @@ describe("Parsing language", () => {
         expect(parse(releaseName)).to.deep.include({ languages: ["multi audio", "english", "japanese", "italian"] });
     });
 
+    it("[IceBlue] Naruto (Season 01) - [Multi-Dub][Multi-Sub][Dublado][HEVC 10Bits] 800p BD", () => {
+        const releaseName = "[IceBlue] Naruto (Season 01) - [Multi-Dub][Multi-Sub][HEVC 10Bits] 800p BD";
+
+        expect(parse(releaseName)).to.deep.include({ languages: ["multi subs", "multi audio"] });
+    });
+
+    it("Blue Seed - 01 (BDRip 720x480p x265 HEVC FLAC, AC3x2 2.0x3)(Triple Audio)[sxales].mkv", () => {
+        const releaseName = "Blue Seed - 01 (BDRip 720x480p x265 HEVC FLAC, AC3x2 2.0x3)(Triple Audio)[sxales].mkv";
+
+        expect(parse(releaseName)).to.deep.include({ languages: ["multi audio"] });
+    });
+
     it("My Big Fat Greek Wedding (2002) 720p BrRip x264 - YIFY", () => {
         const releaseName = "My Big Fat Greek Wedding (2002) 720p BrRip x264 - YIFY";
 
