@@ -41,6 +41,8 @@ function createHandlerFromRegExp(name, regExp, transformer, options) {
 
         if (rawMatch) {
             const transformed = transformer(cleanMatch || rawMatch, result[name]);
+            const beforeTitleMatch = title.match(/^\[([^[\]]+)]/);
+            const isBeforeTitle = beforeTitleMatch && beforeTitleMatch[1].includes(rawMatch);
 
             if (transformed) {
                 matched[name] = matched[name] || { rawMatch, matchIndex: match.index };
@@ -49,7 +51,7 @@ function createHandlerFromRegExp(name, regExp, transformer, options) {
                     rawMatch,
                     matchIndex: match.index,
                     remove: options.remove,
-                    skipFromTitle: options.skipFromTitle
+                    skipFromTitle: isBeforeTitle || options.skipFromTitle
                 };
             }
         }
@@ -132,6 +134,11 @@ class Parser {
             }
             if (matchResult && !matchResult.skipFromTitle && matchResult.matchIndex && matchResult.matchIndex < endOfTitle) {
                 endOfTitle = matchResult.matchIndex;
+            }
+            if (matchResult && matchResult.remove && matchResult.skipFromTitle && matchResult.matchIndex < endOfTitle) {
+
+                // adjust title index in case part of it should be removed and skipped
+                endOfTitle -= matchResult.rawMatch.length;
             }
         }
 

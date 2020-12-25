@@ -280,4 +280,46 @@ describe("Random releases", () => {
             episodeCode: "5F1911ED"
         });
     });
+
+    it("[DVDRip-ITA]The Fast and the Furious: Tokyo Drift [CR-Bt]", () => {
+        const releaseName = "[DVDRip-ITA]The Fast and the Furious: Tokyo Drift [CR-Bt]";
+        expect(parse(releaseName)).to.deep.equal({
+            title: "The Fast and the Furious: Tokyo Drift",
+            source: "DVDRip",
+            languages: ["italian"]
+        });
+    });
+
+    it("[BluRay Rip 720p ITA AC3 - ENG AC3 SUB] Hostel[2005]-LIFE[ultimafrontiera]", () => {
+        const releaseName = "[BluRay Rip 720p ITA AC3 - ENG AC3 SUB] Hostel[2005]-LIFE[ultimafrontiera]";
+        expect(parse(releaseName)).to.deep.equal({
+            title: "Hostel",
+            year: 2005,
+            resolution: "720p",
+            source: "BluRay",
+            audio: "ac3",
+            languages: ["english", "italian"]
+        });
+    });
+
+    it("[OFFICIAL ENG SUB] Soul Land Episode 121-125 [1080p][Soft Sub][Web-DL][Douluo Dalu][斗罗大陆]", () => {
+        const releaseName = "[OFFICIAL ENG SUB] Soul Land Episode 121-125 [1080p][Soft Sub][Web-DL][Douluo Dalu][斗罗大陆]";
+        expect(parse(releaseName)).to.deep.equal({
+            title: "Soul Land",
+            episodes: [121, 122, 123, 124, 125],
+            resolution: "1080p",
+            source: "WEB-DL",
+            languages: ["english"]
+        });
+    });
+
+    it("[720p] The God of Highschool Season 1", () => {
+        const releaseName = "[720p] The God of Highschool Season 1";
+        expect(parse(releaseName)).to.deep.equal({
+            title: "The God of Highschool",
+            seasons: [1],
+            season: 1,
+            resolution: "720p"
+        });
+    });
 });
