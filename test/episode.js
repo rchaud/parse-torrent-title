@@ -412,4 +412,9 @@ describe("Parsing episode", () => {
         const releaseName = "black-ish.S05E02.1080p..x265.10bit.EAC3.6.0-Qman[UTR].mkv";
         expect(parse(releaseName)).to.deep.include({ episodes: [2] });
     });
+
+    it("[Eng Sub] Rebirth Ep #36 [8CF3ADFA].mkv", () => {
+        const releaseName = "[Eng Sub] Rebirth Ep #36 [8CF3ADFA].mkv";
+        expect(parse(releaseName)).to.deep.include({ episodes: [36] });
+    });
 });
