@@ -179,8 +179,8 @@ exports.addDefaults = /** @type Parser */ parser => {
             const partTitle = title.slice(startIndex, endIndex);
 
             // try to match the episode inside the title with a separator, if not found include the start of the title as well
-            const matches = partTitle.match(/(?<!movie\W*|film\W*)[ .]*[([-][ .]*(\d{1,4})(?:a|b|v\d)?(?:\W|$)(?!movie|film)/i) ||
-                partTitle.match(/^[ .]*(\d{1,4})(?:a|b|v\d)?(?:\W|$)(?!movie|film)/i);
+            const matches = partTitle.match(/(?<!movie\W*|film\W*|^)[ .]*[([-][ .]*(\d{1,4})(?:a|b|v\d)?(?:\W|$)(?!movie|film)/i) ||
+                partTitle.match(/^(?:[([-][ .]?)?(\d{1,4})(?:a|b|v\d)?(?:\W|$)(?!movie|film)/i);
 
             if (matches) {
                 result.episodes = [matches[matches.length - 1]]

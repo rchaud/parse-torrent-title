@@ -427,4 +427,14 @@ describe("Parsing episode", () => {
         const releaseName = "[Eng Sub] Rebirth Ep #36 [8CF3ADFA].mkv";
         expect(parse(releaseName)).to.deep.include({ episodes: [36] });
     });
+
+    it("[92 Impatient Eilas & Miyafuji] Strike Witches - Road to Berlin - 01 [1080p][BCDFF6A2].mkv", () => {
+        const releaseName = "[92 Impatient Eilas & Miyafuji] Strike Witches - Road to Berlin - 01 [1080p][BCDFF6A2].mkv";
+        expect(parse(releaseName)).to.deep.include({ episodes: [1] });
+    });
+
+    it("[224] Darling in the FranXX - 14 [BDRip.1080p.x265.FLAC].mkv", () => {
+        const releaseName = "[224] Darling in the FranXX - 14 [BDRip.1080p.x265.FLAC].mkv";
+        expect(parse(releaseName)).to.deep.include({ episodes: [14] });
+    });
 });
