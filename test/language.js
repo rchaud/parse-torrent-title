@@ -733,4 +733,10 @@ describe("Parsing language", () => {
 
         expect(parse(releaseName)).to.deep.include({ title: "The English Patient", languages: ["english"] });
     });
+
+    it("should not detect LT language from yts domain name", () => {
+        const releaseName = "Do.Or.Die.1991.1080p.BluRay.x264-[YTS.LT].mp4";
+
+        expect(parse(releaseName)).to.not.have.property("languages");
+    });
 });
