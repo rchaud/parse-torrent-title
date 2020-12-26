@@ -306,4 +306,14 @@ describe("Parsing season", () => {
         const releaseName = "Sons of Anarchy Sn4 Ep14 HD-TV - To Be, Act 2, By Cool Release";
         expect(parse(releaseName)).to.deep.include({ seasons: [4] });
     });
+
+    it("should detect single season and not range in filename", () => {
+        const releaseName = "[FFA] Kiratto Pri☆chan Season 3 - 11 [1080p][HEVC].mkv";
+        expect(parse(releaseName)).to.deep.include({ seasons: [3] });
+    });
+
+    it("should detect single season and not range in filename 2", () => {
+        const releaseName = "[Erai-raws] Granblue Fantasy The Animation Season 2 - 10 [1080p][Multiple Subtitle].mkv";
+        expect(parse(releaseName)).to.deep.include({ seasons: [2] });
+    });
 });

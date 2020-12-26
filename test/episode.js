@@ -437,4 +437,14 @@ describe("Parsing episode", () => {
         const releaseName = "[224] Darling in the FranXX - 14 [BDRip.1080p.x265.FLAC].mkv";
         expect(parse(releaseName)).to.deep.include({ episodes: [14] });
     });
+
+    it("[Erai-raws] Granblue Fantasy The Animation Season 2 - 10 [1080p][Multiple Subtitle].mkv", () => {
+        const releaseName = "[Erai-raws] Granblue Fantasy The Animation Season 2 - 10 [1080p][Multiple Subtitle].mkv";
+        expect(parse(releaseName)).to.deep.include({ episodes: [10] });
+    });
+
+    it("[Erai-raws] Shingeki no Kyojin Season 3 - 11 [1080p][Multiple Subtitle].mkv", () => {
+        const releaseName = "[Erai-raws] Shingeki no Kyojin Season 3 - 11 [1080p][Multiple Subtitle].mkv";
+        expect(parse(releaseName)).to.deep.include({ episodes: [11] });
+    });
 });
