@@ -447,4 +447,14 @@ describe("Parsing episode", () => {
         const releaseName = "[Erai-raws] Shingeki no Kyojin Season 3 - 11 [1080p][Multiple Subtitle].mkv";
         expect(parse(releaseName)).to.deep.include({ episodes: [11] });
     });
+
+    it("should detect single zero episode", () => {
+        const releaseName = "DARKER THAN BLACK - S00E00.mkv";
+        expect(parse(releaseName)).to.deep.include({ episode: 0 });
+    });
+
+    it("should detect anime episode when title contain similar pattern", () => {
+        const releaseName = "[Erai-raws] 22-7 - 11 .mkv";
+        expect(parse(releaseName)).to.deep.include({ episode: 11 });
+    });
 });

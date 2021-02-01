@@ -316,4 +316,9 @@ describe("Parsing season", () => {
         const releaseName = "[Erai-raws] Granblue Fantasy The Animation Season 2 - 10 [1080p][Multiple Subtitle].mkv";
         expect(parse(releaseName)).to.deep.include({ seasons: [2] });
     });
+
+    it("should detect single zero season", () => {
+        const releaseName = "DARKER THAN BLACK - S00E04 - Darker Than Black Gaiden OVA 3.mkv";
+        expect(parse(releaseName)).to.deep.include({ season: 0 });
+    });
 });
