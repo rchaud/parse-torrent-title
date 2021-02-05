@@ -102,7 +102,7 @@ exports.addDefaults = /** @type Parser */ parser => {
     parser.addHandler("audio", /\bQ?AAC(?:[. ]?2[. ]0|x2)?\b/, value("aac"), { remove: true });
 
     // Group
-    parser.addHandler("group", /- ?(?!\d+$|S\d+|\d+x|ep?\d+|.+]$)([^\-. ]+)$/i, { remove: true });
+    parser.addHandler("group", /- ?(?!\d+$|S\d+|\d+x|ep?\d+|[^[]+]$)([^\-. []+)(?:\[[\w.-]+])?(?=\.\w{2,4}$|$)/i, { remove: true });
 
     // Container
     parser.addHandler("container", /(?:\.)?[[(]?\b(MKV|AVI|MP4|WMV|MPG|MPEG)\b[\])]?/i, lowercase);

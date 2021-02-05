@@ -298,7 +298,8 @@ describe("Random releases", () => {
             resolution: "720p",
             source: "BluRay",
             audio: "ac3",
-            languages: ["english", "italian"]
+            languages: ["english", "italian"],
+            group: "LIFE"
         });
     });
 

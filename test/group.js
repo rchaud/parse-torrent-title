@@ -20,6 +20,24 @@ describe("Parsing group", () => {
         expect(parse(releaseName)).to.deep.include({ group: "YIFY" });
     });
 
+    it("should detect group before container file type", () => {
+        const releaseName = "The.Expanse.S05E02.720p.WEB.x264-Worldmkv.mkv";
+
+        expect(parse(releaseName)).to.deep.include({ group: "Worldmkv" });
+    });
+
+    it("should detect group with site source tag", () => {
+        const releaseName = "The.Expanse.S05E02.PROPER.720p.WEB.h264-KOGi[rartv]";
+
+        expect(parse(releaseName)).to.deep.include({ group: "KOGi" });
+    });
+
+    it("should detect group with site source tag before container file type", () => {
+        const releaseName = "The.Expanse.S05E02.1080p.AMZN.WEB.DDP5.1.x264-NTb[eztv.re].mp4";
+
+        expect(parse(releaseName)).to.deep.include({ group: "NTb" });
+    });
+
     it("should detect when there is no group", () => {
         const releaseName = "Western - L'homme qui n'a pas d'étoile-1955.Multi.DVD9";
 
