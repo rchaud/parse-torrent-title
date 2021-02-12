@@ -4,6 +4,7 @@ exports.addDefaults = /** @type Parser */ parser => {
 
     // Episode code
     parser.addHandler("episodeCode", /[[(]([a-zA-Z0-9]{8})[\])](?:\.[a-zA-Z0-9]{1,5}|$)/, uppercase, { remove: true });
+    parser.addHandler("episodeCode", /\[([A-Z0-9]{8})]/, uppercase, { remove: true });
 
     // Resolution
     parser.addHandler("resolution", /\b[([]?4k[)\]]?\b/i, value("4k"), { remove: true });
@@ -136,7 +137,7 @@ exports.addDefaults = /** @type Parser */ parser => {
     parser.addHandler("seasons", /(?:\D|^)(\d{1,2})x\d{1,3}(?:\D|$)/, array(integer));
     parser.addHandler("seasons", /\bSn([1-9])(?:\D|$)/, array(integer));
     parser.addHandler("seasons", /[[(](\d{1,2})\.\d{1,2}[)\]]/, array(integer));
-    parser.addHandler("seasons", /-\s?(\d{1,2})\.\d{1,2}\s?-/, array(integer));
+    parser.addHandler("seasons", /-\s?(\d{1,2})\.\d{2,3}\s?-/, array(integer));
 
     // adds single season info if its there"s only single season
     parser.addHandler("season", ({ result }) => {
@@ -161,7 +162,7 @@ exports.addDefaults = /** @type Parser */ parser => {
     parser.addHandler("episodes", /(?:[ée]p(?:isode)?|[Сс]ерии|capitulo)[. ]?[-:#]?[. ]?(\d{1,3})(?:[abc]|v0?[1-4]|\W|$)/i, array(integer));
     parser.addHandler("episodes", /(?:\W|^)\d{1,2}[. ]?x[. ]?(\d{1,2})(?:[abc]|v0?[1-4]|\W|$)/, array(integer));
     parser.addHandler("episodes", /[[(]\d{1,2}\.(\d{1,2})[)\]]/, array(integer));
-    parser.addHandler("episodes", /-\s?\d{1,2}\.(\d{1,2})\s?-/, array(integer));
+    parser.addHandler("episodes", /-\s?\d{1,2}\.(\d{2,3})\s?-/, array(integer));
     parser.addHandler("episodes", /(?:\W|^)(\d{1,2})[. ]?(?:of|из)[. ]?\d{1,2}(?:\W|$)/, array(integer));
 
     // can be both absolute episode and season+episode in format 101
@@ -177,11 +178,12 @@ exports.addDefaults = /** @type Parser */ parser => {
                 .filter(index => index > 0);
             const startIndex = startIndexes.length ? Math.min(...startIndexes) : 0;
             const endIndex = Math.min(...endIndexes, title.length);
-            const partTitle = title.slice(startIndex, endIndex);
+            const beginningTitle = title.slice(0, endIndex);
+            const middleTitle = title.slice(startIndex, endIndex);
 
             // try to match the episode inside the title with a separator, if not found include the start of the title as well
-            const matches = partTitle.match(/(?<!movie\W*|film\W*|^)(?:[ .]+-[ .]+|[([][ .]*)(\d{1,4})(?:a|b|v\d)?(?:\W|$)(?!movie|film)/i) ||
-                partTitle.match(/^(?:[([-][ .]?)?(\d{1,4})(?:a|b|v\d)?(?:\W|$)(?!movie|film)/i);
+            const matches = beginningTitle.match(/(?<!movie\W*|film\W*|^)(?:[ .]+-[ .]+|[([][ .]*)(\d{1,4})(?:a|b|v\d)?(?:\W|$)(?!movie|film)/i) ||
+                middleTitle.match(/^(?:[([-][ .]?)?(\d{1,4})(?:a|b|v\d)?(?:\W|$)(?!movie|film)/i);
 
             if (matches) {
                 result.episodes = [matches[matches.length - 1]]

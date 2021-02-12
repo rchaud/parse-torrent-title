@@ -457,4 +457,19 @@ describe("Parsing episode", () => {
         const releaseName = "[Erai-raws] 22-7 - 11 .mkv";
         expect(parse(releaseName)).to.deep.include({ episode: 11 });
     });
+
+    it("should detect anime episode after year in title", () => {
+        const releaseName = "[Golumpa] Star Blazers 2202 - 22 (Uchuu Senkan Yamato 2022) [FuniDub 1080p x264 AAC] [A24B89C8].mkv";
+        expect(parse(releaseName)).to.deep.include({ episode: 22 });
+    });
+
+    it("should detect anime episode after year property", () => {
+        const releaseName = "[SubsPlease] Digimon Adventure (2020) - 35 (720p) [4E7BA28A].mkv";
+        expect(parse(releaseName)).to.deep.include({ episode: 35 });
+    });
+
+    it("should detect anime episode recap episode", () => {
+        const releaseName = "[KH] Sword Art Online II - 14.5 - Debriefing.mkv";
+        expect(parse(releaseName)).to.deep.include({ episode: 14 });
+    });
 });

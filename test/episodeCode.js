@@ -31,4 +31,10 @@ describe("Parsing episode code", () => {
 
         expect(parse(releaseName)).to.deep.include({ episodeCode: "B6E6E648" });
     });
+
+    it("[D0ugyB0y] Nanatsu no Taizai Fundo no Shinpan - 01 (1080p WEB NF x264 AAC[9CC04E06]).mkv", () => {
+        const releaseName = "[D0ugyB0y] Nanatsu no Taizai Fundo no Shinpan - 01 (1080p WEB NF x264 AAC[9CC04E06]).mkv";
+
+        expect(parse(releaseName)).to.deep.include({ episodeCode: "9CC04E06" });
+    });
 });
