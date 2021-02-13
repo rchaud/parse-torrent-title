@@ -73,7 +73,22 @@ describe("Parsing title", () => {
 
     it("should not remove non english title with digits in it", () => {
         const releaseName = "3 Миссия невыполнима 3 2006г. BDRip 1080p.mkv";
-        expect(parse(releaseName)).to.deep.include({ title: "3 Миссия невыполнима 3" });
+        expect(parse(releaseName)).to.deep.include({ title: "Миссия невыполнима 3" });
+    });
+
+    it("should not remove russian movie numbering with dot and space", () => {
+        const releaseName = "1. Детские игры. 1988. 1080p. HEVC. 10bit..mkv";
+        expect(parse(releaseName)).to.deep.include({ title: "Детские игры." });
+    });
+
+    it("should not remove russian movie numbering with number in title", () => {
+        const releaseName = "01. 100 девчонок и одна в лифте 2000 WEBRip 1080p.mkv";
+        expect(parse(releaseName)).to.deep.include({ title: "100 девчонок и одна в лифте" });
+    });
+
+    it("should not remove russian movie numbering with dot", () => {
+        const releaseName = "08.Планета.обезьян.Революция.2014.BDRip-HEVC.1080p.mkv";
+        expect(parse(releaseName)).to.deep.include({ title: "Планета обезьян Революция" });
     });
 
     it("should clear russian cast info from title", () => {
