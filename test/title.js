@@ -66,9 +66,14 @@ describe("Parsing title", () => {
         expect(parse(releaseName)).to.deep.include({ title: "Blue Crush" });
     });
 
-    it("should detect remove non english title if its the only thing left", () => {
+    it("should not remove non english title if its the only thing left", () => {
         const releaseName = "Жихарка (2007) DVDRip";
         expect(parse(releaseName)).to.deep.include({ title: "Жихарка" });
+    });
+
+    it("should not remove non english title with digits in it", () => {
+        const releaseName = "3 Миссия невыполнима 3 2006г. BDRip 1080p.mkv";
+        expect(parse(releaseName)).to.deep.include({ title: "3 Миссия невыполнима 3" });
     });
 
     it("should clear russian cast info from title", () => {
