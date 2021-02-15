@@ -472,4 +472,9 @@ describe("Parsing episode", () => {
         const releaseName = "[KH] Sword Art Online II - 14.5 - Debriefing.mkv";
         expect(parse(releaseName)).to.deep.include({ episode: 14 });
     });
+
+    it("should detect four digit anime episode", () => {
+        const releaseName = "[SSA] Detective Conan - 1001 [720p].mkv";
+        expect(parse(releaseName)).to.deep.include({ episode: 1001 });
+    });
 });

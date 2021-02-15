@@ -73,7 +73,7 @@ exports.addDefaults = /** @type Parser */ parser => {
     parser.addHandler("source", /\bTVRips?\b/i, value("TVRip"), { remove: true });
     parser.addHandler("source", /\bR5\b/i, value("R5"), { remove: true });
     parser.addHandler("source", /\bBlu[ .-]*Ray\b/i, value("BluRay"), { remove: true });
-    parser.addHandler("source", /\bWEB[ .-]*DL\b/i, value("WEB-DL"), { remove: true });
+    parser.addHandler("source", /\bWEB[ .-]*DL(?:Rip)?\b/i, value("WEB-DL"), { remove: true });
     parser.addHandler("source", /\bWEB[ .-]*Rip\b/i, value("WEBRip"), { remove: true });
     parser.addHandler("source", /\b(?:DL|WEB|BD|BR)(?:RE)?MUX\b/i, { remove: true });
     parser.addHandler("source", /\b(DivX|XviD)\b/, { remove: true });
@@ -255,6 +255,8 @@ exports.addDefaults = /** @type Parser */ parser => {
     parser.addHandler("languages", /\bgerman\b/i, uniqConcat(value("german")), { skipFromTitle: true, skipIfAlreadyFound: false });
     parser.addHandler("languages", /\bRUS?\b/i, uniqConcat(value("russian")), { skipIfAlreadyFound: false });
     parser.addHandler("languages", /\brussian\b/i, uniqConcat(value("russian")), { skipFromTitle: true, skipIfAlreadyFound: false });
+    parser.addHandler("languages", /\bUKR\b/i, uniqConcat(value("ukrainian")), { skipIfAlreadyFound: false });
+    parser.addHandler("languages", /\bukrainian\b/i, uniqConcat(value("ukrainian")), { skipFromTitle: true, skipIfAlreadyFound: false });
     parser.addHandler("languages", /\bhin(?:di)?\b/i, uniqConcat(value("hindi")), { skipIfAlreadyFound: false });
     parser.addHandler("languages", /\b(?:tel(?!\W*aviv)|telugu)\b/i, uniqConcat(value("telugu")), { skipIfAlreadyFound: false });
     parser.addHandler("languages", /\btam(?:il)?\b/i, uniqConcat(value("tamil")), { skipIfAlreadyFound: false });
@@ -263,6 +265,7 @@ exports.addDefaults = /** @type Parser */ parser => {
     parser.addHandler("languages", /\bpolish\b/i, uniqConcat(value("polish")), { skipFromTitle: true, skipIfAlreadyFound: false });
     parser.addHandler("languages", /\bCZ[EH]?\b/i, uniqConcat(value("czech")), { skipIfAlreadyFound: false });
     parser.addHandler("languages", /\bczech\b/i, uniqConcat(value("czech")), { skipFromTitle: true, skipIfAlreadyFound: false });
+    parser.addHandler("languages", /\bslo(?:vak|vakian)\b/i, uniqConcat(value("slovakian")), { skipFromTitle: true, skipIfAlreadyFound: false });
     parser.addHandler("languages", /\bHU\b/, uniqConcat(value("hungarian")), { skipFromTitle: true, skipIfAlreadyFound: false });
     parser.addHandler("languages", /\bHUN(?:garian)?\b/i, uniqConcat(value("hungarian")), { skipFromTitle: true, skipIfAlreadyFound: false });
     parser.addHandler("languages", /\bROM(?:manian)?\b/i, uniqConcat(value("romanian")), { skipIfAlreadyFound: false });
@@ -281,6 +284,10 @@ exports.addDefaults = /** @type Parser */ parser => {
     parser.addHandler("languages", /\bnorwegian\b/i, uniqConcat(value("norwegian")), { skipFromTitle: true, skipIfAlreadyFound: false });
     parser.addHandler("languages", /\b(?:arabic|arab.*(?:audio|lang(?:uage)?|sub(?:s|titles?)?))\b/i, uniqConcat(value("arabic")), { skipFromTitle: true, skipIfAlreadyFound: false });
     parser.addHandler("languages", /\b(?:turkish|tur)\b/i, uniqConcat(value("turkish")), { skipFromTitle: true, skipIfAlreadyFound: false });
+    parser.addHandler("languages", /\bvietnamese\b|\bvie(?=[\]_)]?\.\w{2,4}$)/i, uniqConcat(value("vietnamese")), { skipFromTitle: true, skipIfAlreadyFound: false });
+    parser.addHandler("languages", /\bind(?:onesian)?\b/i, uniqConcat(value("indonesian")), { skipFromTitle: true, skipIfAlreadyFound: false });
+    parser.addHandler("languages", /\bthai\b/i, uniqConcat(value("thai")), { skipFromTitle: true, skipIfAlreadyFound: false });
+    parser.addHandler("languages", /\bTHA|tha\b/, uniqConcat(value("thai")), { skipFromTitle: true, skipIfAlreadyFound: false });
     parser.addHandler("languages", /\bheb(?:rew)?\b/i, uniqConcat(value("hebrew")), { skipFromTitle: true, skipIfAlreadyFound: false });
 
     // infer pt language based on season/episode naming

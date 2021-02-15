@@ -5,7 +5,7 @@ describe("Parsing language", () => {
     it("should detect the russian language correctly", () => {
         const releaseName = "Deadpool 2016 1080p BluRay DTS Rus Ukr 3xEng HDCL";
 
-        expect(parse(releaseName)).to.deep.include({ languages: ["russian"] });
+        expect(parse(releaseName)).to.deep.include({ languages: ["russian", "ukrainian"] });
     });
 
     it("should detect the netherlands language correctly", () => {
@@ -710,33 +710,77 @@ describe("Parsing language", () => {
         expect(parse(releaseName)).to.deep.include({ languages: ["multi audio"] });
     });
 
+    it("Ministri S01E02 SLOVAK 480p x264-mSD", () => {
+        const releaseName = "Ministri S01E02 SLOVAK 480p x264-mSD";
+        expect(parse(releaseName)).to.deep.include({ languages: ["slovakian"] });
+    });
+
+    it("The House Bunny (2008) BDRemux 1080p MediaClub [RUS, UKR, ENG]", () => {
+        const releaseName = "The House Bunny (2008) BDRemux 1080p MediaClub [RUS, UKR, ENG]";
+        expect(parse(releaseName)).to.deep.include({ languages: ["english", "russian", "ukrainian"] });
+    });
+
+    it("L'immortel (2010) DVDRip AVC (Russian,Ukrainian)", () => {
+        const releaseName = "L'immortel (2010) DVDRip AVC (Russian,Ukrainian)";
+        expect(parse(releaseName)).to.deep.include({ languages: ["russian", "ukrainian"] });
+    });
+
+    it("Into.the.Night.S01E03.Mathieu.1080p.NF.WEB-DL.DDP5.1.x264-NTG_track33_[vie].srt", () => {
+        const releaseName = "Into.the.Night.S01E03.Mathieu.1080p.NF.WEB-DL.DDP5.1.x264-NTG_track33_[vie].srt";
+        expect(parse(releaseName)).to.deep.include({ languages: ["vietnamese"] });
+    });
+
+    it("Subs/vie.srt", () => {
+        const releaseName = "Subs/vie.srt";
+        expect(parse(releaseName)).to.deep.include({ languages: ["vietnamese"] });
+    });
+
+    it("Subs/Vietnamese.srt", () => {
+        const releaseName = "Subs/Vietnamese.vie.srt";
+        expect(parse(releaseName)).to.deep.include({ languages: ["vietnamese"] });
+    });
+    it("Midnight.Diner.Tokyo.Stories.S02E10.WEBRip.x264-ION10/14_Indonesian.srt", () => {
+        const releaseName = "Midnight.Diner.Tokyo.Stories.S02E10.WEBRip.x264-ION10/14_Indonesian.srt";
+        expect(parse(releaseName)).to.deep.include({ languages: ["indonesian"] });
+    });
+
+    it("Subs/Thai.srt", () => {
+        const releaseName = "Subs/Thai.srt";
+        expect(parse(releaseName)).to.deep.include({ languages: ["thai"] });
+    });
+
+    it("Food Choices (2016) WEB.1080p.H264_tha.srt", () => {
+        const releaseName = "Food Choices (2016) WEB.1080p.H264_tha.srt";
+        expect(parse(releaseName)).to.deep.include({ languages: ["thai"] });
+    });
+
+    it("Ekk Deewana Tha (2012) DVDRip 720p x264 AAC TaRa.mkv", () => {
+        const releaseName = "Ekk Deewana Tha (2012) DVDRip 720p x264 AAC TaRa.mkv";
+        expect(parse(releaseName)).to.not.have.property("languages");
+    });
+
     it("My Big Fat Greek Wedding (2002) 720p BrRip x264 - YIFY", () => {
         const releaseName = "My Big Fat Greek Wedding (2002) 720p BrRip x264 - YIFY";
-
         expect(parse(releaseName)).to.not.have.property("languages");
     });
 
     it("Get Him to the Greek 2010 720p BluRay", () => {
         const releaseName = "Get Him to the Greek 2010 720p BluRay";
-
         expect(parse(releaseName)).to.not.have.property("languages");
     });
 
     it("[Hakata Ramen] Hoshiai No Sora (Stars Align) 01 [1080p][HEVC][x265][10bit][Dual-Subs] HR-DR", () => {
         const releaseName = "[Hakata Ramen] Hoshiai No Sora (Stars Align) 01 [1080p][HEVC][x265][10bit][Dual-Subs] HR-DR";
-
         expect(parse(releaseName)).to.not.have.property("languages");
     });
 
     it("should not remove english from title", () => {
         const releaseName = "The English Patient (1996) 720p BrRip x264 - YIFY";
-
         expect(parse(releaseName)).to.deep.include({ title: "The English Patient", languages: ["english"] });
     });
 
     it("should not detect LT language from yts domain name", () => {
         const releaseName = "Do.Or.Die.1991.1080p.BluRay.x264-[YTS.LT].mp4";
-
         expect(parse(releaseName)).to.not.have.property("languages");
     });
 });
