@@ -12,6 +12,11 @@ describe("Parsing season", () => {
         expect(parse(releaseName)).to.deep.include({ season: 1 });
     });
 
+    it("should detect regular season with 3 digits", () => {
+        const releaseName = "S011E16.mkv";
+        expect(parse(releaseName)).to.deep.include({ season: 11 });
+    });
+
     it("should detect regular season with a space between", () => {
         const releaseName = "Dragon Ball Super S01 E23 French 1080p HDTV H264-Kesni";
         expect(parse(releaseName)).to.deep.include({ season: 1 });
@@ -210,6 +215,11 @@ describe("Parsing season", () => {
     it("should detect season with russian season word", () => {
         const releaseName = "Друзья / Friends / Сезон: 1 / Серии: 1-24 из 24 [1994-1995, США, BDRip 720p] MVO + Original + Sub (Rus, Eng)";
         expect(parse(releaseName)).to.deep.include({ season: 1 });
+    });
+
+    it("should detect season with russian season word as folder name", () => {
+        const releaseName = "Сезон 5/Серия 11.mkv";
+        expect(parse(releaseName)).to.deep.include({ season: 5 });
     });
 
     it("should detect multiple seasons with end season without s symbol", () => {

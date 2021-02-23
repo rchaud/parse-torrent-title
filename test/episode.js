@@ -17,6 +17,11 @@ describe("Parsing episode", () => {
         expect(parse(releaseName)).to.deep.include({ episode: 23 });
     });
 
+    it("should detect regular episode with season symbol but wihout episode symbol", () => {
+        const releaseName = "Vikings.s02.09.AVC.tahiy.mkv";
+        expect(parse(releaseName)).to.deep.include({ episode: 9 });
+    });
+
     it("should detect regular episode with a letter a suffix", () => {
         const releaseName = "The Twilight Zone 1985 S01E23a Shadow Play.mp4";
         expect(parse(releaseName)).to.deep.include({ episode: 23 });
@@ -345,6 +350,21 @@ describe("Parsing episode", () => {
 
     it("should detect episode with russian episode marker and single episode and with total episodes value", () => {
         const releaseName = "Викинги / Vikings / Сезон: 5 / Серии: 1 из 20 [2017, WEB-DL 1080p] MVO";
+        expect(parse(releaseName)).to.deep.include({ episode: 1 });
+    });
+
+    it("should detect episode with shortened russian episode name", () => {
+        const releaseName = "Меч (05 сер.) - webrip1080p.mkv";
+        expect(parse(releaseName)).to.deep.include({ episode: 5 });
+    });
+
+    it("should detect episode with full russian episode name", () => {
+        const releaseName = "Серия 11.mkv";
+        expect(parse(releaseName)).to.deep.include({ episode: 11 });
+    });
+
+    it("should detect episode with russian episode name in non kirilica", () => {
+        const releaseName = "Tajny.sledstviya-20.01.serya.WEB-DL.(1080p).by.lunkin.mkv";
         expect(parse(releaseName)).to.deep.include({ episode: 1 });
     });
 
