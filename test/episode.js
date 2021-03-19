@@ -383,6 +383,11 @@ describe("Parsing episode", () => {
         expect(parse(releaseName)).to.deep.include({ episode: 8 });
     });
 
+    it("should detect episode with russian episode name in non kirilica alternative 5", () => {
+        const releaseName = "Tajny.sledstvija.(2.sezon.12.serija.iz.12).2002.XviD.DVDRip.avi";
+        expect(parse(releaseName)).to.deep.include({ episode: 12 });
+    });
+
     it("should detect episode after ordinal season and hyphen separator", () => {
         const releaseName = "Kyoukai no Rinne (TV) 3rd Season - 23 [1080p]";
         expect(parse(releaseName)).to.deep.include({ episode: 23 });
