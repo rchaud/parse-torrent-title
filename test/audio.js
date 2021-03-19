@@ -104,4 +104,11 @@ describe("Parsing audio", () => {
         expect(parse(releaseName)).to.deep.include({ audio: "2.0" });
         expect(parse(releaseName)).to.not.have.property("episodes");
     });
+
+    it("should detect 5.1x2+2.0x3 audio", () => {
+        const releaseName = "Escaflowne (2000) (BDRip 1896x1048p x265 HEVC TrueHD, FLACx3, AC3 5.1x2+2.0x3)(Triple Audio)[sxales].mkv";
+
+        expect(parse(releaseName)).to.deep.include({ audio: "2.0" });
+        expect(parse(releaseName)).to.not.have.property("episodes");
+    });
 });

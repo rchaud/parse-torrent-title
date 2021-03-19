@@ -363,9 +363,24 @@ describe("Parsing episode", () => {
         expect(parse(releaseName)).to.deep.include({ episode: 11 });
     });
 
+    it("should detect episode with full russian episode name and no prefix", () => {
+        const releaseName = "Интерны. Сезон №9. Серия №180.avi";
+        expect(parse(releaseName)).to.deep.include({ episode: 180 });
+    });
+
     it("should detect episode with russian episode name in non kirilica", () => {
         const releaseName = "Tajny.sledstviya-20.01.serya.WEB-DL.(1080p).by.lunkin.mkv";
         expect(parse(releaseName)).to.deep.include({ episode: 1 });
+    });
+
+    it("should detect episode with russian episode name in non kirilica alternative 2", () => {
+        const releaseName = "Zvezdnie.Voiny.Voina.Klonov.3.sezon.22.seria.iz.22.XviD.HDRip.avi";
+        expect(parse(releaseName)).to.deep.include({ episode: 22 });
+    });
+
+    it("should detect episode with russian episode name in non kirilica alternative 3", () => {
+        const releaseName = "MosGaz.(08.seriya).2012.WEB-DLRip(AVC).ExKinoRay.mkv";
+        expect(parse(releaseName)).to.deep.include({ episode: 8 });
     });
 
     it("should detect episode after ordinal season and hyphen separator", () => {
@@ -381,6 +396,11 @@ describe("Parsing episode", () => {
     it("should detect spanish full episode identifier", () => {
         const releaseName = "El Chema Temporada 1 Capitulo 25";
         expect(parse(releaseName)).to.deep.include({ episode: 25 });
+    });
+
+    it("should detect latino full episode identifier", () => {
+        const releaseName = "Yu-Gi-Oh! ZEXAL Temporada 1 Episodio 009 Dual Latino e Inglés [B3B4970E].mkv";
+        expect(parse(releaseName)).to.deep.include({ episode: 9 });
     });
 
     it("should detect spanish multiple episode identifier", () => {

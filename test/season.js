@@ -222,6 +222,21 @@ describe("Parsing season", () => {
         expect(parse(releaseName)).to.deep.include({ season: 5 });
     });
 
+    it("should detect season with russian season word with number at front", () => {
+        const releaseName = "2 сезон 24 серия.avi";
+        expect(parse(releaseName)).to.deep.include({ season: 2 });
+    });
+
+    it("should detect season with russian season word and no prefix", () => {
+        const releaseName = "Интерны. Сезон №9. Серия №180.avi";
+        expect(parse(releaseName)).to.deep.include({ season: 9 });
+    });
+
+    it("should detect season with russian season word in araic letters", () => {
+        const releaseName = "Zvezdnie.Voiny.Voina.Klonov.3.sezon.22.seria.iz.22.XviD.HDRip.avi";
+        expect(parse(releaseName)).to.deep.include({ season: 3 });
+    });
+
     it("should detect multiple seasons with end season without s symbol", () => {
         const releaseName = "Once Upon a Time [S01-07] (2011-2017) WEB-DLRip by Generalfilm";
         expect(parse(releaseName)).to.deep.include({ seasons: [1, 2, 3, 4, 5, 6, 7] });
