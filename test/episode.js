@@ -388,6 +388,11 @@ describe("Parsing episode", () => {
         expect(parse(releaseName)).to.deep.include({ episode: 12 });
     });
 
+    it("should detect episodes with russian x separator", () => {
+        const releaseName = "Discovery. Парни с Юкона / Yokon Men [06х01-08] (2017) HDTVRip от GeneralFilm | P1";
+        expect(parse(releaseName)).to.deep.include({ episodes: [1, 2, 3, 4, 5, 6, 7, 8] });
+    });
+
     it("should detect episode after ordinal season and hyphen separator", () => {
         const releaseName = "Kyoukai no Rinne (TV) 3rd Season - 23 [1080p]";
         expect(parse(releaseName)).to.deep.include({ episode: 23 });

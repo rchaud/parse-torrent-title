@@ -237,6 +237,11 @@ describe("Parsing season", () => {
         expect(parse(releaseName)).to.deep.include({ season: 9 });
     });
 
+    it("should detect season with russian x separator", () => {
+        const releaseName = "Discovery. Парни с Юкона / Yokon Men [06х01-08] (2017) HDTVRip от GeneralFilm | P1";
+        expect(parse(releaseName)).to.deep.include({ season: 6 });
+    });
+
     it("should detect season with russian season word in araic letters", () => {
         const releaseName = "Zvezdnie.Voiny.Voina.Klonov.3.sezon.22.seria.iz.22.XviD.HDRip.avi";
         expect(parse(releaseName)).to.deep.include({ season: 3 });
