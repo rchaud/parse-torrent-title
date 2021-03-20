@@ -227,6 +227,11 @@ describe("Parsing season", () => {
         expect(parse(releaseName)).to.deep.include({ season: 2 });
     });
 
+    it("should detect season with russian season word with number at front and nothing else", () => {
+        const releaseName = "3 сезон";
+        expect(parse(releaseName)).to.deep.include({ season: 3 });
+    });
+
     it("should detect season with russian season word and no prefix", () => {
         const releaseName = "Интерны. Сезон №9. Серия №180.avi";
         expect(parse(releaseName)).to.deep.include({ season: 9 });
