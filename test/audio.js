@@ -111,4 +111,17 @@ describe("Parsing audio", () => {
         expect(parse(releaseName)).to.deep.include({ audio: "2.0" });
         expect(parse(releaseName)).to.not.have.property("episodes");
     });
+
+    it("should detect FLAC2.0x2 audio", () => {
+        const releaseName = "[SAD] Inuyasha - The Movie 4 - Fire on the Mystic Island [BD 1920x1036 HEVC10 FLAC2.0x2] [84E9A4A1].mkv";
+
+        expect(parse(releaseName)).to.deep.include({ audio: "flac" });
+        expect(parse(releaseName)).to.not.have.property("episodes");
+    });
+
+    it("should detect FLACx2 2.0x3 audio", () => {
+        const releaseName = "Outlaw Star - 23 (BDRip 1440x1080p x265 HEVC AC3, FLACx2 2.0x3)(Dual Audio)[sxales].mkv";
+
+        expect(parse(releaseName)).to.deep.include({ audio: "2.0", episode: 23 });
+    });
 });

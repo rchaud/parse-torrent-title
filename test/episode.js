@@ -353,6 +353,11 @@ describe("Parsing episode", () => {
         expect(parse(releaseName)).to.deep.include({ episode: 1 });
     });
 
+    it("should detect episode with russian arabic total episodes value separator", () => {
+        const releaseName = "Prehistoric park.3iz6.Supercroc.DVDRip.Xvid.avi";
+        expect(parse(releaseName)).to.deep.include({ episode: 3 });
+    });
+
     it("should detect episode with shortened russian episode name", () => {
         const releaseName = "Меч (05 сер.) - webrip1080p.mkv";
         expect(parse(releaseName)).to.deep.include({ episode: 5 });

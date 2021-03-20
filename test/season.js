@@ -232,6 +232,11 @@ describe("Parsing season", () => {
         expect(parse(releaseName)).to.deep.include({ season: 3 });
     });
 
+    it("should detect season with russian season word and underscore", () => {
+        const releaseName = "2. Discovery-Kak_ustroena_Vselennaya.(2.sezon_8.serii.iz.8).2012.XviD.HDTVRip.Krasnodarka";
+        expect(parse(releaseName)).to.deep.include({ season: 2 });
+    });
+
     it("should detect season with russian season word and no prefix", () => {
         const releaseName = "Интерны. Сезон №9. Серия №180.avi";
         expect(parse(releaseName)).to.deep.include({ season: 9 });
