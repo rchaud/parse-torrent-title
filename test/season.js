@@ -222,6 +222,21 @@ describe("Parsing season", () => {
         expect(parse(releaseName)).to.deep.include({ season: 5 });
     });
 
+    it("should detect season with russian season word followed by the number", () => {
+        const releaseName = "Разрушители легенд. MythBusters. Сезон 15. Эпизод 09. Скрытая угроза (2015).avi";
+        expect(parse(releaseName)).to.deep.include({ season: 15 });
+    });
+
+    it("should detect season with russian season word followed by the number v2", () => {
+        const releaseName = "Леди Баг и Супер-Кот – Сезон 3, Эпизод 21 – Кукловод 2 [1080p].mkv";
+        expect(parse(releaseName)).to.deep.include({ season: 3 });
+    });
+
+    it("should detect episode with full russian season name with case suffix", () => {
+        const releaseName = "Проклятие острова ОУК_ 5-й сезон 09-я серия_ Прорыв Дэна.avi";
+        expect(parse(releaseName)).to.deep.include({ season: 5 });
+    });
+
     it("should detect season with russian season word with number at front", () => {
         const releaseName = "2 сезон 24 серия.avi";
         expect(parse(releaseName)).to.deep.include({ season: 2 });
@@ -249,6 +264,32 @@ describe("Parsing season", () => {
 
     it("should detect season with russian season word in araic letters", () => {
         const releaseName = "Zvezdnie.Voiny.Voina.Klonov.3.sezon.22.seria.iz.22.XviD.HDRip.avi";
+        expect(parse(releaseName)).to.deep.include({ season: 3 });
+    });
+
+    it("should detect season with hyphen separator between episode", () => {
+        const releaseName = "2-06. Девичья сила.mkv";
+        expect(parse(releaseName)).to.deep.include({ season: 2 });
+    });
+
+    it("should detect season with hyphen separator between episode v2", () => {
+        const releaseName = "4-13 Cursed (HD).m4v";
+        expect(parse(releaseName)).to.deep.include({ season: 4 });
+    });
+
+    it("should detect season with hyphen separator between episode v3", () => {
+        const releaseName = "Доктор Хаус 03-20.mkv";
+        expect(parse(releaseName)).to.deep.include({ season: 3 });
+    });
+
+    it("should not detect season with hyphen separator when it's the title", () => {
+        const releaseName = "13-13-13 2013 DVDrip x264 AAC-MiLLENiUM";
+        expect(parse(releaseName)).to.not.have.property("seasons");
+        expect(parse(releaseName)).to.deep.include({ title: "13-13-13" });
+    });
+
+    it("should detect correct season with eps prefix and hyphen separator", () => {
+        const releaseName = "MARATHON EPISODES/Orphan Black S3 Eps.05-08.mp4";
         expect(parse(releaseName)).to.deep.include({ season: 3 });
     });
 

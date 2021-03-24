@@ -17,6 +17,11 @@ describe("Parsing episode", () => {
         expect(parse(releaseName)).to.deep.include({ episode: 23 });
     });
 
+    it("should detect regular episode without e symbol after season", () => {
+        const releaseName = "The.Witcher.S01.07.2019.Dub.AVC.ExKinoRay.mkv";
+        expect(parse(releaseName)).to.deep.include({ episode: 7 });
+    });
+
     it("should detect regular episode with season symbol but wihout episode symbol", () => {
         const releaseName = "Vikings.s02.09.AVC.tahiy.mkv";
         expect(parse(releaseName)).to.deep.include({ episode: 9 });
@@ -303,6 +308,11 @@ describe("Parsing episode", () => {
         expect(parse(releaseName)).to.deep.include({ episodes: [1, 2, 3] });
     });
 
+    it("should detect multiple episodes with eps prefix and hyphen separator", () => {
+        const releaseName = "MARATHON EPISODES/Orphan Black S3 Eps.05-08.mp4";
+        expect(parse(releaseName)).to.deep.include({ episodes: [5, 6, 7, 8] });
+    });
+
     it("should detect multiple episodes with E sign and hyphen spaced separator", () => {
         const releaseName = "Pokemon Black & White E10 - E17 [CW] AVI";
         expect(parse(releaseName)).to.deep.include({ episodes: [10, 11, 12, 13, 14, 15, 16, 17] });
@@ -368,6 +378,21 @@ describe("Parsing episode", () => {
         expect(parse(releaseName)).to.deep.include({ episode: 11 });
     });
 
+    it("should detect episode with full different russian episode name", () => {
+        const releaseName = "Разрушители легенд. MythBusters. Сезон 15. Эпизод 09. Скрытая угроза (2015).avi";
+        expect(parse(releaseName)).to.deep.include({ episode: 9 });
+    });
+
+    it("should detect episode with full different russian episode name v2", () => {
+        const releaseName = "Леди Баг и Супер-Кот – Сезон 3, Эпизод 21 – Кукловод 2 [1080p].mkv";
+        expect(parse(releaseName)).to.deep.include({ episode: 21 });
+    });
+
+    it("should detect episode with full russian episode name with case suffix", () => {
+        const releaseName = "Проклятие острова ОУК_ 5-й сезон 09-я серия_ Прорыв Дэна.avi";
+        expect(parse(releaseName)).to.deep.include({ episode: 9 });
+    });
+
     it("should detect episode with full russian episode name and no prefix", () => {
         const releaseName = "Интерны. Сезон №9. Серия №180.avi";
         expect(parse(releaseName)).to.deep.include({ episode: 180 });
@@ -396,6 +421,32 @@ describe("Parsing episode", () => {
     it("should detect episodes with russian x separator", () => {
         const releaseName = "Discovery. Парни с Юкона / Yokon Men [06х01-08] (2017) HDTVRip от GeneralFilm | P1";
         expect(parse(releaseName)).to.deep.include({ episodes: [1, 2, 3, 4, 5, 6, 7, 8] });
+    });
+
+    it("should detect episodes with hyphen separator between episode", () => {
+        const releaseName = "2-06. Девичья сила.mkv";
+        expect(parse(releaseName)).to.deep.include({ episode: 6 });
+    });
+
+    it("should detect episodes with hyphen separator between episode v2", () => {
+        const releaseName = "4-13 Cursed (HD).m4v";
+        expect(parse(releaseName)).to.deep.include({ episode: 13 });
+    });
+
+    it("should detect not episodes with hyphen separator between episode when it's date", () => {
+        const releaseName = "The Ed Show 10-19-12.mp4";
+        expect(parse(releaseName)).to.not.have.property("episodes");
+        expect(parse(releaseName)).to.deep.include({ date: "2012-10-19" });
+    });
+
+    it("should detect not episodes with hyphen separator between episode when it's not supported date", () => {
+        const releaseName = "Hogan's Heroes - 516 - Get Fit or Go Flight - 1-09-70.divx";
+        expect(parse(releaseName)).to.deep.include({ episode: 516 });
+    });
+
+    it("should detect episodes with hyphen separator between episode v3", () => {
+        const releaseName = "Доктор Хаус 03-20.mkv";
+        expect(parse(releaseName)).to.deep.include({ episode: 20 });
     });
 
     it("should detect episode after ordinal season and hyphen separator", () => {
