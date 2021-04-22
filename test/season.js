@@ -402,4 +402,9 @@ describe("Parsing season", () => {
         const releaseName = "DARKER THAN BLACK - S00E04 - Darker Than Black Gaiden OVA 3.mkv";
         expect(parse(releaseName)).to.deep.include({ season: 0 });
     });
+
+    it("should detect nl season word", () => {
+        const releaseName = "Seizoen 22 - Zon & Maan Ultra Legendes/afl.18 Je ogen op de bal houden!.mp4";
+        expect(parse(releaseName)).to.deep.include({ season: 22 });
+    });
 });
