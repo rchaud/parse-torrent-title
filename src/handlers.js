@@ -117,7 +117,7 @@ exports.addDefaults = /** @type Parser */ parser => {
         if (match) {
             matched.volumes = { match: match[0], matchIndex: match.index };
             result.volumes = array(integer)(match[1]);
-            return { matchIndex: match.index, remove: true };
+            return { rawMatch: match[0], matchIndex: match.index, remove: true };
         }
         return null;
     });
@@ -315,6 +315,21 @@ exports.addDefaults = /** @type Parser */ parser => {
     parser.addHandler("dubbed", ({ result }) => {
         if (result.languages && ["multi audio", "dual audio"].some(l => result.languages.includes(l))) {
             result.dubbed = true;
+        }
+        return { matchIndex: 0 };
+    });
+
+    // Group
+    parser.addHandler("group", /^\[([^[\]]+)]/);
+    parser.addHandler("group", ({ result, matched }) => {
+        if (matched.group && matched.group.rawMatch.match(/^\[.+]$/)) {
+            const endIndex = matched.group && matched.group.matchIndex + matched.group.rawMatch.length || 0;
+
+            // remove anime group match if some other parameter is contained in it, since it's a false positive.
+            if (Object.keys(matched)
+                .some(key => matched[key].matchIndex && matched[key].matchIndex < endIndex)) {
+                delete result.group;
+            }
         }
         return { matchIndex: 0 };
     });

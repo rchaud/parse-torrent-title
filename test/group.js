@@ -67,4 +67,58 @@ describe("Parsing group", () => {
 
         expect(parse(releaseName)).to.not.have.property("group");
     });
+
+    it("should detect anime group in brackets", () => {
+        const releaseName = "[AnimeRG] One Punch Man - 09 [720p].mkv";
+
+        expect(parse(releaseName)).to.deep.include({ group: "AnimeRG" });
+    });
+
+    it("should detect anime group in brackets with underscores", () => {
+        const releaseName = "[Mazui]_Hyouka_-_03_[DF5E813A].mkv";
+
+        expect(parse(releaseName)).to.deep.include({ group: "Mazui" });
+    });
+
+    it("should detect anime group in brackets with numbers", () => {
+        const releaseName = "[H3] Hunter x Hunter - 38 [1280x720] [x264]";
+
+        expect(parse(releaseName)).to.deep.include({ group: "H3" });
+    });
+
+    it("should detect anime group in brackets with spaces", () => {
+        const releaseName = "[KNK E MMS Fansubs] Nisekoi - 20 Final [PT-BR]";
+
+        expect(parse(releaseName)).to.deep.include({ group: "KNK E MMS Fansubs" });
+    });
+
+    it("should detect anime group in brackets with a link", () => {
+        const releaseName = "[HD-ELITE.NET] -  The.Art.Of.The.Steal.2014.DVDRip.XviD.Dual.Aud";
+
+        expect(parse(releaseName)).to.deep.include({ group: "HD-ELITE.NET" });
+    });
+
+    it("should not detect brackets group when group is detected at the end of title", () => {
+        const releaseName = "[Russ]Lords.Of.London.2014.XviD.H264.AC3-BladeBDP";
+
+        expect(parse(releaseName)).to.deep.include({ group: "BladeBDP" });
+    });
+
+    it("should not detect brackets group when it contains other parsed parameters", () => {
+        const releaseName = "[DVD-RIP] Kaavalan (2011) Sruthi XVID [700Mb] [TCHellRaiser]";
+
+        expect(parse(releaseName)).to.not.have.property("group");
+    });
+
+    it("should not detect brackets group when it contains other parsed parameters", () => {
+        const releaseName = "[DVD-RIP] Kaavalan (2011) Sruthi XVID [700Mb] [TCHellRaiser]";
+
+        expect(parse(releaseName)).to.not.have.property("group");
+    });
+
+    it("should not detect brackets group when it contains other parsed parameters for series", () => {
+        const releaseName = "[DvdMux - XviD - Ita Mp3 Eng Ac3 - Sub Ita Eng] Sanctuary S01e01";
+
+        expect(parse(releaseName)).to.not.have.property("group");
+    });
 });

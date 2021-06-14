@@ -237,7 +237,8 @@ describe("Random releases", () => {
             episodes: [17],
             episode: 17,
             resolution: "1080p",
-            codec: "avc"
+            codec: "avc",
+            group: "GM-Team"
         });
     });
 
@@ -264,7 +265,8 @@ describe("Random releases", () => {
             resolution: "1080p",
             source: "BDRip",
             audio: "aac",
-            codec: "hevc"
+            codec: "hevc",
+            group: "neoHEVC"
         });
     });
 
@@ -277,7 +279,8 @@ describe("Random releases", () => {
             resolution: "720p",
             source: "BDRip",
             audio: "aac",
-            episodeCode: "5F1911ED"
+            episodeCode: "5F1911ED",
+            group: "Commie"
         });
     });
 

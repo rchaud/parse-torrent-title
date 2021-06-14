@@ -130,7 +130,7 @@ class Parser {
         for (const handler of this.handlers) {
             const matchResult = handler({ title, result, matched });
             if (matchResult && matchResult.remove) {
-                title = title.replace(matchResult.rawMatch, "");
+                title = title.slice(0, matchResult.matchIndex) + title.slice(matchResult.matchIndex + matchResult.rawMatch.length);
             }
             if (matchResult && !matchResult.skipFromTitle && matchResult.matchIndex && matchResult.matchIndex < endOfTitle) {
                 endOfTitle = matchResult.matchIndex;
