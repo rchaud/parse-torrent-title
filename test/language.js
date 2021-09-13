@@ -428,6 +428,12 @@ describe("Parsing language", () => {
         expect(parse(releaseName)).to.deep.include({ languages: ["chinese"] });
     });
 
+    it("should parse CHT language", () => {
+        const releaseName = "[NC-Raws] 叫我對大哥 (WEB版) / Ore, Tsushima - 10 [Baha][WEB-DL][1080p][AVC AAC][CHT][MP4]";
+
+        expect(parse(releaseName)).to.deep.include({ languages: ["chinese"] });
+    });
+
     it("Inuyasha_TV+Finale+OVA+Film+CD+Manga+Other; dub jpn,chn,eng sub chs (2019-09-21)", () => {
         const releaseName = "Inuyasha_TV+Finale+OVA+Film+CD+Manga+Other; dub jpn,chn,eng sub chs (2019-09-21)";
 
@@ -739,9 +745,15 @@ describe("Parsing language", () => {
         const releaseName = "Subs/Vietnamese.vie.srt";
         expect(parse(releaseName)).to.deep.include({ languages: ["vietnamese"] });
     });
+
     it("Midnight.Diner.Tokyo.Stories.S02E10.WEBRip.x264-ION10/14_Indonesian.srt", () => {
         const releaseName = "Midnight.Diner.Tokyo.Stories.S02E10.WEBRip.x264-ION10/14_Indonesian.srt";
         expect(parse(releaseName)).to.deep.include({ languages: ["indonesian"] });
+    });
+
+    it("should detect portuguese languages", () => {
+        const releaseName = "Inglês,Português,Italiano,Francês,Polonês,Russo,Norueguês,Dinamarquês,Alemão,Espanhol,Chinês,Japonês,Coreano,Persa,Hebraico,Sueco,Árabe,Holandês,Tâmil,Tailandês";
+        expect(parse(releaseName)).to.deep.include({ languages: ["english", "japanese", "korean", "chinese", "french", "spanish", "portuguese", "italian", "german", "russian", "tamil", "polish", "dutch", "danish", "swedish", "norwegian", "thai", "hebrew", "persian"] });
     });
 
     it("Subs/Thai.srt", () => {
