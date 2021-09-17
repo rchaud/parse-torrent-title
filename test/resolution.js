@@ -32,10 +32,22 @@ describe("Parsing resolution", () => {
         expect(parse(releaseName)).to.deep.include({ resolution: "4k" });
     });
 
-    it("should detect custom resolution correctly", () => {
+    it("should detect custom aspect ratio for 4k resolution correctly", () => {
+        const releaseName = "[Beatrice-Raws] Evangelion 3.333 You Can (Not) Redo [BDRip 3840x1632 HEVC TrueHD]";
+
+        expect(parse(releaseName)).to.deep.include({ resolution: "4k" });
+    });
+
+    it("should detect custom aspect ratio for 1080p resolution correctly", () => {
+        const releaseName = "[Erai-raws] Evangelion 3.0 You Can (Not) Redo - Movie [1920x960][Multiple Subtitle].mkv";
+
+        expect(parse(releaseName)).to.deep.include({ resolution: "1080p" });
+    });
+
+    it("should detect custom aspect ratio for 720p resolution correctly", () => {
         const releaseName = "[JacobSwaggedUp] Kizumonogatari I: Tekketsu-hen (BD 1280x544) [MP4 Movie]";
 
-        expect(parse(releaseName)).to.deep.include({ resolution: "544p" });
+        expect(parse(releaseName)).to.deep.include({ resolution: "720p" });
     });
 
     it("should detect 720i resolution and format as 720p", () => {
