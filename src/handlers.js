@@ -85,6 +85,7 @@ exports.addDefaults = /** @type Parser */ parser => {
     // Video depth
     parser.addHandler("bitDepth", /(?:8|10|12)[- ]?bit/i, lowercase, { remove: true });
     parser.addHandler("bitDepth", /\bhevc\s?10\b/i, value("10bit"));
+    parser.addHandler("bitDepth", /\bhdr10/i, value("10bit"));
     parser.addHandler("bitDepth", ({ result }) => {
         if (result.bitDepth) {
             result.bitDepth = result.bitDepth.replace(/[ -]/, "");
@@ -92,7 +93,7 @@ exports.addDefaults = /** @type Parser */ parser => {
     });
 
     // HDR
-    parser.addHandler("hdr", /\bhdr\b/i, boolean, { remove: true });
+    parser.addHandler("hdr", /\bhdr(?:10+?)?\b/i, value("HDR"), { remove: true });
 
     // Codec
     parser.addHandler("codec", /[xh][-. ]?26[45]/i, lowercase, { remove: true });

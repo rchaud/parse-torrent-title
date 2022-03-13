@@ -23,6 +23,8 @@ declare namespace ParseTorrentTitle {
         container?: string;
         source?: string;
         codec?: string;
+        bitDepth?: string;
+        hdr?: string;
         audio?: string;
         group?: string;
         volumes?: Array<number>;
