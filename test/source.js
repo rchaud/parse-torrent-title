@@ -69,12 +69,12 @@ describe("Parsing source", () => {
 
     it("should detect the UltraHD source correctly", () => {
         const releaseName = "Blade.Runner.2049.2017.4K.UltraHD.BluRay.2160p.x264.TrueHD.Atmos";
-        expect(parse(releaseName)).to.deep.include({ source: "UHDRip" });
+        expect(parse(releaseName)).to.deep.include({ source: "BluRay" });
     });
 
     it("should detect the UHD source correctly", () => {
         const releaseName = "Terminator.Dark.Fate.2019.2160p.UHD.BluRay.X265.10bit.HDR.TrueHD";
-        expect(parse(releaseName)).to.deep.include({ source: "UHDRip" });
+        expect(parse(releaseName)).to.deep.include({ source: "BluRay" });
     });
 
     it("When We Were Boys 2013 BD Rip x264 titohmr", () => {

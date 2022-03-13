@@ -64,8 +64,8 @@ exports.addDefaults = /** @type Parser */ parser => {
     parser.addHandler("source", /\bBlu[ .-]*Ray\b(?=.*remux)/i, value("BluRay REMUX"), { remove: true });
     parser.addHandler("source", /\b(?:BD|BR)[- ]?remux/i, value("BluRay REMUX"), { remove: true });
     parser.addHandler("source", /(?<=remux.*)\bBlu[ .-]*Ray\b/i, value("BluRay REMUX"), { remove: true });
-    parser.addHandler("source", /\bUltraHD\b/i, value("UHDRip"), { remove: true });
-    parser.addHandler("source", /\bUHD(?:[ .-]*Rip)?\b/i, value("UHDRip"), { remove: true });
+    parser.addHandler("source", /\bBlu[ .-]*Ray\b/i, value("BluRay"), { remove: true });
+    parser.addHandler("source", /\bUHD[ .-]*Rip\b/i, value("UHDRip"), { remove: true });
     parser.addHandler("source", /\bHD[ .-]*Rip\b/i, value("HDRip"), { remove: true });
     parser.addHandler("source", /\bBR[ .-]*Rip\b/i, value("BRRip"), { remove: true });
     parser.addHandler("source", /\bBD[ .-]*Rip\b|\bBDR\b|\bBD-RM\b|[[(]BD[\]) .,-]/i, value("BDRip"), { remove: true });
@@ -76,7 +76,6 @@ exports.addDefaults = /** @type Parser */ parser => {
     parser.addHandler("source", /\bHD[ .-]*TV(?:Rip)?\b/i, value("HDTV"), { remove: true });
     parser.addHandler("source", /\bTVRips?\b/i, value("TVRip"), { remove: true });
     parser.addHandler("source", /\bR5\b/i, value("R5"), { remove: true });
-    parser.addHandler("source", /\bBlu[ .-]*Ray\b/i, value("BluRay"), { remove: true });
     parser.addHandler("source", /\bWEB[ .-]*DL(?:Rip)?\b/i, value("WEB-DL"), { remove: true });
     parser.addHandler("source", /\bWEB[ .-]*Rip\b/i, value("WEBRip"), { remove: true });
     parser.addHandler("source", /\b(?:DL|WEB|BD|BR)MUX\b/i, { remove: true });
