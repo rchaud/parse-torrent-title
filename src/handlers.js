@@ -1,4 +1,4 @@
-const { value, integer, boolean, lowercase, uppercase, date, range, yearRange, array, uniqConcat, none } = require("./transformers");
+const { value, integer, boolean, lowercase, uppercase, date, range, yearRange, array, uniqConcat } = require("./transformers");
 
 exports.addDefaults = /** @type Parser */ parser => {
 
