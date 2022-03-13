@@ -124,4 +124,10 @@ describe("Parsing audio", () => {
 
         expect(parse(releaseName)).to.deep.include({ audio: "2.0", episode: 23 });
     });
+
+    it("should detect 7.1 Atmos audio", () => {
+        const releaseName = "Spider-Man.No.Way.Home.2021.2160p.BluRay.REMUX.HEVC.TrueHD.7.1.Atmos-FraMeSToR";
+
+        expect(parse(releaseName)).to.deep.include({ audio: "7.1 Atmos" });
+    });
 });

@@ -77,11 +77,6 @@ describe("Parsing source", () => {
         expect(parse(releaseName)).to.deep.include({ source: "UHDRip" });
     });
 
-    it("should detect the HDR source correctly", () => {
-        const releaseName = "The.Mandalorian.S01E06.4K.HDR.2160p 4.42GB";
-        expect(parse(releaseName)).to.deep.include({ source: "HDRip" });
-    });
-
     it("When We Were Boys 2013 BD Rip x264 titohmr", () => {
         const releaseName = "When We Were Boys 2013 BD Rip x264 titohmr";
         expect(parse(releaseName)).to.deep.include({ source: "BDRip" });
@@ -175,5 +170,30 @@ describe("Parsing source", () => {
     it("should parse WEB-DLRip source", () => {
         const releaseName = "Звонок из прошлого / Kol / The Call (2020) WEB-DLRip | ViruseProject";
         expect(parse(releaseName)).to.deep.include({ source: "WEB-DL" });
+    });
+
+    it("should parse BluRay remux together source", () => {
+        const releaseName = "Joker.2019.2160p.BluRay.REMUX.HEVC.DTS-HD.MA.TrueHD.7.1.Atmos-FGT";
+        expect(parse(releaseName)).to.deep.include({ source: "BluRay REMUX" });
+    });
+
+    it("should parse Blu-Ray remux source", () => {
+        const releaseName = "Warcraft 2016 1080p Blu-ray Remux AVC TrueHD Atmos-KRaLiMaRKo";
+        expect(parse(releaseName)).to.deep.include({ source: "BluRay REMUX" });
+    });
+
+    it("should parse BluRay remux ahead source", () => {
+        const releaseName = "Joker.2019.UHD.BluRay.2160p.TrueHD.Atmos.7.1.HEVC.REMUX-JAT";
+        expect(parse(releaseName)).to.deep.include({ source: "BluRay REMUX" });
+    });
+
+    it("should parse BluRay remux before source", () => {
+        const releaseName = "Spider-Man No Way Home.2022.REMUX.1080p.Bluray.DTS-HD.MA.5.1.AVC-EVO[TGx]";
+        expect(parse(releaseName)).to.deep.include({ source: "BluRay REMUX" });
+    });
+
+    it("should parse BDRemux before source", () => {
+        const releaseName = "Son of God 2014 HDR BDRemux 1080p.mkv";
+        expect(parse(releaseName)).to.deep.include({ source: "BluRay REMUX" });
     });
 });

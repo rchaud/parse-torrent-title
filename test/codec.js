@@ -35,12 +35,12 @@ describe("Parsing codec", () => {
     it("should detect the HEVC10bit codec correctly", () => {
         const releaseName = "[Anime Time] Re Zero kara Hajimeru Isekai Seikatsu (Season 2 Part 1) [1080p][HEVC10bit x265][Multi Sub]";
 
-        expect(parse(releaseName)).to.deep.include({ codec: "hevc" });
+        expect(parse(releaseName)).to.deep.include({ codec: "hevc", bitDepth: "10bit" });
     });
 
     it("should detect the HEVC10 codec correctly", () => {
         const releaseName = "[naiyas] Fate Stay Night - Unlimited Blade Works Movie [BD 1080P HEVC10 QAACx2 Dual Audio]";
 
-        expect(parse(releaseName)).to.deep.include({ codec: "hevc" });
+        expect(parse(releaseName)).to.deep.include({ codec: "hevc", bitDepth: "10bit" });
     });
 });
