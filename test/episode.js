@@ -671,6 +671,12 @@ describe("Parsing episode", () => {
         expect(parse(releaseName)).to.deep.include({ episode: 2 });
     });
 
+    it("should detect detect only episode v1", () => {
+        const releaseName = "Watch Gary And His Demons Episode 10 - 0.00.07-0.11.02.mp4";
+        expect(parse(releaseName)).to.not.have.property("season");
+        expect(parse(releaseName)).to.deep.include({ episode: 10 });
+    });
+
     it("should detect not detect season.episode pattern when it's a date without other pattern", () => {
         const releaseName = "wwf.raw.is.war.18.09.00.avi";
         expect(parse(releaseName)).to.not.have.property("season");

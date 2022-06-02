@@ -156,7 +156,7 @@ exports.addDefaults = /** @type Parser */ parser => {
     parser.addHandler("seasons", /[[(](\d{1,2})\.\d{1,2}[)\]]/, array(integer));
     parser.addHandler("seasons", /-\s?(\d{1,2})\.\d{2,3}\s?-/, array(integer));
     parser.addHandler("seasons", /(?:^|\/)(0?\d)-\d{2}\b(?!-\d)/, array(integer));
-    parser.addHandler("seasons", /(?<!\bE\d+\b.*)\b(\d{2})[ ._-]\d{2}(?:.F)?\.\w{2,4}$/, array(integer));
+    parser.addHandler("seasons", /(?<!\bEp?(?:isode)? ?\d+\b.*)\b(\d{2})[ ._-]\d{2}(?:.F)?\.\w{2,4}$/, array(integer));
 
     // adds single season info if its there"s only single season
     parser.addHandler("season", ({ result }) => {
