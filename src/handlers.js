@@ -13,20 +13,21 @@ exports.addDefaults = /** @type Parser */ parser => {
     parser.addHandler("resolution", /[([]?1920x\d{3,4}[)\]]?/i, value("1080p"), { remove: true });
     parser.addHandler("resolution", /[([]?1280x\d{3}[)\]]?/i, value("720p"), { remove: true });
     parser.addHandler("resolution", /[([]?\d{3,4}x(\d{3,4})[)\]]?/i, value("$1p"), { remove: true });
-    parser.addHandler("resolution", /((?:480|720|1080))0[pi]/i, value("$1p"), { remove: true });
+    parser.addHandler("resolution", /(480|720|1080)0[pi]/i, value("$1p"), { remove: true });
     parser.addHandler("resolution", /([0-9]{3,4})[pi]/i, value("$1p"), { remove: true });
 
     // Year
-    parser.addHandler("date", /(?<=\W|^)([([]?(?:19[6-9]|20[012])[0-9][. -/\\](?:0[1-9]|1[012])[. -/\\](?:0[1-9]|[12][0-9]|3[01])[)\]]?)(?=\W|$)/, date("YYYY MM DD"), { remove: true });
-    parser.addHandler("date", /(?<=\W|^)([([]?(?:0[1-9]|[12][0-9]|3[01])[. -/\\](?:0[1-9]|1[012])[. -/\\](?:19[6-9]|20[012])[0-9][)\]]?)(?=\W|$)/, date("DD MM YYYY"), { remove: true });
-    parser.addHandler("date", /(?<=\W|^)([([]?(?:0[1-9]|1[012])[. -/\\](?:0[1-9]|[12][0-9]|3[01])[. -/\\](?:[0][1-9]|[0126789][0-9])[)\]]?)(?=\W|$)/, date("MM DD YY"), { remove: true });
-    parser.addHandler("date", /(?<=\W|^)([([]?(?:0?[1-9]|[12][0-9]|3[01])[. ]?(?:st|nd|rd|th)?[. -/\\](?:feb(?:ruary)?|jan(?:uary)?|mar(?:ch)?|apr(?:il)?|may|june?|july?|aug(?:ust)?|sept?(?:ember)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)[. -/\\](?:19[7-9]|20[012])[0-9][)\]]?)(?=\W|$)/i, date("DD MMM YYYY"), { remove: true });
-    parser.addHandler("date", /(?<=\W|^)([([]?(?:0?[1-9]|[12][0-9]|3[01])[. ]?(?:st|nd|rd|th)?[. -/\\](?:feb(?:ruary)?|jan(?:uary)?|mar(?:ch)?|apr(?:il)?|may|june?|july?|aug(?:ust)?|sept?(?:ember)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)[. -/\\](?:[0][1-9]|[0126789][0-9])[)\]]?)(?=\W|$)/i, date("DD MMM YY"), { remove: true });
+    parser.addHandler("date", /(?<=\W|^)([([]?(?:19[6-9]|20[012])[0-9]([. \-/\\])(?:0[1-9]|1[012])\2(?:0[1-9]|[12][0-9]|3[01])[)\]]?)(?=\W|$)/, date("YYYY MM DD"), { remove: true });
+    parser.addHandler("date", /(?<=\W|^)([([]?(?:0[1-9]|[12][0-9]|3[01])([. \-/\\])(?:0[1-9]|1[012])\2(?:19[6-9]|20[012])[0-9][)\]]?)(?=\W|$)/, date("DD MM YYYY"), { remove: true });
+    parser.addHandler("date", /(?<=\W|^)([([]?(?:0[1-9]|1[012])([. \-/\\])(?:0[1-9]|[12][0-9]|3[01])\2(?:[0][1-9]|[0126789][0-9])[)\]]?)(?=\W|$)/, date("MM DD YY"), { remove: true });
+    parser.addHandler("date", /(?<=\W|^)([([]?(?:0[1-9]|[12][0-9]|3[01])([. \-/\\])(?:0[1-9]|1[012])\2(?:[0][1-9]|[0126789][0-9])[)\]]?)(?=\W|$)/, date("DD MM YY"), { remove: true });
+    parser.addHandler("date", /(?<=\W|^)([([]?(?:0?[1-9]|[12][0-9]|3[01])[. ]?(?:st|nd|rd|th)?([. \-/\\])(?:feb(?:ruary)?|jan(?:uary)?|mar(?:ch)?|apr(?:il)?|may|june?|july?|aug(?:ust)?|sept?(?:ember)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)\2(?:19[7-9]|20[012])[0-9][)\]]?)(?=\W|$)/i, date("DD MMM YYYY"), { remove: true });
+    parser.addHandler("date", /(?<=\W|^)([([]?(?:0?[1-9]|[12][0-9]|3[01])[. ]?(?:st|nd|rd|th)?([. \-/\\])(?:feb(?:ruary)?|jan(?:uary)?|mar(?:ch)?|apr(?:il)?|may|june?|july?|aug(?:ust)?|sept?(?:ember)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)\2(?:0[1-9]|[0126789][0-9])[)\]]?)(?=\W|$)/i, date("DD MMM YY"), { remove: true });
     parser.addHandler("date", /(?<=\W|^)([([]?20[012][0-9](?:0[1-9]|1[012])(?:0[1-9]|[12][0-9]|3[01])[)\]]?)(?=\W|$)/, date("YYYYMMDD"), { remove: true });
 
     // Year
     parser.addHandler("year", /[([]?[ .]?((?:19[0-9]|20[012])[0-9][ .]?-[ .]?(?:19[0-9]|20[012])[0-9])[ .]?[)\]]?/, yearRange, { remove: true });
-    parser.addHandler("year", /[([][ .]?((?:19[0-9]|20[012])[0-9][ .]?-[ .]?(?:[0-9]{2}))[ .]?[)\]]/, yearRange, { remove: true });
+    parser.addHandler("year", /[([][ .]?((?:19[0-9]|20[012])[0-9][ .]?-[ .]?[0-9]{2})[ .]?[)\]]/, yearRange, { remove: true });
     parser.addHandler("year", /[([]?(?!^)(?<!\d)((?:19[0-9]|20[012])[0-9])(?!\d)[)\]]?/, integer, { remove: true });
     parser.addHandler("year", /[([]?(?<=\D|^)((?:19[0-9]|20[012])[0-9])(?!\d)[)\]]?/, integer, { remove: true });
 
@@ -120,7 +121,7 @@ exports.addDefaults = /** @type Parser */ parser => {
     parser.addHandler("group", /- ?(?!\d+$|S\d+|\d+x|ep?\d+|[^[]+]$)([^\-. []+)(?:\[[\w.-]+])?(?=\.\w{2,4}$|$)/i, { remove: true });
 
     // Container
-    parser.addHandler("container", /(?:\.)?[[(]?\b(MKV|AVI|MP4|WMV|MPG|MPEG)\b[\])]?/i, lowercase);
+    parser.addHandler("container", /\.?[[(]?\b(MKV|AVI|MP4|WMV|MPG|MPEG)\b[\])]?/i, lowercase);
 
     // Volumes
     parser.addHandler("volumes", /vol(?:s|umes?)?[. -]*(?:\d{1,2}[., +/\\&-]+)+\d{1,2}\b/i, range, { remove: true });
@@ -155,7 +156,7 @@ exports.addDefaults = /** @type Parser */ parser => {
     parser.addHandler("seasons", /[[(](\d{1,2})\.\d{1,2}[)\]]/, array(integer));
     parser.addHandler("seasons", /-\s?(\d{1,2})\.\d{2,3}\s?-/, array(integer));
     parser.addHandler("seasons", /(?:^|\/)(0?\d)-\d{2}\b(?!-\d)/, array(integer));
-    parser.addHandler("seasons", /\b(0?\d)-\d{2}(?=\.\w{2,4}$)/, array(integer));
+    parser.addHandler("seasons", /\b(\d{2})[ ._-]\d{2}(?:.F)?\.\w{2,4}$/, array(integer));
 
     // adds single season info if its there"s only single season
     parser.addHandler("season", ({ result }) => {
@@ -183,9 +184,10 @@ exports.addDefaults = /** @type Parser */ parser => {
     parser.addHandler("episodes", /\b(\d{1,3})(?:-?я)?[ ._-]*(?:seri?[iyj]a|[Сс]ер(?:ии|ия|\.)?)/i, array(integer));
     parser.addHandler("episodes", /(?:\W|^)\d{1,2}[. ]?[xх][. ]?(\d{1,2})(?:[abc]|v0?[1-4]|\W|$)/, array(integer));
     parser.addHandler("episodes", /[[(]\d{1,2}\.(\d{1,2})[)\]]/, array(integer));
-    parser.addHandler("episodes", /\bs\d{1,2}\.(\d{1,2})\b/, array(integer));
+    parser.addHandler("episodes", /\b[Ss]\d{1,2}[ .](\d{1,2})\b/, array(integer));
     parser.addHandler("episodes", /-\s?\d{1,2}\.(\d{2,3})\s?-/, array(integer));
     parser.addHandler("episodes", /(?:\W|^)(\d{1,2})[. ]?(?:of|из|iz)[. ]?\d{1,2}(?:\W|$)/, array(integer));
+    parser.addHandler("episodes", /\b\d{2}[ ._-](\d{2})(?:.F)?\.\w{2,4}$/, array(integer));
 
     // can be both absolute episode and season+episode in format 101
     parser.addHandler("episodes", ({ title, result, matched }) => {

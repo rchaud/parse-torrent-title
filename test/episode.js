@@ -583,4 +583,91 @@ describe("Parsing episode", () => {
         const releaseName = "[SSA] Detective Conan - 1001 [720p].mkv";
         expect(parse(releaseName)).to.deep.include({ episode: 1001 });
     });
+
+    it("should detect season_episode pattern", () => {
+        const releaseName = "Pwer-04_05.avi";
+        expect(parse(releaseName)).to.deep.include({ season: 4, episode: 5 });
+    });
+
+    it("should detect season_episode pattern with years in title", () => {
+        const releaseName = "Spergrl-2016-02_04.avi";
+        expect(parse(releaseName)).to.deep.include({ season: 2, episode: 4 });
+    });
+
+    it("should detect final with dash season_episode pattern with years in title", () => {
+        const releaseName = "Iron-Fist-2017-01_13-F.avi";
+        expect(parse(releaseName)).to.deep.include({ season: 1, episode: 13 });
+    });
+
+    it("should detect final with dot season_episode pattern with years in title", () => {
+        const releaseName = "Lgds.of.Tmrow-02_17.F.avi";
+        expect(parse(releaseName)).to.deep.include({ season: 2, episode: 17 });
+    });
+
+    it("should detect season.episode pattern", () => {
+        const releaseName = "Ozk.02.09.avi";
+        expect(parse(releaseName)).to.deep.include({ season: 2, episode: 9 });
+    });
+
+    it("should detect final season.episode pattern", () => {
+        const releaseName = "Ozk.02.10.F.avi";
+        expect(parse(releaseName)).to.deep.include({ season: 2, episode: 10 });
+    });
+
+    it("should detect not detect season_episode pattern when other pattern present", () => {
+        const releaseName = "Cestovatelé_S02E04_11_27.mkv";
+        expect(parse(releaseName)).to.deep.include({ season: 2, episode: 4 });
+    });
+
+    it("should detect not detect season_episode pattern when it's additional info", () => {
+        const releaseName = "S03E13_91.avi";
+        expect(parse(releaseName)).to.deep.include({ season: 3, episode: 13 });
+    });
+
+    it("should detect not detect season.episode pattern (not working yet)", () => {
+        const releaseName = "wwe.nxt.uk.11.26.mkv";
+        expect(parse(releaseName)).to.deep.include({ season: 11, episode: 26 });
+    });
+
+    it("should detect not detect season.episode pattern when other pattern present", () => {
+        const releaseName = "Chernobyl.S01E01.1.23.45.mkv";
+        expect(parse(releaseName)).to.deep.include({ season: 1, episode: 1 });
+    });
+
+    it("should detect season.episode pattern with S identifier", () => {
+        const releaseName = "The.Witcher.S01.07.mp4";
+        expect(parse(releaseName)).to.deep.include({ season: 1, episode: 7 });
+    });
+
+    it("should detect season episode pattern with S identifier", () => {
+        const releaseName = "Breaking Bad S02 03.mkv";
+        expect(parse(releaseName)).to.deep.include({ season: 2, episode: 3 });
+    });
+
+    it("should detect season episode pattern with Season prefix", () => {
+        const releaseName = "NCIS Season 11 01.mp4";
+        expect(parse(releaseName)).to.deep.include({ season: 11, episode: 1 });
+    });
+
+    it("should detect not detect season.episode pattern when it's a date", () => {
+        const releaseName = "Top Gear - 3x05 - 2003.11.23.avi";
+        expect(parse(releaseName)).to.deep.include({ season: 3, episode: 5 });
+    });
+
+    xit("should detect not detect season-episode pattern when it's a date", () => {
+        const releaseName = "8-6 2006.07.16.avi";
+        expect(parse(releaseName)).to.deep.include({ season: 8, episode: 6 });
+    });
+
+    it("should detect not detect season episode pattern but absolute episdeo", () => {
+        const releaseName = "523 23.mp4";
+        expect(parse(releaseName)).to.not.have.property("season");
+        expect(parse(releaseName)).to.deep.include({ episode: 523 });
+    });
+
+    it("should detect not detect season.episode pattern when it's a date without other pattern", () => {
+        const releaseName = "wwf.raw.is.war.18.09.00.avi";
+        expect(parse(releaseName)).to.not.have.property("season");
+        expect(parse(releaseName)).to.not.have.property("episode");
+    });
 });

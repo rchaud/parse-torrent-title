@@ -100,4 +100,9 @@ describe("Parsing title", () => {
         const releaseName = "(2000) Le follie dell'imperatore - The Emperor's New Groove (DvdRip Ita Eng AC3 5.1).avi";
         expect(parse(releaseName)).to.deep.include({ title: "Le follie dell'imperatore - The Emperor's New Groove" });
     });
+
+    it("should remove chinese alt title", () => {
+        const releaseName = "[NC-Raws] 间谍过家家 / SPY×FAMILY - 04 (B-Global 1920x1080 HEVC AAC MKV)";
+        expect(parse(releaseName)).to.deep.include({ title: "SPY×FAMILY" });
+    });
 });

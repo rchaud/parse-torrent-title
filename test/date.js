@@ -169,4 +169,10 @@ describe("Parsing date", () => {
 
         expect(parse(releaseName)).to.deep.include({ date: "2020-01-01" });
     });
+
+    it("wwf.raw.is.war.18.09.00.avi", () => {
+        const releaseName = "wwf.raw.is.war.18.09.00.avi";
+
+        expect(parse(releaseName)).to.deep.include({ date: "2000-09-18" });
+    });
 });
