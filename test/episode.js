@@ -665,6 +665,12 @@ describe("Parsing episode", () => {
         expect(parse(releaseName)).to.deep.include({ episode: 523 });
     });
 
+    it("should detect detect only episode", () => {
+        const releaseName = "Chernobyl E02 1 23 45.mp4";
+        expect(parse(releaseName)).to.not.have.property("season");
+        expect(parse(releaseName)).to.deep.include({ episode: 2 });
+    });
+
     it("should detect not detect season.episode pattern when it's a date without other pattern", () => {
         const releaseName = "wwf.raw.is.war.18.09.00.avi";
         expect(parse(releaseName)).to.not.have.property("season");
