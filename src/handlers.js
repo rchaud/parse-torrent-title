@@ -148,7 +148,7 @@ exports.addDefaults = /** @type Parser */ parser => {
     parser.addHandler("seasons", /(?:(?:\bthe\W)?\bcomplete\W)?(?:saison|seizoen|season|series|temporada):?[. ]?(\d{1,2})/i, array(integer));
     parser.addHandler("seasons", /(\d{1,2})(?:-?й)?[. _]?(?:[Сс]езон|sezon)(?:\W?\D|$)/i, array(integer));
     parser.addHandler("seasons", /[Сс]езон:?[. _]?№?(\d{1,2})(?!\d)/i, array(integer));
-    parser.addHandler("seasons", /(?:\D|^)(\d{1,2})Â?[°ºªa]?[. ]*(?:temporada)/i, array(integer), { remove: true });
+    parser.addHandler("seasons", /(?:\D|^)(\d{1,2})Â?[°ºªa]?[. ]*temporada/i, array(integer), { remove: true });
     parser.addHandler("seasons", /(?:(?:\bthe\W)?\bcomplete)?(?:\W|^)s(\d{1,3})(?:[\Wex]|$)/i, array(integer), { skipIfAlreadyFound: false });
     parser.addHandler("seasons", /(?:(?:\bthe\W)?\bcomplete\W)?(?:\W|^)(\d{1,2})[. ]?(?:st|nd|rd|th)[. ]*season/i, array(integer));
     parser.addHandler("seasons", /(?:\D|^)(\d{1,2})[xх]\d{1,3}(?:\D|$)/, array(integer));
@@ -156,7 +156,8 @@ exports.addDefaults = /** @type Parser */ parser => {
     parser.addHandler("seasons", /[[(](\d{1,2})\.\d{1,2}[)\]]/, array(integer));
     parser.addHandler("seasons", /-\s?(\d{1,2})\.\d{2,3}\s?-/, array(integer));
     parser.addHandler("seasons", /(?:^|\/)(0?\d)-\d{2}\b(?!-\d)/, array(integer));
-    parser.addHandler("seasons", /(?<!\bEp?(?:isode)? ?\d+\b.*)\b(\d{2})[ ._-]\d{2}(?:.F)?\.\w{2,4}$/, array(integer));
+    parser.addHandler("seasons", /\b(0?\d)-\d{2}(?=\.\w{2,4}$)/, array(integer));
+    parser.addHandler("seasons", /(?<!\bEp?(?:isode)? ?\d+\b.*)\b(\d{2})[ ._]\d{2}(?:.F)?\.\w{2,4}$/, array(integer));
 
     // adds single season info if its there"s only single season
     parser.addHandler("season", ({ result }) => {

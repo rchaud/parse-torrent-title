@@ -407,4 +407,9 @@ describe("Parsing season", () => {
         const releaseName = "Seizoen 22 - Zon & Maan Ultra Legendes/afl.18 Je ogen op de bal houden!.mp4";
         expect(parse(releaseName)).to.deep.include({ season: 22 });
     });
+
+    it("should not detect season when it's part of the name", () => {
+        const releaseName = "Ranma-12-86.mp4";
+        expect(parse(releaseName)).to.not.have.property("season");
+    });
 });
