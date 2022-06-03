@@ -105,4 +105,9 @@ describe("Parsing title", () => {
         const releaseName = "[NC-Raws] 间谍过家家 / SPY×FAMILY - 04 (B-Global 1920x1080 HEVC AAC MKV)";
         expect(parse(releaseName)).to.deep.include({ title: "SPY×FAMILY" });
     });
+
+    it("should remove ep range in parenthesis", () => {
+        const releaseName = "GTO (Great Teacher Onizuka) (Ep. 1-43) Sub 480p lakshay";
+        expect(parse(releaseName)).to.deep.include({ title: "GTO (Great Teacher Onizuka)" });
+    });
 });

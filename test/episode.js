@@ -589,6 +589,16 @@ describe("Parsing episode", () => {
         expect(parse(releaseName)).to.deep.include({ season: 4, episode: 5 });
     });
 
+    it("should detect season_episode pattern v2", () => {
+        const releaseName = "SupNat-11_06.avi";
+        expect(parse(releaseName)).to.deep.include({ season: 11, episode: 6 });
+    });
+
+    it("should detect season_episode pattern v3", () => {
+        const releaseName = "office_03_19.avi";
+        expect(parse(releaseName)).to.deep.include({ season: 3, episode: 19 });
+    });
+
     it("should detect season_episode pattern with years in title", () => {
         const releaseName = "Spergrl-2016-02_04.avi";
         expect(parse(releaseName)).to.deep.include({ season: 2, episode: 4 });
@@ -671,10 +681,16 @@ describe("Parsing episode", () => {
         expect(parse(releaseName)).to.deep.include({ episode: 2 });
     });
 
-    it("should detect detect only episode v1", () => {
+    it("should detect detect only episode v2", () => {
         const releaseName = "Watch Gary And His Demons Episode 10 - 0.00.07-0.11.02.mp4";
         expect(parse(releaseName)).to.not.have.property("season");
         expect(parse(releaseName)).to.deep.include({ episode: 10 });
+    });
+
+    it("should detect detect only episode v3", () => {
+        const releaseName = "523 23.mp4";
+        expect(parse(releaseName)).to.not.have.property("season");
+        expect(parse(releaseName)).to.deep.include({ episode: 523 });
     });
 
     it("should detect not detect season.episode pattern when it's a date without other pattern", () => {
