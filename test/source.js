@@ -137,6 +137,11 @@ describe("Parsing source", () => {
         expect(parse(releaseName)).to.deep.include({ source: "CAM" });
     });
 
+    it("Thor : Love and Thunder (2022) Hindi HQCAM x264 AAC - QRips.mkv", () => {
+        const releaseName = "Thor : Love and Thunder (2022) Hindi HQCAM x264 AAC - QRips.mkv";
+        expect(parse(releaseName)).to.deep.include({ source: "CAM" });
+    });
+
     it("Good Deeds 2012 SCR XViD-KiNGDOM", () => {
         const releaseName = "Good Deeds 2012 SCR XViD-KiNGDOM";
         expect(parse(releaseName)).to.deep.include({ source: "SCR" });
@@ -159,6 +164,11 @@ describe("Parsing source", () => {
 
     it("El.curioso.caso.de.benjamin.button-BRScreener-[EspaDivx.com].rar", () => {
         const releaseName = "El.curioso.caso.de.benjamin.button-BRScreener-[EspaDivx.com].rar";
+        expect(parse(releaseName)).to.deep.include({ source: "SCR" });
+    });
+
+    it("Thor- Love and Thunder (2022) Original Hindi Dubbed 1080p HQ PreDVD Rip x264 AAC [1.7 GB]- CineVood.mkv", () => {
+        const releaseName = "Thor- Love and Thunder (2022) Original Hindi Dubbed 1080p HQ PreDVD Rip x264 AAC [1.7 GB]- CineVood.mkv";
         expect(parse(releaseName)).to.deep.include({ source: "SCR" });
     });
 

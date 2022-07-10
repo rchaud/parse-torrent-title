@@ -40,4 +40,9 @@ describe("Paring year", () => {
         const releaseName = "Empty Nest Season 1 (1988 - 89) fiveofseven";
         expect(parse(releaseName)).to.deep.include({ year: "1988-1989" });
     });
+
+    it("should not detect year from bitrate", () => {
+        const releaseName = "04. Practice Two (1324mb 1916x1080 50fps 1970kbps x265 deef).mkv";
+        expect(parse(releaseName)).to.not.have.property("year");
+    });
 });

@@ -28,8 +28,8 @@ exports.addDefaults = /** @type Parser */ parser => {
     // Year
     parser.addHandler("year", /[([]?[ .]?((?:19[0-9]|20[012])[0-9][ .]?-[ .]?(?:19[0-9]|20[012])[0-9])[ .]?[)\]]?/, yearRange, { remove: true });
     parser.addHandler("year", /[([][ .]?((?:19[0-9]|20[012])[0-9][ .]?-[ .]?[0-9]{2})[ .]?[)\]]/, yearRange, { remove: true });
-    parser.addHandler("year", /[([]?(?!^)(?<!\d)((?:19[0-9]|20[012])[0-9])(?!\d)[)\]]?/, integer, { remove: true });
-    parser.addHandler("year", /[([]?(?<=\D|^)((?:19[0-9]|20[012])[0-9])(?!\d)[)\]]?/, integer, { remove: true });
+    parser.addHandler("year", /[([]?(?!^)(?<!\d)((?:19[0-9]|20[012])[0-9])(?!\d|kbps)[)\]]?/i, integer, { remove: true });
+    parser.addHandler("year", /[([]?(?<=\D|^)((?:19[0-9]|20[012])[0-9])(?!\d|kbps)[)\]]?/, integer, { remove: true });
 
     // Extended
     parser.addHandler("extended", /EXTENDED/, boolean);
@@ -59,7 +59,7 @@ exports.addDefaults = /** @type Parser */ parser => {
     parser.addHandler("region", /R[0-9]/);
 
     // Source
-    parser.addHandler("source", /\b(?:HD[ .-]*)?CAM(?:[ .-]*Rip)?\b/i, value("CAM"), { remove: true });
+    parser.addHandler("source", /\b(?:H[DQ][ .-]*)?CAM(?:[ .-]*Rip)?\b/i, value("CAM"), { remove: true });
     parser.addHandler("source", /\b(?:HD[ .-]*)?T(?:ELE)?S(?:YNC)?\b/i, value("TeleSync"), { remove: true });
     parser.addHandler("source", /\b(?:HD[ .-]*)?T(?:ELE)?C(?:INE)?\b/, value("TeleCine"), { remove: true });
     parser.addHandler("source", /\bBlu[ .-]*Ray\b(?=.*remux)/i, value("BluRay REMUX"), { remove: true });
@@ -72,6 +72,7 @@ exports.addDefaults = /** @type Parser */ parser => {
     parser.addHandler("source", /\bBD[ .-]*Rip\b|\bBDR\b|\bBD-RM\b|[[(]BD[\]) .,-]/i, value("BDRip"), { remove: true });
     parser.addHandler("source", /\bDVD[ .-]*Rip\b/i, value("DVDRip"), { remove: true });
     parser.addHandler("source", /\b(?:DVD?|BD|BR)?[ .-]*Scr(?:eener)?\b/i, value("SCR"), { remove: true });
+    parser.addHandler("source", /\bPreDVD\b/i, value("SCR"), { remove: true });
     parser.addHandler("source", /\bDVD(?:R[0-9]?)?\b/i, value("DVD"), { remove: true });
     parser.addHandler("source", /\bPPVRip\b/i, value("PPVRip"), { remove: true });
     parser.addHandler("source", /\bHD[ .-]*TV(?:Rip)?\b/i, value("HDTV"), { remove: true });
