@@ -32,6 +32,11 @@ describe("Parsing hdr", () => {
         expect(parse(releaseName)).to.deep.include({ hdr: ["DV"] });
     });
 
+    it("should detect DV source correctly v4", () => {
+        const releaseName = "Bullet.Train.2022.2160p.WEB-DL.DoVi.DD5.1.HEVC-EVO[TGx]";
+        expect(parse(releaseName)).to.deep.include({ hdr: ["DV"] });
+    });
+
     it("should detect HDR/DV source correctly v1", () => {
         const releaseName = "Спайдерхед / Spiderhead (2022) WEB-DL-HEVC 2160p | 4K | HDR | Dolby Vision Profile 8 | P | NewComers, Jaskier";
         expect(parse(releaseName)).to.deep.include({ hdr: ["DV", "HDR"] });
