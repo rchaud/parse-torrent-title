@@ -12,6 +12,11 @@ describe("Parsing hdr", () => {
         expect(parse(releaseName)).to.deep.include({ hdr: ["HDR"], bitDepth: "10bit" });
     });
 
+    it("should detect HDR10Plus source correctly", () => {
+        const releaseName = "Bullet.Train.2022.2160p.AMZN.WEB-DL.x265.10bit.HDR10Plus.DDP5.1-SMURF";
+        expect(parse(releaseName)).to.deep.include({ hdr: ["HDR10+"], bitDepth: "10bit" });
+    });
+
     it("should detect DV source correctly v1", () => {
         const releaseName = "Belle (2021) 2160p 10bit 4KLight DOLBY VISION BluRay DDP 7.1 x265-QTZ";
         expect(parse(releaseName)).to.deep.include({ hdr: ["DV"] });
