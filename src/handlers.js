@@ -94,7 +94,9 @@ exports.addDefaults = /** @type Parser */ parser => {
     });
 
     // HDR
-    parser.addHandler("hdr", /\bhdr(?:10+?)?\b/i, value("HDR"), { remove: true });
+    parser.addHandler("hdr", /\bDV\b|dolby.?vision/i, uniqConcat(value("DV")), { remove: true, skipIfAlreadyFound: false });
+    parser.addHandler("hdr", /HDR10\+/i, uniqConcat(value("HDR10+")), { remove: true, skipIfAlreadyFound: false });
+    parser.addHandler("hdr", /\bHDR(?:10)?\b/i, uniqConcat(value("HDR")), { remove: true, skipIfAlreadyFound: false });
 
     // Codec
     parser.addHandler("codec", /[xh][-. ]?26[45]/i, lowercase, { remove: true });
