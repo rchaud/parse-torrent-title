@@ -464,6 +464,16 @@ describe("Parsing episode", () => {
         expect(parse(releaseName)).to.deep.include({ episode: 25 });
     });
 
+    it("should detect spanish partial episode identifier", () => {
+        const releaseName = "Juego de Tronos - Temp.2 [ALTA DEFINICION 720p][Cap.209][Spanish].mkv";
+        expect(parse(releaseName)).to.deep.include({ episode: 209 });
+    });
+
+    it("should detect spanish partial episode identifier v2", () => {
+        const releaseName = "Mazinger-Z-Cap-52.avi";
+        expect(parse(releaseName)).to.deep.include({ episode: 52 });
+    });
+
     it("should detect latino full episode identifier", () => {
         const releaseName = "Yu-Gi-Oh! ZEXAL Temporada 1 Episodio 009 Dual Latino e Inglés [B3B4970E].mkv";
         expect(parse(releaseName)).to.deep.include({ episode: 9 });

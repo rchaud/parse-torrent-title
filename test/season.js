@@ -383,6 +383,11 @@ describe("Parsing season", () => {
         expect(parse(releaseName)).to.deep.include({ seasons: [3] });
     });
 
+    it("Juego de Tronos - Temp.2 [ALTA DEFINICION 720p][Cap.209][Spanish].mkv", () => {
+        const releaseName = "Juego de Tronos - Temp.2 [ALTA DEFINICION 720p][Cap.209][Spanish].mkv";
+        expect(parse(releaseName)).to.deep.include({ seasons: [2] });
+    });
+
     it("should detect sn naming scheme", () => {
         const releaseName = "Sons of Anarchy Sn4 Ep14 HD-TV - To Be, Act 2, By Cool Release";
         expect(parse(releaseName)).to.deep.include({ seasons: [4] });
