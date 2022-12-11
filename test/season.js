@@ -182,6 +182,11 @@ describe("Parsing season", () => {
         expect(parse(releaseName)).to.deep.include({ season: 5 });
     });
 
+    it("should detect season withing brackets with dot separator and episode in hunderds", () => {
+        const releaseName = "Dragon Ball [5.134] Preliminary Peril.mp4";
+        expect(parse(releaseName)).to.deep.include({ season: 5 });
+    });
+
     it("should detect season with s prefix and single digit", () => {
         const releaseName = "Bron - S4 - 720P - SweSub.mp4";
         expect(parse(releaseName)).to.deep.include({ season: 4 });

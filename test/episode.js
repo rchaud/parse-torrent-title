@@ -177,6 +177,11 @@ describe("Parsing episode", () => {
         expect(parse(releaseName)).to.deep.include({ episode: 1 });
     });
 
+    it("should detect episode in hundreds withing brackets with dot separator", () => {
+        const releaseName = "Dragon Ball [5.134] Preliminary Peril.mp4";
+        expect(parse(releaseName)).to.deep.include({ episode: 134 });
+    });
+
     it("should detect episode with spaces and hyphen separator", () => {
         const releaseName = "S01 - E03 - Fifty-Fifty.mkv";
         expect(parse(releaseName)).to.deep.include({ episode: 3 });
