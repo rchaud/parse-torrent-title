@@ -82,6 +82,11 @@ describe("Parsing season", () => {
         expect(parse(releaseName)).to.deep.include({ seasons: [20, 21, 22, 23, 24, 25, 26, 27] });
     });
 
+    it("should detect multiple seasons separated with space an spanish season name", () => {
+        const releaseName = "Perdidos: Lost: Castellano: Temporadas 1 2 3 4 5 6 (Serie Com";
+        expect(parse(releaseName)).to.deep.include({ seasons: [1, 2, 3, 4, 5, 6] });
+    });
+
     it("should detect multiple seasons with with unequal separators", () => {
         const releaseName = "The Boondocks Season 1, 2 & 3";
         expect(parse(releaseName)).to.deep.include({ seasons: [1, 2, 3] });
@@ -154,6 +159,11 @@ describe("Parsing season", () => {
 
     it("should detect multiple season when given implied range separated with colon", () => {
         const releaseName = "Naruto Shippuden Season 1:11";
+        expect(parse(releaseName)).to.deep.include({ seasons: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11] });
+    });
+
+    it("should detect multiple season when given implied range separated with colon and space", () => {
+        const releaseName = "South Park Complete Seasons 1: 11";
         expect(parse(releaseName)).to.deep.include({ seasons: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11] });
     });
 
@@ -386,6 +396,16 @@ describe("Parsing season", () => {
     it("Juego de Tronos - Temp.2 [ALTA DEFINICION 720p][Cap.209][Spanish].mkv", () => {
         const releaseName = "Juego de Tronos - Temp.2 [ALTA DEFINICION 720p][Cap.209][Spanish].mkv";
         expect(parse(releaseName)).to.deep.include({ seasons: [2] });
+    });
+
+    it("Los Simpsons Temp 7 DVDrip Espanol De Espana", () => {
+        const releaseName = "Los Simpsons Temp 7 DVDrip Espanol De Espana";
+        expect(parse(releaseName)).to.deep.include({ seasons: [7] });
+    });
+
+    it("should detect spanish season range with & separator", () => {
+        const releaseName = "The Walking Dead [Temporadas 1 & 2 Completas Em HDTV E Legena";
+        expect(parse(releaseName)).to.deep.include({ seasons: [1, 2] });
     });
 
     it("should detect sn naming scheme", () => {
