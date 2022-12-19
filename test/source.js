@@ -142,6 +142,16 @@ describe("Parsing source", () => {
         expect(parse(releaseName)).to.deep.include({ source: "CAM" });
     });
 
+    it("Avatar The Way of Water (2022) 1080p HQ S-Print Dual Audio [Hindi   English] x264 AAC HC-Esub - CineVood.mkv", () => {
+        const releaseName = "Avatar The Way of Water (2022) 1080p HQ S-Print Dual Audio [Hindi   English] x264 AAC HC-Esub - CineVood.mkv";
+        expect(parse(releaseName)).to.deep.include({ source: "CAM" });
+    });
+
+    it("Avatar The Way of Water (2022) 1080p S Print Dual Audio [Hindi   English] x264 AAC HC-Esub - CineVood.mkv", () => {
+        const releaseName = "Avatar The Way of Water (2022) 1080p S Print Dual Audio [Hindi   English] x264 AAC HC-Esub - CineVood.mkv";
+        expect(parse(releaseName)).to.deep.include({ source: "CAM" });
+    });
+
     it("Good Deeds 2012 SCR XViD-KiNGDOM", () => {
         const releaseName = "Good Deeds 2012 SCR XViD-KiNGDOM";
         expect(parse(releaseName)).to.deep.include({ source: "SCR" });
