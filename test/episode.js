@@ -474,6 +474,11 @@ describe("Parsing episode", () => {
         expect(parse(releaseName)).to.deep.include({ episode: 209 });
     });
 
+    it("should detect spanish partial long episode identifier", () => {
+        const releaseName = "Blue Bloods - Temporada 11 [HDTV 720p][Cap.1103][AC3 5.1 Castellano][www.PCTmix.com].mkv";
+        expect(parse(releaseName)).to.deep.include({ episode: 1103 });
+    });
+
     it("should detect spanish partial episode identifier v2", () => {
         const releaseName = "Mazinger-Z-Cap-52.avi";
         expect(parse(releaseName)).to.deep.include({ episode: 52 });
