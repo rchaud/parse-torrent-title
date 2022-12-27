@@ -223,7 +223,12 @@ describe("Parsing source", () => {
     });
 
     it("should parse UHDRemux before source", () => {
-        const releaseName = "Peter Rabbit 2 [4K UHDremux][2160p][HDR10][DTS-HD 5.1 Castellano-TrueHD 7.1-Ingles+Subs][ES-EN]\n";
+        const releaseName = "Peter Rabbit 2 [4K UHDremux][2160p][HDR10][DTS-HD 5.1 Castellano-TrueHD 7.1-Ingles+Subs][ES-EN]";
+        expect(parse(releaseName)).to.deep.include({ source: "BluRay REMUX" });
+    });
+
+    it("should parse 4kUHDRemux before source", () => {
+        const releaseName = "Snatch cerdos y diamantes [4KUHDremux 2160p][Castellano AC3 5.1-Ingles TrueHD 7.1+Subs]";
         expect(parse(releaseName)).to.deep.include({ source: "BluRay REMUX" });
     });
 });

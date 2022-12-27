@@ -64,7 +64,7 @@ exports.addDefaults = /** @type Parser */ parser => {
     parser.addHandler("source", /\b(?:HD[ .-]*)?T(?:ELE)?S(?:YNC)?\b/i, value("TeleSync"), { remove: true });
     parser.addHandler("source", /\b(?:HD[ .-]*)?T(?:ELE)?C(?:INE)?\b/, value("TeleCine"), { remove: true });
     parser.addHandler("source", /\bBlu[ .-]*Ray\b(?=.*remux)/i, value("BluRay REMUX"), { remove: true });
-    parser.addHandler("source", /\b(?:BD|BR|UHD)[- ]?remux/i, value("BluRay REMUX"), { remove: true });
+    parser.addHandler("source", /(?:BD|BR|UHD)[- ]?remux/i, value("BluRay REMUX"), { remove: true });
     parser.addHandler("source", /(?<=remux.*)\bBlu[ .-]*Ray\b/i, value("BluRay REMUX"), { remove: true });
     parser.addHandler("source", /\bBlu[ .-]*Ray\b(?![ .-]*Rip)/i, value("BluRay"), { remove: true });
     parser.addHandler("source", /\bUHD[ .-]*Rip\b/i, value("UHDRip"), { remove: true });
