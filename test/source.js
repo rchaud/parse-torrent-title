@@ -192,6 +192,11 @@ describe("Parsing source", () => {
         expect(parse(releaseName)).to.deep.include({ source: "WEB-DL" });
     });
 
+    it("should parse BluRay Rip source", () => {
+        const releaseName = "La nube (2020) [BluRay Rip][AC3 5.1 Castellano][www.maxitorrent.com]";
+        expect(parse(releaseName)).to.deep.include({ source: "BRRip" });
+    });
+
     it("should parse BluRay remux together source", () => {
         const releaseName = "Joker.2019.2160p.BluRay.REMUX.HEVC.DTS-HD.MA.TrueHD.7.1.Atmos-FGT";
         expect(parse(releaseName)).to.deep.include({ source: "BluRay REMUX" });
@@ -214,6 +219,11 @@ describe("Parsing source", () => {
 
     it("should parse BDRemux before source", () => {
         const releaseName = "Son of God 2014 HDR BDRemux 1080p.mkv";
+        expect(parse(releaseName)).to.deep.include({ source: "BluRay REMUX" });
+    });
+
+    it("should parse UHDRemux before source", () => {
+        const releaseName = "Peter Rabbit 2 [4K UHDremux][2160p][HDR10][DTS-HD 5.1 Castellano-TrueHD 7.1-Ingles+Subs][ES-EN]\n";
         expect(parse(releaseName)).to.deep.include({ source: "BluRay REMUX" });
     });
 });

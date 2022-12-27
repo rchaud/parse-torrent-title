@@ -299,7 +299,7 @@ describe("Random releases", () => {
             title: "Hostel",
             year: 2005,
             resolution: "720p",
-            source: "BluRay",
+            source: "BRRip",
             audio: "ac3",
             languages: ["english", "italian"],
             group: "LIFE"
