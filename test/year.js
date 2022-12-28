@@ -45,4 +45,9 @@ describe("Paring year", () => {
         const releaseName = "04. Practice Two (1324mb 1916x1080 50fps 1970kbps x265 deef).mkv";
         expect(parse(releaseName)).to.not.have.property("year");
     });
+
+    it("should not detect year spanish episode", () => {
+        const releaseName = "Anatomia De Grey - Temporada 19 [HDTV][Cap.1905][Castellano][www.AtomoHD.nu].avi";
+        expect(parse(releaseName)).to.not.have.property("year");
+    });
 });
