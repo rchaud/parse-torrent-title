@@ -500,12 +500,6 @@ describe("Parsing language", () => {
         expect(parse(releaseName)).to.deep.include({ languages: ["portuguese"] });
     });
 
-    it("Castlevania 2017 1º temporada completa 1080p", () => {
-        const releaseName = "Castlevania 2017 1º temporada completa 1080p";
-
-        expect(parse(releaseName)).to.deep.include({ languages: ["portuguese"] });
-    });
-
     it("Escobar El Patron Del Mal Capitulo 91 SD (2012-10-10) [SiRaDuDe]", () => {
         const releaseName = "Escobar El Patron Del Mal Capitulo 91 SD (2012-10-10) [SiRaDuDe]";
 
@@ -793,6 +787,16 @@ describe("Parsing language", () => {
 
     it("should not detect LT language from yts domain name", () => {
         const releaseName = "Do.Or.Die.1991.1080p.BluRay.x264-[YTS.LT].mp4";
+        expect(parse(releaseName)).to.not.have.property("languages");
+    });
+
+    it("should not detect PT language from temporada season naming", () => {
+        const releaseName = "Castlevania 2017 1º temporada completa 1080p";
+        expect(parse(releaseName)).to.not.have.property("languages");
+    });
+
+    it("should not detect PT language with cap. episode title", () => {
+        const releaseName = "City on a Hill - Temporada 1 [HDTV][Cap.110].avi";
         expect(parse(releaseName)).to.not.have.property("languages");
     });
 });

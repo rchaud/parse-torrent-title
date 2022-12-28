@@ -324,8 +324,7 @@ exports.addDefaults = /** @type Parser */ parser => {
     // infer pt language based on season/episode naming
     parser.addHandler("languages", ({ title, result, matched }) => {
         if (!result.languages || ["portuguese", "spanish"].every(l => !result.languages.includes(l))) {
-            if ((matched.seasons && matched.seasons.rawMatch.match(/temporada/i)) ||
-                (matched.episodes && matched.episodes.rawMatch.match(/capitulo|ao/i)) ||
+            if ((matched.episodes && matched.episodes.rawMatch.match(/capitulo|ao/i)) ||
                 title.match(/dublado/i)) {
                 result.languages = (result.languages || []).concat("portuguese");
             }
