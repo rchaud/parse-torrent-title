@@ -17,6 +17,11 @@ describe("Parsing source", () => {
         expect(parse(releaseName)).to.deep.include({ source: "HDTV" });
     });
 
+    it("should detect the SATRip source correctly", () => {
+        const releaseName = "Gossip Girl - 1ª Temporada. (SAT-Rip)";
+        expect(parse(releaseName)).to.deep.include({ source: "SATRip" });
+    });
+
     it("should detect the DVDRip source correctly", () => {
         const releaseName = "A Stable Life S01E01 DVDRip x264-Ltu";
         expect(parse(releaseName)).to.deep.include({ source: "DVDRip" });
@@ -60,6 +65,11 @@ describe("Parsing source", () => {
     it("should detect the BD-RM source correctly", () => {
         const releaseName = "[UsifRenegade] Cardcaptor Sakura - 54 [BD-RM][1080p][x265_10Bit][Dual_AAC].mkv";
         expect(parse(releaseName)).to.deep.include({ source: "BDRip" });
+    });
+
+    it("should detect the MicroHD source correctly", () => {
+        const releaseName = "Elvis & Nixon (MicroHD-1080p)";
+        expect(parse(releaseName)).to.deep.include({ source: "HDRip" });
     });
 
     it("should detect the UHDrip source correctly", () => {

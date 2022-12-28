@@ -69,14 +69,16 @@ exports.addDefaults = /** @type Parser */ parser => {
     parser.addHandler("source", /\bBlu[ .-]*Ray\b(?![ .-]*Rip)/i, value("BluRay"), { remove: true });
     parser.addHandler("source", /\bUHD[ .-]*Rip\b/i, value("UHDRip"), { remove: true });
     parser.addHandler("source", /\bHD[ .-]*Rip\b/i, value("HDRip"), { remove: true });
+    parser.addHandler("source", /\bMicro[ .-]*HD\b/i, value("HDRip"), { remove: true });
     parser.addHandler("source", /\b(?:BR|Blu[ .-]*Ray)[ .-]*Rip\b/i, value("BRRip"), { remove: true });
     parser.addHandler("source", /\bBD[ .-]*Rip\b|\bBDR\b|\bBD-RM\b|[[(]BD[\]) .,-]/i, value("BDRip"), { remove: true });
     parser.addHandler("source", /\bDVD[ .-]*Rip\b/i, value("DVDRip"), { remove: true });
     parser.addHandler("source", /\b(?:DVD?|BD|BR)?[ .-]*Scr(?:eener)?\b/i, value("SCR"), { remove: true });
     parser.addHandler("source", /\bPreDVD\b/i, value("SCR"), { remove: true });
-    parser.addHandler("source", /\bDVD(?:R[0-9]?)?\b/i, value("DVD"), { remove: true });
+    parser.addHandler("source", /\bDVD(?:R\d?)?\b/i, value("DVD"), { remove: true });
     parser.addHandler("source", /\bPPVRip\b/i, value("PPVRip"), { remove: true });
     parser.addHandler("source", /\bHD[ .-]*TV(?:Rip)?\b/i, value("HDTV"), { remove: true });
+    parser.addHandler("source", /\bSAT[ .-]*Rips?\b/i, value("SATRip"), { remove: true });
     parser.addHandler("source", /\bTVRips?\b/i, value("TVRip"), { remove: true });
     parser.addHandler("source", /\bR5\b/i, value("R5"), { remove: true });
     parser.addHandler("source", /\bWEB[ .-]*DL(?:Rip)?\b/i, value("WEB-DL"), { remove: true });
