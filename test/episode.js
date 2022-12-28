@@ -494,6 +494,16 @@ describe("Parsing episode", () => {
         expect(parse(releaseName)).to.deep.include({ episodes: [215, 216, 217, 218, 219, 220] });
     });
 
+    it("should detect spanish short season identifier", () => {
+        const releaseName = "My Little Pony - A Amizade é Mágica - T02E22.mp4";
+        expect(parse(releaseName)).to.deep.include({ episodes: [22] });
+    });
+
+    it("should detect spanish short season identifier with xe separator", () => {
+        const releaseName = "30 M0N3D4S ESP T01XE08.mkv";
+        expect(parse(releaseName)).to.deep.include({ episodes: [8] });
+    });
+
     it("should not detect episode in episode checksum code", () => {
         const releaseName = "[CBM]_Medaka_Box_-_11_-_This_Is_the_End!!_[720p]_[436E0E90].mkv";
         expect(parse(releaseName)).to.deep.include({ episodes: [11] });

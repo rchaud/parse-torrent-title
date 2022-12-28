@@ -413,6 +413,16 @@ describe("Parsing season", () => {
         expect(parse(releaseName)).to.deep.include({ seasons: [1, 2] });
     });
 
+    it("should detect spanish short season identifier", () => {
+        const releaseName = "My Little Pony - A Amizade é Mágica - T02E22.mp4";
+        expect(parse(releaseName)).to.deep.include({ seasons: [2] });
+    });
+
+    it("should detect spanish short season identifier with xe separator", () => {
+        const releaseName = "30 M0N3D4S ESP T01XE08.mkv";
+        expect(parse(releaseName)).to.deep.include({ seasons: [1] });
+    });
+
     it("should detect sn naming scheme", () => {
         const releaseName = "Sons of Anarchy Sn4 Ep14 HD-TV - To Be, Act 2, By Cool Release";
         expect(parse(releaseName)).to.deep.include({ seasons: [4] });
