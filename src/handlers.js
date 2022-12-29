@@ -14,7 +14,7 @@ exports.addDefaults = /** @type Parser */ parser => {
     parser.addHandler("resolution", /[([]?1280x\d{3}[)\]]?/i, value("720p"), { remove: true });
     parser.addHandler("resolution", /[([]?\d{3,4}x(\d{3,4})[)\]]?/i, value("$1p"), { remove: true });
     parser.addHandler("resolution", /(480|720|1080)0[pi]/i, value("$1p"), { remove: true });
-    parser.addHandler("resolution", /([0-9]{3,4})[pi]/i, value("$1p"), { remove: true });
+    parser.addHandler("resolution", /(\d{3,4})[pi]/i, value("$1p"), { remove: true });
 
     // Year
     parser.addHandler("date", /(?<=\W|^)([([]?(?:19[6-9]|20[012])[0-9]([. \-/\\])(?:0[1-9]|1[012])\2(?:0[1-9]|[12][0-9]|3[01])[)\]]?)(?=\W|$)/, date("YYYY MM DD"), { remove: true });
@@ -26,10 +26,10 @@ exports.addDefaults = /** @type Parser */ parser => {
     parser.addHandler("date", /(?<=\W|^)([([]?20[012][0-9](?:0[1-9]|1[012])(?:0[1-9]|[12][0-9]|3[01])[)\]]?)(?=\W|$)/, date("YYYYMMDD"), { remove: true });
 
     // Year
-    parser.addHandler("year", /[([]?[ .]?((?:19[0-9]|20[012])[0-9][ .]?-[ .]?(?:19[0-9]|20[012])[0-9])[ .]?[)\]]?/, yearRange, { remove: true });
-    parser.addHandler("year", /[([][ .]?((?:19[0-9]|20[012])[0-9][ .]?-[ .]?[0-9]{2})[ .]?[)\]]/, yearRange, { remove: true });
-    parser.addHandler("year", /[([]?(?!^)(?<!\d|Cap[. ]?)((?:19[0-9]|20[012])[0-9])(?!\d|kbps)[)\]]?/i, integer, { remove: true });
-    parser.addHandler("year", /^[([]?((?:19[0-9]|20[012])[0-9])(?!\d|kbps)[)\]]?/i, integer, { remove: true });
+    parser.addHandler("year", /[([]?[ .]?((?:19\d|20[012])\d[ .]?-[ .]?(?:19\d|20[012])\d)[ .]?[)\]]?/, yearRange, { remove: true });
+    parser.addHandler("year", /[([][ .]?((?:19\d|20[012])\d[ .]?-[ .]?\d{2})[ .]?[)\]]/, yearRange, { remove: true });
+    parser.addHandler("year", /[([]?(?!^)(?<!\d|Cap[. ]?)((?:19\d|20[012])\d)(?!\d|kbps)[)\]]?/i, integer, { remove: true });
+    parser.addHandler("year", /^[([]?((?:19\d|20[012])\d)(?!\d|kbps)[)\]]?/i, integer, { remove: true });
 
     // Extended
     parser.addHandler("extended", /EXTENDED/, boolean);
@@ -56,7 +56,7 @@ exports.addDefaults = /** @type Parser */ parser => {
     parser.addHandler("unrated", /\bunrated|uncensored\b/i, boolean);
 
     // Region
-    parser.addHandler("region", /R[0-9]/);
+    parser.addHandler("region", /R\d/);
 
     // Source
     parser.addHandler("source", /\b(?:H[DQ][ .-]*)?CAM(?:[ .-]*Rip)?\b/i, value("CAM"), { remove: true });
@@ -117,7 +117,7 @@ exports.addDefaults = /** @type Parser */ parser => {
     parser.addHandler("audio", /\bFLAC(?:\+?2\.0)?(?:x[2-4])?\b/i, value("flac"), { remove: true });
     parser.addHandler("audio", /\bEAC-?3(?:[. -]?[256]\.[01])?/i, value("eac3"), { remove: true, skipIfAlreadyFound: false });
     parser.addHandler("audio", /\bAC-?3(?:[.-]5\.1|x2\.?0?)?\b/i, value("ac3"), { remove: true, skipIfAlreadyFound: false });
-    parser.addHandler("audio", /\b5\.1(?:x[2-4]+)?(?:\+2\.0(?:x[2-4])?)\b/i, value("2.0"), { remove: true, skipIfAlreadyFound: false });
+    parser.addHandler("audio", /\b5\.1(?:x[2-4]+)?\+2\.0(?:x[2-4])?\b/i, value("2.0"), { remove: true, skipIfAlreadyFound: false });
     parser.addHandler("audio", /\b2\.0(?:x[2-4]|\+5\.1(?:x[2-4])?)\b/i, value("2.0"), { remove: true, skipIfAlreadyFound: false });
     parser.addHandler("audio", /\b5\.1ch\b/i, value("ac3"), { remove: true, skipIfAlreadyFound: false });
     parser.addHandler("audio", /\bDD5[. ]?1\b/i, value("dd5.1"), { remove: true });
@@ -249,8 +249,8 @@ exports.addDefaults = /** @type Parser */ parser => {
     parser.addHandler("languages", /\btri(?:ple)?[ .-]*(?:audio|dub\w*)\b/i, uniqConcat(value("multi audio")));
     parser.addHandler("languages", /\bdual[ .-]*(?:au?$|[aá]udio|line)\b/i, uniqConcat(value("dual audio")));
     parser.addHandler("languages", /\bdual\b(?![ .-]*sub)/i, uniqConcat(value("dual audio")));
-    parser.addHandler("languages", /\bengl?(?:sub[a-zA-Z]*)?\b/i, uniqConcat(value("english")), { skipIfAlreadyFound: false });
-    parser.addHandler("languages", /\beng?(?:sub[a-zA-Z]*)\b/i, uniqConcat(value("english")), { skipIfAlreadyFound: false });
+    parser.addHandler("languages", /\bengl?(?:sub[A-Z]*)?\b/i, uniqConcat(value("english")), { skipIfAlreadyFound: false });
+    parser.addHandler("languages", /\beng?sub[A-Z]*\b/i, uniqConcat(value("english")), { skipIfAlreadyFound: false });
     parser.addHandler("languages", /\bing(?:l[eéê]s)?\b/i, uniqConcat(value("english")), { skipIfAlreadyFound: false });
     parser.addHandler("languages", /\bEN\b/i, uniqConcat(value("english")), { skipFromTitle: true, skipIfAlreadyFound: false });
     parser.addHandler("languages", /\benglish?\b/i, uniqConcat(value("english")), { skipFromTitle: true, skipIfAlreadyFound: false });
@@ -262,15 +262,15 @@ exports.addDefaults = /** @type Parser */ parser => {
     parser.addHandler("languages", /\bCH[IT]\b/, uniqConcat(value("chinese")), { skipFromTitle: true, skipIfAlreadyFound: false });
     parser.addHandler("languages", /\b(chinese|chin[eê]s)\b/i, uniqConcat(value("chinese")), { skipFromTitle: true, skipIfAlreadyFound: false });
     parser.addHandler("languages", /\bFR(?:ench|a|e|anc[eê]s)?\b/i, uniqConcat(value("french")), { skipIfAlreadyFound: false });
-    parser.addHandler("languages", /\b(Truefrench|VF(?:[FI]))\b/i, uniqConcat(value("french")), { skipIfAlreadyFound: false });
-    parser.addHandler("languages", /\b(VOST(?:(?:F(?:R)?)|A)?|SUBFRENCH)\b/i, uniqConcat(value("french")), { skipIfAlreadyFound: false });
+    parser.addHandler("languages", /\b(Truefrench|VF[FI])\b/i, uniqConcat(value("french")), { skipIfAlreadyFound: false });
+    parser.addHandler("languages", /\b(VOST(?:FR?|A)?|SUBFRENCH)\b/i, uniqConcat(value("french")), { skipIfAlreadyFound: false });
     parser.addHandler("languages", /\b(?:ESP|spa|(en[ .]+)?espa[nñ]ola?|castellano|lat(?:ino)?)\b/i, uniqConcat(value("spanish")), { skipIfAlreadyFound: false });
-    parser.addHandler("languages", /\bes(?=[ .,/-]+(?:[a-zA-Z]{2}[ .,/-]+){2,})\b/i, uniqConcat(value("spanish")), { skipFromTitle: true, skipIfAlreadyFound: false });
-    parser.addHandler("languages", /\b(?<=[ .,/-]+(?:[a-zA-Z]{2}[ .,/-]+){2,})es\b/i, uniqConcat(value("spanish")), { skipFromTitle: true, skipIfAlreadyFound: false });
-    parser.addHandler("languages", /\b(?<=[ .,/-]+(?:[a-zA-Z]{2}[ .,/-]+))es(?=[ .,/-]+(?:[a-zA-Z]{2}[ .,/-]+))\b/i, uniqConcat(value("spanish")), { skipFromTitle: true, skipIfAlreadyFound: false });
+    parser.addHandler("languages", /\bes(?=[ .,/-]+(?:[A-Z]{2}[ .,/-]+){2,})\b/i, uniqConcat(value("spanish")), { skipFromTitle: true, skipIfAlreadyFound: false });
+    parser.addHandler("languages", /\b(?<=[ .,/-]+(?:[A-Z]{2}[ .,/-]+){2,})es\b/i, uniqConcat(value("spanish")), { skipFromTitle: true, skipIfAlreadyFound: false });
+    parser.addHandler("languages", /\b(?<=[ .,/-]+[A-Z]{2}[ .,/-]+)es(?=[ .,/-]+[A-Z]{2}[ .,/-]+)\b/i, uniqConcat(value("spanish")), { skipFromTitle: true, skipIfAlreadyFound: false });
     parser.addHandler("languages", /\b(spanish|espanhol)\b/i, uniqConcat(value("spanish")), { skipFromTitle: true, skipIfAlreadyFound: false });
     parser.addHandler("languages", /\b(?:p[rt]|en|port)[. (\\/-]*BR\b/i, uniqConcat(value("portuguese")), { skipIfAlreadyFound: false, remove: true });
-    parser.addHandler("languages", /\b(?:leg(?:endado|endas?)?|dub(?:lado)|portugu[eèê]se?)[. -]*BR\b/i, uniqConcat(value("portuguese")), { skipIfAlreadyFound: false });
+    parser.addHandler("languages", /\b(?:leg(?:endado|endas?)?|dub(?:lado)?|portugu[eèê]se?)[. -]*BR\b/i, uniqConcat(value("portuguese")), { skipIfAlreadyFound: false });
     parser.addHandler("languages", /\bleg(?:endado|endas?)\b/i, uniqConcat(value("portuguese")), { skipIfAlreadyFound: false });
     parser.addHandler("languages", /\bportugu[eèê]s[ea]?\b/i, uniqConcat(value("portuguese")), { skipIfAlreadyFound: false });
     parser.addHandler("languages", /\bPT[. -]*(?:PT|ENG?|sub(?:s|titles?))\b/i, uniqConcat(value("portuguese")), { skipIfAlreadyFound: false });
@@ -281,9 +281,9 @@ exports.addDefaults = /** @type Parser */ parser => {
     parser.addHandler("languages", /\bitaliano?\b/i, uniqConcat(value("italian")), { skipFromTitle: true, skipIfAlreadyFound: false });
     parser.addHandler("languages", /\bgreek[ .-]*(?:audio|lang(?:uage)?|sub(?:s|titles?)?)\b/i, uniqConcat(value("greek")), { skipIfAlreadyFound: false });
     parser.addHandler("languages", /\b(?:GER|DEU)\b/i, uniqConcat(value("german")), { skipFromTitle: true, skipIfAlreadyFound: false });
-    parser.addHandler("languages", /\bde(?=[ .,/-]+(?:[a-zA-Z]{2}[ .,/-]+){2,})\b/i, uniqConcat(value("german")), { sskipFromTitle: true, skipIfAlreadyFound: false });
-    parser.addHandler("languages", /\b(?<=[ .,/-]+(?:[a-zA-Z]{2}[ .,/-]+){2,})de\b/i, uniqConcat(value("german")), { skipFromTitle: true, skipIfAlreadyFound: false });
-    parser.addHandler("languages", /\b(?<=[ .,/-]+(?:[a-zA-Z]{2}[ .,/-]+))de(?=[ .,/-]+(?:[a-zA-Z]{2}[ .,/-]+))\b/i, uniqConcat(value("german")), { skipFromTitle: true, skipIfAlreadyFound: false });
+    parser.addHandler("languages", /\bde(?=[ .,/-]+(?:[A-Z]{2}[ .,/-]+){2,})\b/i, uniqConcat(value("german")), { sskipFromTitle: true, skipIfAlreadyFound: false });
+    parser.addHandler("languages", /\b(?<=[ .,/-]+(?:[A-Z]{2}[ .,/-]+){2,})de\b/i, uniqConcat(value("german")), { skipFromTitle: true, skipIfAlreadyFound: false });
+    parser.addHandler("languages", /\b(?<=[ .,/-]+[A-Z]{2}[ .,/-]+)de(?=[ .,/-]+[A-Z]{2}[ .,/-]+)\b/i, uniqConcat(value("german")), { skipFromTitle: true, skipIfAlreadyFound: false });
     parser.addHandler("languages", /\b(german|alem[aã]o)\b/i, uniqConcat(value("german")), { skipFromTitle: true, skipIfAlreadyFound: false });
     parser.addHandler("languages", /\bRUS?\b/i, uniqConcat(value("russian")), { skipIfAlreadyFound: false });
     parser.addHandler("languages", /\b(russian|russo)\b/i, uniqConcat(value("russian")), { skipFromTitle: true, skipIfAlreadyFound: false });
@@ -301,8 +301,9 @@ exports.addDefaults = /** @type Parser */ parser => {
     parser.addHandler("languages", /\bHU\b/, uniqConcat(value("hungarian")), { skipFromTitle: true, skipIfAlreadyFound: false });
     parser.addHandler("languages", /\bHUN(?:garian)?\b/i, uniqConcat(value("hungarian")), { skipFromTitle: true, skipIfAlreadyFound: false });
     parser.addHandler("languages", /\bROM(?:manian)?\b/i, uniqConcat(value("romanian")), { skipIfAlreadyFound: false });
-    parser.addHandler("languages", /\bRO(?=[ .,/-]*(?:[a-zA-Z]{2}[ .,/-]+)*sub)/i, uniqConcat(value("romanian")), { skipIfAlreadyFound: false });
-    parser.addHandler("languages", /\b(?:HRV|croatian|HR(?=[ .,/-]*(?:[a-zA-Z]{2}[ .,/-]+)*sub))\b/i, uniqConcat(value("croatian")), { skipIfAlreadyFound: false });
+    parser.addHandler("languages", /\bRO(?=[ .,/-]*(?:[A-Z]{2}[ .,/-]+)*sub)/i, uniqConcat(value("romanian")), { skipIfAlreadyFound: false });
+    parser.addHandler("languages", /\b(?:HRV|croatian)\b/i, uniqConcat(value("croatian")), { skipIfAlreadyFound: false });
+    parser.addHandler("languages", /\bHR(?=[ .,/-]*(?:[A-Z]{2}[ .,/-]+)*sub)\b/i, uniqConcat(value("croatian")), { skipIfAlreadyFound: false });
     parser.addHandler("languages", /\b(?:NL|dut|holand[eê]s)\b/i, uniqConcat(value("dutch")), { skipIfAlreadyFound: false });
     parser.addHandler("languages", /\bdutch\b/i, uniqConcat(value("dutch")), { skipFromTitle: true, skipIfAlreadyFound: false });
     parser.addHandler("languages", /\bflemish\b/i, uniqConcat(value("dutch")), { skipIfAlreadyFound: false });
@@ -314,7 +315,8 @@ exports.addDefaults = /** @type Parser */ parser => {
     parser.addHandler("languages", /\b(swedish|sueco)\b/i, uniqConcat(value("swedish")), { skipFromTitle: true, skipIfAlreadyFound: false });
     parser.addHandler("languages", /\b(?:NOR|norsk|norsub|nordic)\b/i, uniqConcat(value("norwegian")), { skipIfAlreadyFound: false });
     parser.addHandler("languages", /\b(norwegian|noruegu[eê]s)\b/i, uniqConcat(value("norwegian")), { skipFromTitle: true, skipIfAlreadyFound: false });
-    parser.addHandler("languages", /\b(?:arabic|[aá]rabe|arab.*(?:audio|lang(?:uage)?|sub(?:s|titles?)?))\b/i, uniqConcat(value("arabic")), { skipFromTitle: true, skipIfAlreadyFound: false });
+    parser.addHandler("languages", /\b(?:arabic|[aá]rabe)\b/i, uniqConcat(value("arabic")), { skipFromTitle: true, skipIfAlreadyFound: false });
+    parser.addHandler("languages", /\barab.*(?:audio|lang(?:uage)?|sub(?:s|titles?)?)\b/i, uniqConcat(value("arabic")), { skipFromTitle: true, skipIfAlreadyFound: false });
     parser.addHandler("languages", /\b(?:turkish|tur(?:co)?)\b/i, uniqConcat(value("turkish")), { skipFromTitle: true, skipIfAlreadyFound: false });
     parser.addHandler("languages", /\bvietnamese\b|\bvie(?=[\]_)]?\.\w{2,4}$)/i, uniqConcat(value("vietnamese")), { skipFromTitle: true, skipIfAlreadyFound: false });
     parser.addHandler("languages", /\bind(?:onesian)?\b/i, uniqConcat(value("indonesian")), { skipFromTitle: true, skipIfAlreadyFound: false });
