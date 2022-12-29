@@ -799,4 +799,39 @@ describe("Parsing language", () => {
         const releaseName = "City on a Hill - Temporada 1 [HDTV][Cap.110].avi";
         expect(parse(releaseName)).to.not.have.property("languages");
     });
+
+    it("should not detect NL language from website", () => {
+        const releaseName = "La inocencia [720p][wWw.EliteTorrent.NL].mkv";
+        expect(parse(releaseName)).to.not.have.property("languages");
+    });
+
+    it("should not detect FI language from website", () => {
+        const releaseName = "Reasonable Doubt - Temporada 1 [HDTV][Cap.101][www.AtomoHD.FI]";
+        expect(parse(releaseName)).to.not.have.property("languages");
+    });
+
+    it("should not detect FI language from website v2", () => {
+        const releaseName = "1883 - Temporada 1 [HDTV 720p][Cap.103][AC3 5.1][www.AtomoHD.fi]";
+        expect(parse(releaseName)).to.not.have.property("languages");
+    });
+
+    it("should not detect TW language from website", () => {
+        const releaseName = "Los Winchester - Temporada 1 [HDTV][Cap.103][www.atomoHD.tw]";
+        expect(parse(releaseName)).to.not.have.property("languages");
+    });
+
+    it("should not detect CH language from website", () => {
+        const releaseName = "El Inmortal- Temporada 1 [HDTV 720p][Cap.104][AC3 5.1][www.AtomoHD.ch]]";
+        expect(parse(releaseName)).to.not.have.property("languages");
+    });
+
+    it("should not detect TEL language from website", () => {
+        const releaseName = "Black Friday (2021) [BluRay Rip][AC3 5.1][www.atomixHQ.TEL]";
+        expect(parse(releaseName)).to.not.have.property("languages");
+    });
+
+    it("should not detect SE language from website", () => {
+        const releaseName = "Deep Blue Sea 3 [HDR][wWw.EliteTorrent.SE]";
+        expect(parse(releaseName)).to.not.have.property("languages");
+    });
 });
