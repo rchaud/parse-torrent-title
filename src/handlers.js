@@ -3,7 +3,7 @@ const { value, integer, boolean, lowercase, uppercase, date, range, yearRange, a
 exports.addDefaults = /** @type Parser */ parser => {
 
     // Episode code
-    parser.addHandler("episodeCode", /[[(]([a-zA-Z0-9]{8})[\])](?:\.[a-zA-Z0-9]{1,5}|$)/, uppercase, { remove: true });
+    parser.addHandler("episodeCode", /[[(]([a-zA-Z0-9]{8})[\])](?:\.[a-zA-Z0-9]{1,5}$|$)/, uppercase, { remove: true });
     parser.addHandler("episodeCode", /\[([A-Z0-9]{8})]/, uppercase, { remove: true });
 
     // Resolution

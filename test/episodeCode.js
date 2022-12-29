@@ -37,4 +37,9 @@ describe("Parsing episode code", () => {
 
         expect(parse(releaseName)).to.deep.include({ episodeCode: "9CC04E06" });
     });
+
+    it("should not detect episode code not at the end", () => {
+        const releaseName = "Lost.[Perdidos].6x05.HDTV.XviD.[www.DivxTotaL.com].avi";
+        expect(parse(releaseName)).to.not.have.property("episodeCode");
+    });
 });
