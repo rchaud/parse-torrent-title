@@ -52,6 +52,16 @@ describe("Parsing season", () => {
         expect(parse(releaseName)).to.deep.include({ season: 1 });
     });
 
+    it("should detect season with x separator and letter on left", () => {
+        const releaseName = "The.Man.In.The.High.Castle1x01.HDTV.XviD[www.DivxTotaL.com].avi";
+        expect(parse(releaseName)).to.deep.include({ season: 1 });
+    });
+
+    it("should detect season with x separator and letter on right", () => {
+        const releaseName = "clny.3x11m720p.es[www.planetatorrent.com].mkv";
+        expect(parse(releaseName)).to.deep.include({ season: 3 });
+    });
+
     it("should detect multiple seasons separated with comma", () => {
         const releaseName = "Game Of Thrones Complete Season 1,2,3,4,5,6,7 406p mkv + Subs";
         expect(parse(releaseName)).to.deep.include({ seasons: [1, 2, 3, 4, 5, 6, 7] });

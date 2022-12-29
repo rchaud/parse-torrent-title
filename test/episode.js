@@ -62,6 +62,16 @@ describe("Parsing episode", () => {
         expect(parse(releaseName)).to.deep.include({ episode: 2 });
     });
 
+    it("should detect episode with x separator and letter on left", () => {
+        const releaseName = "The.Man.In.The.High.Castle1x01.HDTV.XviD[www.DivxTotaL.com].avi";
+        expect(parse(releaseName)).to.deep.include({ episode: 1 });
+    });
+
+    it("should detect episode with x separator and letter on right", () => {
+        const releaseName = "clny.3x11m720p.es[www.planetatorrent.com].mkv";
+        expect(parse(releaseName)).to.deep.include({ episode: 11 });
+    });
+
     it("should detect episode when similar digits included", () => {
         const releaseName = "Friends.S07E20.The.One.With.Rachel's.Big.Kiss.720p.BluRay.2CH.x265.HEVC-PSA.mkv";
         expect(parse(releaseName)).to.deep.include({ season: 7, episode: 20 });
