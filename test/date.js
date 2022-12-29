@@ -175,4 +175,19 @@ describe("Parsing date", () => {
 
         expect(parse(releaseName)).to.deep.include({ date: "2000-09-18" });
     });
+
+    it("should not detect date from series title", () => {
+        const releaseName = "11 22 63 - Temporada 1 [HDTV][Cap.103][Español Castellano]";
+        expect(parse(releaseName)).to.not.have.property("date");
+    });
+
+    it("should not detect date from movie title", () => {
+        const releaseName = "September 30 1955 1977 1080p BluRay";
+        expect(parse(releaseName)).to.not.have.property("date");
+    });
+
+    it("should not detect date from movie title v2", () => {
+        const releaseName = "11-11-11.2011.1080p.BluRay.x264.DTS-FGT";
+        expect(parse(releaseName)).to.not.have.property("date");
+    });
 });
