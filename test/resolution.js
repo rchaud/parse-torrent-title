@@ -67,4 +67,16 @@ describe("Parsing resolution", () => {
 
         expect(parse(releaseName)).to.deep.include({ resolution: "1080p" });
     });
+
+    it("should detect 1080 without spaces and M prefix", () => {
+        const releaseName = "BluesBrothers2M1080.www.newpct.com.mkv";
+
+        expect(parse(releaseName)).to.deep.include({ title: "BluesBrothers2", resolution: "1080p" });
+    });
+
+    it("should detect 1080 without spaces and BD prefix", () => {
+        const releaseName = "BenHurParte2BD1080.www.newpct.com.mkv";
+
+        expect(parse(releaseName)).to.deep.include({ title: "BenHurParte2", resolution: "1080p" });
+    });
 });
