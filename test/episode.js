@@ -704,36 +704,36 @@ describe("Parsing episode", () => {
         expect(parse(releaseName)).to.deep.include({ season: 3, episode: 5 });
     });
 
-    xit("should detect not detect season-episode pattern when it's a date", () => {
+    xit("should not detect season-episode pattern when it's a date", () => {
         const releaseName = "8-6 2006.07.16.avi";
         expect(parse(releaseName)).to.deep.include({ season: 8, episode: 6 });
     });
 
-    it("should detect not detect season episode pattern but absolute episdeo", () => {
+    it("should not detect season episode pattern but absolute episdeo", () => {
         const releaseName = "523 23.mp4";
         expect(parse(releaseName)).to.not.have.property("season");
         expect(parse(releaseName)).to.deep.include({ episode: 523 });
     });
 
-    it("should detect detect only episode", () => {
+    it("should detect only episode", () => {
         const releaseName = "Chernobyl E02 1 23 45.mp4";
         expect(parse(releaseName)).to.not.have.property("season");
         expect(parse(releaseName)).to.deep.include({ episode: 2 });
     });
 
-    it("should detect detect only episode v2", () => {
+    it("should detect only episode v2", () => {
         const releaseName = "Watch Gary And His Demons Episode 10 - 0.00.07-0.11.02.mp4";
         expect(parse(releaseName)).to.not.have.property("season");
         expect(parse(releaseName)).to.deep.include({ episode: 10 });
     });
 
-    it("should detect detect only episode v3", () => {
+    it("should detect only episode v3", () => {
         const releaseName = "523 23.mp4";
         expect(parse(releaseName)).to.not.have.property("season");
         expect(parse(releaseName)).to.deep.include({ episode: 523 });
     });
 
-    it("should detect not detect season.episode pattern when it's a date without other pattern", () => {
+    it("should not detect season.episode pattern when it's a date without other pattern", () => {
         const releaseName = "wwf.raw.is.war.18.09.00.avi";
         expect(parse(releaseName)).to.not.have.property("season");
         expect(parse(releaseName)).to.not.have.property("episode");

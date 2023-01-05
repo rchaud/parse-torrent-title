@@ -15,7 +15,8 @@ exports.addDefaults = /** @type Parser */ parser => {
     parser.addHandler("resolution", /[([]?\d{3,4}x(\d{3,4})[)\]]?/i, value("$1p"), { remove: true });
     parser.addHandler("resolution", /(480|720|1080)0[pi]/i, value("$1p"), { remove: true });
     parser.addHandler("resolution", /(?:BD|HD|M)(720|1080|2160)/, value("$1p"), { remove: true });
-    parser.addHandler("resolution", /(\d{3,4})[pi]/i, value("$1p"), { remove: true });
+    parser.addHandler("resolution", /(480|576|720|1080|2160)[pi]/i, value("$1p"), { remove: true });
+    parser.addHandler("resolution", /(?:^|\D)(\d{3,4})[pi]/i, value("$1p"), { remove: true });
 
     // Year
     parser.addHandler("date", /(?<=\W|^)([([]?(?:19[6-9]|20[012])[0-9]([. \-/\\])(?:0[1-9]|1[012])\2(?:0[1-9]|[12][0-9]|3[01])[)\]]?)(?=\W|$)/, date("YYYY MM DD"), { remove: true });

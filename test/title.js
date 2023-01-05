@@ -96,6 +96,21 @@ describe("Parsing title", () => {
         expect(parse(releaseName)).to.deep.include({ title: "American Animals" });
     });
 
+    it("should clear cast info from russian title", () => {
+        const releaseName = "Греческая смоковница / Griechische Feigen / The Fruit Is Ripe (Зиги Ротемунд / Sigi Rothemund (as Siggi Götz)) [1976, Германия (ФРГ), эротика, комедия, приключения, DVDRip] 2 VO";
+        expect(parse(releaseName)).to.deep.include({ title: "Griechische Feigen / The Fruit Is Ripe" });
+    });
+
+    it("should clear cast info from russian title v2", () => {
+        const releaseName = "Греческая смоковница / The fruit is ripe / Griechische Feigen (Siggi Götz) [1976, Германия, Эротическая комедия, DVDRip]";
+        expect(parse(releaseName)).to.deep.include({ title: "The fruit is ripe / Griechische Feigen" });
+    });
+
+    it("should clear cast info from russian title v3", () => {
+        const releaseName = "Бастер / Buster (Дэвид Грин / David Green) [1988, Великобритания, Комедия, мелодрама, драма, приключения, криминал, биография, DVDRip]\n";
+        expect(parse(releaseName)).to.deep.include({ title: "Buster" });
+    });
+
     it("should detect title even when year is in beginning with paranthesis", () => {
         const releaseName = "(2000) Le follie dell'imperatore - The Emperor's New Groove (DvdRip Ita Eng AC3 5.1).avi";
         expect(parse(releaseName)).to.deep.include({ title: "Le follie dell'imperatore - The Emperor's New Groove" });

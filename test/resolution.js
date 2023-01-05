@@ -79,4 +79,10 @@ describe("Parsing resolution", () => {
 
         expect(parse(releaseName)).to.deep.include({ title: "BenHurParte2", resolution: "1080p" });
     });
+
+    it("should detect 720 without spaces title prefix", () => {
+        const releaseName = "1993720p_101_WWW.NEWPCT1.COM.mkvv";
+
+        expect(parse(releaseName)).to.deep.include({ resolution: "720p" });
+    });
 });
