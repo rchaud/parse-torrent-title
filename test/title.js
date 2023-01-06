@@ -107,7 +107,7 @@ describe("Parsing title", () => {
     });
 
     it("should clear cast info from russian title v3", () => {
-        const releaseName = "Бастер / Buster (Дэвид Грин / David Green) [1988, Великобритания, Комедия, мелодрама, драма, приключения, криминал, биография, DVDRip]\n";
+        const releaseName = "Бастер / Buster (Дэвид Грин / David Green) [1988, Великобритания, Комедия, мелодрама, драма, приключения, криминал, биография, DVDRip]";
         expect(parse(releaseName)).to.deep.include({ title: "Buster" });
     });
 

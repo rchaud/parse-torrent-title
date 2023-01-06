@@ -76,7 +76,7 @@ exports.addDefaults = /** @type Parser */ parser => {
     parser.addHandler("source", /\bBD[ .-]*Rip\b|\bBDR\b|\bBD-RM\b|[[(]BD[\]) .,-]/i, value("BDRip"), { remove: true });
     parser.addHandler("source", /\bDVD[ .-]*Rip\b/i, value("DVDRip"), { remove: true });
     parser.addHandler("source", /\b(?:DVD?|BD|BR)?[ .-]*Scr(?:eener)?\b/i, value("SCR"), { remove: true });
-    parser.addHandler("source", /\bPreDVD\b/i, value("SCR"), { remove: true });
+    parser.addHandler("source", /\bP(?:re)?DVD(?:Rip)?\b/i, value("SCR"), { remove: true });
     parser.addHandler("source", /\bDVD(?:R\d?)?\b/i, value("DVD"), { remove: true });
     parser.addHandler("source", /\bPPVRip\b/i, value("PPVRip"), { remove: true });
     parser.addHandler("source", /\bHD[ .-]*TV(?:Rip)?\b/i, value("HDTV"), { remove: true });

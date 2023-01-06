@@ -192,6 +192,11 @@ describe("Parsing source", () => {
         expect(parse(releaseName)).to.deep.include({ source: "SCR" });
     });
 
+    it("Black Panther Wakanda Forever 2022 Hindi 1080p PDVDRip x264 AAC CineVood.mkv", () => {
+        const releaseName = "Black Panther Wakanda Forever 2022 Hindi 1080p PDVDRip x264 AAC CineVood.mkv";
+        expect(parse(releaseName)).to.deep.include({ source: "SCR" });
+    });
+
     it("Vampire in Vegas (2009) NL Subs DVDR DivXNL-Team", () => {
         const releaseName = "Vampire in Vegas (2009) NL Subs DVDR DivXNL-Team";
         expect(parse(releaseName)).to.deep.include({ source: "DVD" });
