@@ -126,7 +126,7 @@ exports.addDefaults = /** @type Parser */ parser => {
     parser.addHandler("audio", /\bQ?AAC(?:[. ]?2[. ]0|x2)?\b/, value("aac"), { remove: true });
 
     // Group
-    parser.addHandler("group", /- ?(?!\d+$|S\d+|\d+x|ep?\d+|[^[]+]$)([^\-. []+)(?:\[[\w.-]+])?(?=\.\w{2,4}$|$)/i, { remove: true });
+    parser.addHandler("group", /- ?(?!\d+$|S\d+|\d+x|ep?\d+|[^[]+]$)([^\-. []+[^\-. [\d][^\-. []*)(?:\[[\w.-]+])?(?=\.\w{2,4}$|$)/i, { remove: true });
 
     // Container
     parser.addHandler("container", /\.?[[(]?\b(MKV|AVI|MP4|WMV|MPG|MPEG)\b[\])]?/i, lowercase);
@@ -279,7 +279,6 @@ exports.addDefaults = /** @type Parser */ parser => {
     parser.addHandler("languages", /\bpor\b/i, uniqConcat(value("portuguese")), { skipFromTitle: true, skipIfAlreadyFound: false });
     parser.addHandler("languages", /\bITA\b/i, uniqConcat(value("italian")), { skipIfAlreadyFound: false });
     parser.addHandler("languages", /\b(?<!w{3}\.\w+\.)IT(?=[ .,/-]+(?:[a-zA-Z]{2}[ .,/-]+){2,})\b/, uniqConcat(value("italian")), { skipFromTitle: true, skipIfAlreadyFound: false });
-    parser.addHandler("languages", /\biTALiAN\b/i, uniqConcat(value("italian")), { skipIfAlreadyFound: false });
     parser.addHandler("languages", /\bitaliano?\b/i, uniqConcat(value("italian")), { skipFromTitle: true, skipIfAlreadyFound: false });
     parser.addHandler("languages", /\bgreek[ .-]*(?:audio|lang(?:uage)?|sub(?:s|titles?)?)\b/i, uniqConcat(value("greek")), { skipIfAlreadyFound: false });
     parser.addHandler("languages", /\b(?:GER|DEU)\b/i, uniqConcat(value("german")), { skipFromTitle: true, skipIfAlreadyFound: false });

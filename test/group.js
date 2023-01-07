@@ -121,4 +121,10 @@ describe("Parsing group", () => {
 
         expect(parse(releaseName)).to.not.have.property("group");
     });
+
+    it("should not detect group from episode", () => {
+        const releaseName = "the-x-files-502.mkv";
+
+        expect(parse(releaseName)).to.not.have.property("group");
+    });
 });
