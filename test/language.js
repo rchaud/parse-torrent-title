@@ -750,6 +750,11 @@ describe("Parsing language", () => {
         expect(parse(releaseName)).to.deep.include({ languages: ["english", "japanese", "korean", "chinese", "french", "spanish", "portuguese", "italian", "german", "russian", "tamil", "polish", "dutch", "danish", "swedish", "norwegian", "thai", "hebrew", "persian"] });
     });
 
+    it("should detect multiple languages in language only title", () => {
+        const releaseName = "russian,english,ukrainian";
+        expect(parse(releaseName)).to.deep.include({ languages: ["english", "russian", "ukrainian"] });
+    });
+
     it("Subs/Thai.srt", () => {
         const releaseName = "Subs/Thai.srt";
         expect(parse(releaseName)).to.deep.include({ languages: ["thai"] });
@@ -782,7 +787,8 @@ describe("Parsing language", () => {
 
     it("should not remove english from title", () => {
         const releaseName = "The English Patient (1996) 720p BrRip x264 - YIFY";
-        expect(parse(releaseName)).to.deep.include({ title: "The English Patient", languages: ["english"] });
+        expect(parse(releaseName)).to.deep.include({ title: "The English Patient" });
+        expect(parse(releaseName)).to.not.have.property("languages");
     });
 
     it("should not detect LT language from yts domain name", () => {
@@ -832,6 +838,46 @@ describe("Parsing language", () => {
 
     it("should not detect SE language from website", () => {
         const releaseName = "Deep Blue Sea 3 [HDR][wWw.EliteTorrent.SE]";
+        expect(parse(releaseName)).to.not.have.property("languages");
+    });
+
+    it("should not detect language from title before year", () => {
+        const releaseName = "The.Italian.Job.1969.1080p.BluRay.x265-RARBG.mp4";
+        expect(parse(releaseName)).to.not.have.property("languages");
+    });
+
+    it("should not detect language from title before year v2", () => {
+        const releaseName = "Chinese Zodiac (2012) 1080p BrRip x264 - YIFY";
+        expect(parse(releaseName)).to.not.have.property("languages");
+    });
+
+    it("should not detect language from title before year v3", () => {
+        const releaseName = "The German Doctor 2013 1080p WEBRip";
+        expect(parse(releaseName)).to.not.have.property("languages");
+    });
+
+    it("should not detect language from title before year v4", () => {
+        const releaseName = "Johnny English 2003 1080p BluRay";
+        expect(parse(releaseName)).to.not.have.property("languages");
+    });
+
+    it("should not detect language from title before year v5", () => {
+        const releaseName = "Polish Wedding (1998) 1080p (moviesbyrizzo upl).mp4";
+        expect(parse(releaseName)).to.not.have.property("languages");
+    });
+
+    it("should not detect language from title before year v6", () => {
+        const releaseName = "Russian.Doll.S02E02.2160p.NF.WEB-DL.DDP5.1.HDR.DV.HEVC-PEXA.mkv";
+        expect(parse(releaseName)).to.not.have.property("languages");
+    });
+
+    it("should not detect language from title before year v7", () => {
+        const releaseName = "The.Spanish.Prisoner.1997.1080p.BluRay.x265-RARBG";
+        expect(parse(releaseName)).to.not.have.property("languages");
+    });
+
+    it("should not detect language from title before year v8", () => {
+        const releaseName = "Japanese.Story.2003.1080p.WEBRip.x264-RARBG";
         expect(parse(releaseName)).to.not.have.property("languages");
     });
 });
