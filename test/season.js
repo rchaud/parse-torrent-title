@@ -37,6 +37,11 @@ describe("Parsing season", () => {
         expect(parse(releaseName)).to.deep.include({ season: 1 });
     });
 
+    it("should detect regular episode without e separator", () => {
+        const releaseName = "Desperate.Housewives.S0615.400p.WEB-DL.Rus.Eng.avi";
+        expect(parse(releaseName)).to.deep.include({ season: 6 });
+    });
+
     it("should detect season with SxEE format correctly", () => {
         const releaseName = "Doctor.Who.2005.8x11.Dark.Water.720p.HDTV.x264-FoV";
         expect(parse(releaseName)).to.deep.include({ season: 8 });
@@ -222,6 +227,16 @@ describe("Parsing season", () => {
         expect(parse(releaseName)).to.deep.include({ season: 6 });
     });
 
+    it("should detect season with a dot and epsiode prefix", () => {
+        const releaseName = "Desperate Housewives - Episode 1.22 - Goodbye for now.avi";
+        expect(parse(releaseName)).to.deep.include({ season: 1 });
+    });
+
+    it("should detect season with a dot and episode prefix v2", () => {
+        const releaseName = "All of Us Are Dead . 2022 . S01 EP #1.2.mkv";
+        expect(parse(releaseName)).to.deep.include({ season: 1 });
+    });
+
     it("should detect season with a year range afterwards", () => {
         const releaseName = "Empty Nest Season 1 (1988 - 89) fiveofseven";
         expect(parse(releaseName)).to.deep.include({ season: 1 });
@@ -277,6 +292,11 @@ describe("Parsing season", () => {
         expect(parse(releaseName)).to.deep.include({ season: 2 });
     });
 
+    it("should detect season with russian season shortened word", () => {
+        const releaseName = "Otchayannie.domochozyaiki.(8.sez.21.ser.iz.23).2012.XviD.HDTVRip.avi";
+        expect(parse(releaseName)).to.deep.include({ season: 8 });
+    });
+
     it("should detect season with russian season word and no prefix", () => {
         const releaseName = "Интерны. Сезон №9. Серия №180.avi";
         expect(parse(releaseName)).to.deep.include({ season: 9 });
@@ -305,6 +325,11 @@ describe("Parsing season", () => {
     it("should detect season with hyphen separator between episode v3", () => {
         const releaseName = "Доктор Хаус 03-20.mkv";
         expect(parse(releaseName)).to.deep.include({ season: 3 });
+    });
+
+    it("should detect episodes with hyphen separator between episode v4", () => {
+        const releaseName = "Комиссар Рекс 11-13.avi";
+        expect(parse(releaseName)).to.deep.include({ season: 11 });
     });
 
     it("should not detect season with hyphen separator when it's the title", () => {

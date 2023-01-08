@@ -326,4 +326,15 @@ describe("Random releases", () => {
             resolution: "720p"
         });
     });
+
+    it("Heidi Audio Latino DVDRip [cap. 3 Al 18]", () => {
+        const releaseName = "Heidi Audio Latino DVDRip [cap. 3 Al 18]";
+        expect(parse(releaseName)).to.deep.equal({
+            title: "Heidi",
+            episodes: [3],
+            episode: 3,
+            source: "DVDRip",
+            languages: ["spanish"]
+        });
+    });
 });

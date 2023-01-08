@@ -32,6 +32,11 @@ describe("Parsing episode", () => {
         expect(parse(releaseName)).to.deep.include({ episode: 23 });
     });
 
+    it("should detect regular episode without break at the end", () => {
+        const releaseName = "Desperate_housewives_S03E02Le malheur aime la compagnie.mkv";
+        expect(parse(releaseName)).to.deep.include({ episode: 2 });
+    });
+
     it("should detect regular episode with a letter b suffix", () => {
         const releaseName = "Mash S10E01b Thats Show Biz Part 2 1080p H.264 (moviesbyrizzo upload).mp4";
         expect(parse(releaseName)).to.deep.include({ episode: 1 });
@@ -40,6 +45,11 @@ describe("Parsing episode", () => {
     it("should detect regular episode with a letter c suffix", () => {
         const releaseName = "The Twilight Zone 1985 S01E22c The Library.mp4";
         expect(parse(releaseName)).to.deep.include({ episode: 22 });
+    });
+
+    it("should detect regular episode without e separator", () => {
+        const releaseName = "Desperate.Housewives.S0615.400p.WEB-DL.Rus.Eng.avi";
+        expect(parse(releaseName)).to.deep.include({ episode: 15 });
     });
 
     it("should detect episode with SxEE format correctly", () => {
@@ -298,6 +308,16 @@ describe("Parsing episode", () => {
         expect(parse(releaseName)).to.deep.include({ episode: 1 });
     });
 
+    it("should detect season with a dot and episode prefix", () => {
+        const releaseName = "Desperate Housewives - Episode 1.22 - Goodbye for now.avi";
+        expect(parse(releaseName)).to.deep.include({ episode: 22 });
+    });
+
+    it("should detect season with a dot and episode prefix v2", () => {
+        const releaseName = "All of Us Are Dead . 2022 . S01 EP #1.2.mkv";
+        expect(parse(releaseName)).to.deep.include({ episode: 2 });
+    });
+
     it("should detect episode with number in a title", () => {
         const releaseName = "Mob Psycho 100 - 09 [1080p].mkv";
         expect(parse(releaseName)).to.deep.include({ episode: 9 });
@@ -423,6 +443,11 @@ describe("Parsing episode", () => {
         expect(parse(releaseName)).to.deep.include({ episode: 22 });
     });
 
+    it("should detect season with russian episode shortened word", () => {
+        const releaseName = "Otchayannie.domochozyaiki.(8.sez.21.ser.iz.23).2012.XviD.HDTVRip.avi";
+        expect(parse(releaseName)).to.deep.include({ episode: 21 });
+    });
+
     it("should detect episode with russian episode name in non kirilica alternative 3", () => {
         const releaseName = "MosGaz.(08.seriya).2012.WEB-DLRip(AVC).ExKinoRay.mkv";
         expect(parse(releaseName)).to.deep.include({ episode: 8 });
@@ -462,6 +487,11 @@ describe("Parsing episode", () => {
     it("should detect episodes with hyphen separator between episode v3", () => {
         const releaseName = "Доктор Хаус 03-20.mkv";
         expect(parse(releaseName)).to.deep.include({ episode: 20 });
+    });
+
+    it("should detect episodes with hyphen separator between episode v4", () => {
+        const releaseName = "Комиссар Рекс 11-13.avi";
+        expect(parse(releaseName)).to.deep.include({ episode: 13 });
     });
 
     it("should detect episode after ordinal season and hyphen separator", () => {
