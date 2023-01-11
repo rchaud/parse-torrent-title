@@ -880,4 +880,9 @@ describe("Parsing language", () => {
         const releaseName = "Japanese.Story.2003.1080p.WEBRip.x264-RARBG";
         expect(parse(releaseName)).to.not.have.property("languages");
     });
+
+    it("should not detect language from title before year v9", () => {
+        const releaseName = "[ Torrent9.cz ] The.InBetween.S01E10.FiNAL.HDTV.XviD-EXTREME.avi";
+        expect(parse(releaseName)).to.not.have.property("languages");
+    });
 });
