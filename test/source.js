@@ -246,4 +246,39 @@ describe("Parsing source", () => {
         const releaseName = "Snatch cerdos y diamantes [4KUHDremux 2160p][Castellano AC3 5.1-Ingles TrueHD 7.1+Subs]";
         expect(parse(releaseName)).to.deep.include({ source: "BluRay REMUX" });
     });
+
+    it("should parse HDDVDRip source", () => {
+        const releaseName = " Троя / Troy [2004 HDDVDRip-AVC] Dub + Original + Sub]";
+        expect(parse(releaseName)).to.deep.include({ source: "DVDRip" });
+    });
+
+    it("should parse VHSRip source", () => {
+        const releaseName = "Структура момента (Расим Исмайлов) [1980, Драма, VHSRip]";
+        expect(parse(releaseName)).to.deep.include({ source: "DVDRip" });
+    });
+
+    it("should parse VHS source", () => {
+        const releaseName = "Мужчины без женщин (Альгимантас Видугирис) [1981, Драма, VHS]";
+        expect(parse(releaseName)).to.deep.include({ source: "DVD" });
+    });
+
+    it("should parse DVB source", () => {
+        const releaseName = "Преферанс по пятницам (Игорь Шешуков) [1984, Детектив, DVB]";
+        expect(parse(releaseName)).to.deep.include({ source: "HDTV" });
+    });
+
+    it("should parse WEB-DLRip source", () => {
+        const releaseName = "Соперницы (Алексей Дмитриев) [1929, драма, WEB-DLRip]";
+        expect(parse(releaseName)).to.deep.include({ source: "WEB-DL" });
+    });
+
+    it("should parse HDTSRip source", () => {
+        const releaseName = "Dragon Blade (2015) HDTSRip Exclusive";
+        expect(parse(releaseName)).to.deep.include({ source: "TeleSync" });
+    });
+
+    it("should parse HDTCRip source", () => {
+        const releaseName = "Criminal (2016) Hindi Dubbed HDTCRip";
+        expect(parse(releaseName)).to.deep.include({ source: "TeleCine" });
+    });
 });
