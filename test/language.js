@@ -885,4 +885,9 @@ describe("Parsing language", () => {
         const releaseName = "[ Torrent9.cz ] The.InBetween.S01E10.FiNAL.HDTV.XviD-EXTREME.avi";
         expect(parse(releaseName)).to.not.have.property("languages");
     });
+
+    it("should not detect language from title before year v10", () => {
+        const releaseName = "Thai Massage (2022) 720p PDVDRip x264 AAC.mkv";
+        expect(parse(releaseName)).to.not.have.property("languages");
+    });
 });
