@@ -125,4 +125,9 @@ describe("Parsing title", () => {
         const releaseName = "GTO (Great Teacher Onizuka) (Ep. 1-43) Sub 480p lakshay";
         expect(parse(releaseName)).to.deep.include({ title: "GTO (Great Teacher Onizuka)" });
     });
+
+    it("should not fully remove partially russian title", () => {
+        const releaseName = "Книгоноши / Кнiганошы (1987) TVRip от AND03AND | BLR";
+        expect(parse(releaseName)).to.deep.include({ title: "Кнiганошы" });
+    });
 });
