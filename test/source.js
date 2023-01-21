@@ -281,4 +281,9 @@ describe("Parsing source", () => {
         const releaseName = "Criminal (2016) Hindi Dubbed HDTCRip";
         expect(parse(releaseName)).to.deep.include({ source: "TeleCine" });
     });
+
+    it("should parse CAMHD source", () => {
+        const releaseName = "Avatar La Voie de l'eau.FRENCH.CAMHD.H264.AAC";
+        expect(parse(releaseName)).to.deep.include({ source: "CAM" });
+    });
 });

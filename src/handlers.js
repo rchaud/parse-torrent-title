@@ -61,7 +61,7 @@ exports.addDefaults = /** @type Parser */ parser => {
     parser.addHandler("region", /R\d/);
 
     // Source
-    parser.addHandler("source", /\b(?:H[DQ][ .-]*)?CAM(?:[ .-]*Rip)?\b/i, value("CAM"), { remove: true });
+    parser.addHandler("source", /\b(?:H[DQ][ .-]*)?CAM(?:H[DQ])?(?:[ .-]*Rip)?\b/i, value("CAM"), { remove: true });
     parser.addHandler("source", /\b(?:H[DQ][ .-]*)?S[ .-]*print/i, value("CAM"), { remove: true });
     parser.addHandler("source", /\b(?:HD[ .-]*)?T(?:ELE)?S(?:YNC)?(?:Rip)?\b/i, value("TeleSync"), { remove: true });
     parser.addHandler("source", /\b(?:HD[ .-]*)?T(?:ELE)?C(?:INE)?(?:Rip)?\b/, value("TeleCine"), { remove: true });
