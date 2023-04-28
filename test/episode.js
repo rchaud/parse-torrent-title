@@ -333,6 +333,11 @@ describe("Parsing episode", () => {
         expect(parse(releaseName)).to.deep.include({ episode: 5 });
     });
 
+    it("should detect episode with of separator v1", () => {
+        const releaseName = "Witches Of Salem - 2Of4 - Road To Hell - Gr.mkv";
+        expect(parse(releaseName)).to.deep.include({ episode: 2 });
+    });
+
     it("should detect multiple episodes with multiple E sign and no separator", () => {
         const releaseName = "Stargate Universe S01E01E02E03.mp4";
         expect(parse(releaseName)).to.deep.include({ episodes: [1, 2, 3] });

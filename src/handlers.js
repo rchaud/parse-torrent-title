@@ -202,7 +202,7 @@ exports.addDefaults = /** @type Parser */ parser => {
     parser.addHandler("episodes", /[[(]\d{1,2}\.(\d{1,3})[)\]]/, array(integer));
     parser.addHandler("episodes", /\b[Ss]\d{1,2}[ .](\d{1,2})\b/, array(integer));
     parser.addHandler("episodes", /-\s?\d{1,2}\.(\d{2,3})\s?-/, array(integer));
-    parser.addHandler("episodes", /(?:\W|^)(\d{1,2})[. ]?(?:of|из|iz)[. ]?\d{1,2}(?:\W|$)/, array(integer));
+    parser.addHandler("episodes", /(?:\W|^)(\d{1,2})[. ]?(?:of|из|iz)[. ]?\d{1,2}(?:\W|$)/i, array(integer));
     parser.addHandler("episodes", /\b\d{2}[ ._-](\d{2})(?:.F)?\.\w{2,4}$/, array(integer));
 
     // can be both absolute episode and season+episode in format 101
