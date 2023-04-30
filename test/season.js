@@ -468,9 +468,14 @@ describe("Parsing season", () => {
         expect(parse(releaseName)).to.deep.include({ seasons: [3] });
     });
 
-    it("should detect single season and not range in filename 2", () => {
+    it("should detect single season and not range in filename v2", () => {
         const releaseName = "[Erai-raws] Granblue Fantasy The Animation Season 2 - 10 [1080p][Multiple Subtitle].mkv";
         expect(parse(releaseName)).to.deep.include({ seasons: [2] });
+    });
+
+    it("should detect single season and not range in filename v3", () => {
+        const releaseName = "[SCY] Attack on Titan Season 3 - 11 (BD 1080p Hi10 FLAC) [1FA13150].mkv";
+        expect(parse(releaseName)).to.deep.include({ seasons: [3] });
     });
 
     it("should detect single zero season", () => {

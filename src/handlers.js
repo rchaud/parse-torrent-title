@@ -3,7 +3,7 @@ const { value, integer, boolean, lowercase, uppercase, date, range, yearRange, a
 exports.addDefaults = /** @type Parser */ parser => {
 
     // Episode code
-    parser.addHandler("episodeCode", /[[(]([a-zA-Z0-9]{8})[\])](?:\.[a-zA-Z0-9]{1,5}$|$)/, uppercase, { remove: true });
+    parser.addHandler("episodeCode", /[[(]([a-zA-Z0-9]{8})[\])](?=\.[a-zA-Z0-9]{1,5}$|$)/, uppercase, { remove: true });
     parser.addHandler("episodeCode", /\[([A-Z0-9]{8})]/, uppercase, { remove: true });
 
     // Resolution
@@ -94,7 +94,8 @@ exports.addDefaults = /** @type Parser */ parser => {
     // Video depth
     parser.addHandler("bitDepth", /(?:8|10|12)[- ]?bit/i, lowercase, { remove: true });
     parser.addHandler("bitDepth", /\bhevc\s?10\b/i, value("10bit"));
-    parser.addHandler("bitDepth", /\bhdr10/i, value("10bit"));
+    parser.addHandler("bitDepth", /\bhdr10\b/i, value("10bit"));
+    parser.addHandler("bitDepth", /\bhi10\b/i, value("10bit"));
     parser.addHandler("bitDepth", ({ result }) => {
         if (result.bitDepth) {
             result.bitDepth = result.bitDepth.replace(/[ -]/, "");

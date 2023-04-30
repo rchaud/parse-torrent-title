@@ -279,6 +279,7 @@ describe("Random releases", () => {
             resolution: "720p",
             source: "BDRip",
             audio: "aac",
+            container: "mkv",
             episodeCode: "5F1911ED",
             group: "Commie"
         });
