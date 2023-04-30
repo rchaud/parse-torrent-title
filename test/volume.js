@@ -44,5 +44,9 @@ describe("Parsing volume", () => {
         expect(parse(releaseName)).to.not.have.property("volumes");
     });
 
-
+    it("[Valenciano] Aquarion EVOL - 22 [1080p][AV1 10bit][FLAC][Eng sub].mkv", () => {
+        const releaseName = "[Valenciano] Aquarion EVOL - 22 [1080p][AV1 10bit][FLAC][Eng sub].mkv";
+        expect(parse(releaseName)).to.deep.include({ title: "Aquarion EVOL" });
+        expect(parse(releaseName)).to.not.have.property("volumes");
+    });
 });

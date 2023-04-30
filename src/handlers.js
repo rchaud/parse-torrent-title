@@ -135,10 +135,10 @@ exports.addDefaults = /** @type Parser */ parser => {
     parser.addHandler("container", /\.?[[(]?\b(MKV|AVI|MP4|WMV|MPG|MPEG)\b[\])]?/i, lowercase);
 
     // Volumes
-    parser.addHandler("volumes", /vol(?:s|umes?)?[. -]*(?:\d{1,2}[., +/\\&-]+)+\d{1,2}\b/i, range, { remove: true });
+    parser.addHandler("volumes", /\bvol(?:s|umes?)?[. -]*(?:\d{1,2}[., +/\\&-]+)+\d{1,2}\b/i, range, { remove: true });
     parser.addHandler("volumes", ({ title, result, matched }) => {
         const startIndex = matched.year && matched.year.matchIndex || 0;
-        const match = title.slice(startIndex).match(/vol(?:ume)?[. -]*(\d{1,2})/i);
+        const match = title.slice(startIndex).match(/\bvol(?:ume)?[. -]*(\d{1,2})/i);
 
         if (match) {
             matched.volumes = { match: match[0], matchIndex: match.index };
