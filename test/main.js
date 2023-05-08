@@ -335,7 +335,7 @@ describe("Random releases", () => {
             episodes: [3],
             episode: 3,
             source: "DVDRip",
-            languages: ["spanish"]
+            languages: ["latino"]
         });
     });
 });

@@ -167,13 +167,13 @@ describe("Parsing language", () => {
     it("Mary Poppins Returns 2019 DVDRip LATINO-1XBET", () => {
         const releaseName = "Mary Poppins Returns 2019 DVDRip LATINO-1XBET";
 
-        expect(parse(releaseName)).to.deep.include({ languages: ["spanish"] });
+        expect(parse(releaseName)).to.deep.include({ languages: ["latino"] });
     });
 
     it("Los Simpsons S18 E01 Latino", () => {
         const releaseName = "Los Simpsons S18 E01 Latino";
 
-        expect(parse(releaseName)).to.deep.include({ languages: ["spanish"] });
+        expect(parse(releaseName)).to.deep.include({ languages: ["latino"] });
     });
 
     it("Spider-Man (2002) Blu-Ray [720p] Dual Ingles-Español", () => {
@@ -185,13 +185,13 @@ describe("Parsing language", () => {
     it("Abuela (2015) 1080p BluRay x264 AC3 Dual Latino-Inglés", () => {
         const releaseName = "Abuela (2015) 1080p BluRay x264 AC3 Dual Latino-Inglés";
 
-        expect(parse(releaseName)).to.deep.include({ languages: ["dual audio", "english", "spanish"] });
+        expect(parse(releaseName)).to.deep.include({ languages: ["dual audio", "english", "latino"] });
     });
 
     it("Dumbo.2019.1080p.Dual.Lat", () => {
         const releaseName = "Dumbo.2019.1080p.Dual.Lat";
 
-        expect(parse(releaseName)).to.deep.include({ languages: ["dual audio", "spanish"] });
+        expect(parse(releaseName)).to.deep.include({ languages: ["dual audio", "latino"] });
     });
 
     it("Men in Black International 2019 (inglês português)", () => {
