@@ -194,6 +194,12 @@ describe("Parsing language", () => {
         expect(parse(releaseName)).to.deep.include({ languages: ["dual audio", "latino"] });
     });
 
+    it(" A.Score.to.Settle.2019.lati.mp4", () => {
+        const releaseName = " A.Score.to.Settle.2019.lati.mp4";
+
+        expect(parse(releaseName)).to.deep.include({ languages: ["latino"] });
+    });
+
     it("Men in Black International 2019 (inglês português)", () => {
         const releaseName = "Men in Black International 2019 (inglês português)";
 
