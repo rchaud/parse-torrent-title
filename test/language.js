@@ -80,6 +80,24 @@ describe("Parsing language", () => {
         expect(parse(releaseName)).to.deep.include({ languages: ["norwegian"] });
     });
 
+    it("Subs/21_Bokmal.srt", () => {
+        const releaseName = "Subs/21_Bokmal.srt";
+
+        expect(parse(releaseName)).to.deep.include({ languages: ["norwegian"] });
+    });
+
+    it("Subs/nob.srt", () => {
+        const releaseName = "Subs/nob.srt";
+
+        expect(parse(releaseName)).to.deep.include({ languages: ["norwegian"] });
+    });
+
+    it("Subs/5_nor.srt", () => {
+        const releaseName = "Subs/5_nor.srt";
+
+        expect(parse(releaseName)).to.deep.include({ languages: ["norwegian"] });
+    });
+
     it("Curious.George.2.Follow.That.Monkey.2009.DK.SWE.UK.PAL.DVDR-CATC", () => {
         const releaseName = "Curious.George.2.Follow.That.Monkey.2009.DK.SWE.UK.PAL.DVDR-CATC";
 
@@ -88,6 +106,18 @@ describe("Parsing language", () => {
 
     it("Yes.Man.Dk-Subs.2009.dingel", () => {
         const releaseName = "Yes.Man.Dk-Subs.2009.dingel";
+
+        expect(parse(releaseName)).to.deep.include({ languages: ["danish"] });
+    });
+
+    it("Dan-SDH.srt", () => {
+        const releaseName = "Dan-SDH.srt";
+
+        expect(parse(releaseName)).to.deep.include({ languages: ["danish"] });
+    });
+
+    it("dan.srt", () => {
+        const releaseName = "dan.srt";
 
         expect(parse(releaseName)).to.deep.include({ languages: ["danish"] });
     });
@@ -194,8 +224,20 @@ describe("Parsing language", () => {
         expect(parse(releaseName)).to.deep.include({ languages: ["dual audio", "latino"] });
     });
 
-    it(" A.Score.to.Settle.2019.lati.mp4", () => {
+    it("A.Score.to.Settle.2019.lati.mp4", () => {
         const releaseName = " A.Score.to.Settle.2019.lati.mp4";
+
+        expect(parse(releaseName)).to.deep.include({ languages: ["latino"] });
+    });
+
+    it("[S0.E04] Gambit królowej - Gra środkowa.Spanish Latin America.srt", () => {
+        const releaseName = "[S0.E04] Gambit królowej - Gra środkowa.Spanish Latin America.srt";
+
+        expect(parse(releaseName)).to.deep.include({ languages: ["latino"] });
+    });
+
+    it("Latin American.spa.srt", () => {
+        const releaseName = "Latin American.spa.srt";
 
         expect(parse(releaseName)).to.deep.include({ languages: ["latino"] });
     });
@@ -234,6 +276,18 @@ describe("Parsing language", () => {
         const releaseName = "Inception (2010) 720p BDRip Tamil+Telugu+Hindi+Eng";
 
         expect(parse(releaseName)).to.deep.include({ languages: ["english", "hindi", "telugu", "tamil"] });
+    });
+
+    it("Subs/Dear.S01E02.WEBRip.x265-ION265/34_tam.srt", () => {
+        const releaseName = "Subs/Dear.S01E02.WEBRip.x265-ION265/34_tam.srt";
+
+        expect(parse(releaseName)).to.deep.include({ languages: ["tamil"] });
+    });
+
+    it("Subs/Dear.S01E02.WEBRip.x265-ION265/35_tel.srt", () => {
+        const releaseName = "Subs/Dear.S01E02.WEBRip.x265-ION265/35_tel.srt";
+
+        expect(parse(releaseName)).to.deep.include({ languages: ["telugu"] });
     });
 
     it("Dabangg 3 2019 AMZN WebRip Hindi 720p x264", () => {
@@ -334,6 +388,24 @@ describe("Parsing language", () => {
 
     it("Superman I - O Filme 1978 Leg. BR - Mkv 1280x528", () => {
         const releaseName = "Superman I - O Filme 1978 Leg. BR - Mkv 1280x528";
+
+        expect(parse(releaseName)).to.deep.include({ languages: ["portuguese"] });
+    });
+
+    it("Subs/Brazilian.por.srt", () => {
+        const releaseName = "Subs/Brazilian.por.srt";
+
+        expect(parse(releaseName)).to.deep.include({ languages: ["portuguese"] });
+    });
+
+    it("Brazilian Portuguese.por.srt", () => {
+        const releaseName = "Brazilian Portuguese.por.srt";
+
+        expect(parse(releaseName)).to.deep.include({ languages: ["portuguese"] });
+    });
+
+    it("[S0.E07] Gambit królowej - Gra końcowa.Portuguese Brazil.srt", () => {
+        const releaseName = "[S0.E07] Gambit królowej - Gra końcowa.Portuguese Brazil.srt";
 
         expect(parse(releaseName)).to.deep.include({ languages: ["portuguese"] });
     });
@@ -456,6 +528,25 @@ describe("Parsing language", () => {
         const releaseName = "Wolf.Warrior.2015.720p.BluRay.x264.Mandarin.AAC-ETRG";
 
         expect(parse(releaseName)).to.deep.include({ languages: ["chinese"] });
+    });
+
+
+    it("9_zh-Hans.srt", () => {
+        const releaseName = "9_zh-Hans.srt";
+
+        expect(parse(releaseName)).to.deep.include({ languages: ["chinese"] });
+    });
+
+    it("Traditional Chinese.chi.srt", () => {
+        const releaseName = "Traditional Chinese.chi.srt";
+
+        expect(parse(releaseName)).to.deep.include({ languages: ["taiwanese"] });
+    });
+
+    it("10_zh-Hant.srt", () => {
+        const releaseName = "10_zh-Hant.srt";
+
+        expect(parse(releaseName)).to.deep.include({ languages: ["taiwanese"] });
     });
 
     it("Berserk 01-25 [dual audio JP,EN] MKV", () => {
@@ -721,6 +812,16 @@ describe("Parsing language", () => {
         expect(parse(releaseName)).to.deep.include({ languages: ["slovakian"] });
     });
 
+    it("Subs/36_Slovenian.srt", () => {
+        const releaseName = "Subs/36_Slovenian.srt";
+        expect(parse(releaseName)).to.deep.include({ languages: ["slovenian"] });
+    });
+
+    it("Subs/35_slo.srt", () => {
+        const releaseName = "Subs/35_slo.srt";
+        expect(parse(releaseName)).to.deep.include({ languages: ["slovenian"] });
+    });
+
     it("The House Bunny (2008) BDRemux 1080p MediaClub [RUS, UKR, ENG]", () => {
         const releaseName = "The House Bunny (2008) BDRemux 1080p MediaClub [RUS, UKR, ENG]";
         expect(parse(releaseName)).to.deep.include({ languages: ["english", "russian", "ukrainian"] });
@@ -743,6 +844,11 @@ describe("Parsing language", () => {
 
     it("Subs/Vietnamese.srt", () => {
         const releaseName = "Subs/Vietnamese.vie.srt";
+        expect(parse(releaseName)).to.deep.include({ languages: ["vietnamese"] });
+    });
+
+    it("Subs/Dear.S01E05.WEBRip.x265-ION265/25_may.srt", () => {
+        const releaseName = "Subs/Dear.S01E05.WEBRip.x265-ION265/25_may.srt";
         expect(parse(releaseName)).to.deep.include({ languages: ["vietnamese"] });
     });
 
@@ -894,6 +1000,16 @@ describe("Parsing language", () => {
 
     it("should not detect language from title before year v10", () => {
         const releaseName = "Thai Massage (2022) 720p PDVDRip x264 AAC.mkv";
+        expect(parse(releaseName)).to.not.have.property("languages");
+    });
+
+    it("should not detect dan language", () => {
+        const releaseName = "Carson Daly 2017 09 13 Dan Harmon 720p HDTV x264-CROOKS";
+        expect(parse(releaseName)).to.not.have.property("languages");
+    });
+
+    it("should not detect dan language v2", () => {
+        const releaseName = "Dan Browns The Lost Symbol S01E03 1080p WEB H264-GLHF";
         expect(parse(releaseName)).to.not.have.property("languages");
     });
 });
