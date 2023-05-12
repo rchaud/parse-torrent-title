@@ -267,7 +267,7 @@ exports.addDefaults = /** @type Parser */ parser => {
     parser.addHandler("languages", /\b(japanese|japon[eê]s)\b/i, uniqConcat(value("japanese")), { skipIfFirst: true, skipIfAlreadyFound: false });
     parser.addHandler("languages", /\b(?:KOR|kor[ .-]?sub)\b/i, uniqConcat(value("korean")), { skipIfAlreadyFound: false });
     parser.addHandler("languages", /\b(korean|coreano)\b/i, uniqConcat(value("korean")), { skipIfFirst: true, skipIfAlreadyFound: false });
-    parser.addHandler("languages", /\btraditional\W?\b(chinese|chin[eê]s)\b/i, uniqConcat(value("taiwanese")), { skipIfFirst: true, skipIfAlreadyFound: false, remove: true });
+    parser.addHandler("languages", /\b(?:traditional\W*chinese|chinese\W*traditional)\b/i, uniqConcat(value("taiwanese")), { skipIfFirst: true, skipIfAlreadyFound: false, remove: true });
     parser.addHandler("languages", /\bzh-hant\b/i, uniqConcat(value("taiwanese")), { skipIfAlreadyFound: false });
     parser.addHandler("languages", /\b(?:mand[ae]rin|ch[sn])\b/i, uniqConcat(value("chinese")), { skipIfAlreadyFound: false });
     parser.addHandler("languages", /\bCH[IT]\b/, uniqConcat(value("chinese")), { skipFromTitle: true, skipIfAlreadyFound: false });

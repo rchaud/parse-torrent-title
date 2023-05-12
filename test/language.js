@@ -543,6 +543,12 @@ describe("Parsing language", () => {
         expect(parse(releaseName)).to.deep.include({ languages: ["taiwanese"] });
     });
 
+    it("Subs/Promare - Chinese (Traditional).ass", () => {
+        const releaseName = "Subs/Promare - Chinese (Traditional).ass";
+
+        expect(parse(releaseName)).to.deep.include({ languages: ["taiwanese"] });
+    });
+
     it("10_zh-Hant.srt", () => {
         const releaseName = "10_zh-Hant.srt";
 
