@@ -1,7 +1,13 @@
 declare namespace ParseTorrentTitle {
 
     interface ParserOptions {
+        /** Whether to skip a matcher if another matcher from this group was already found */
         skipIfAlreadyFound?: boolean;
+        /** Whether to exclude found match from the end result title */
+        skipFromTitle?: boolean;
+        /** Whether to skip this matcher if there are no other groups matched before it's matchIndex */
+        skipIfFirst?: boolean;
+        /** Whether to remove the found match from further matchers */
         remove?: boolean;
     }
 
@@ -21,6 +27,7 @@ declare namespace ParseTorrentTitle {
         complete?: boolean;
         region?: string;
         container?: string;
+        extension?: string;
         source?: string;
         codec?: string;
         bitDepth?: string;

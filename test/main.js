@@ -213,7 +213,8 @@ describe("Random releases", () => {
         expect(parse(releaseName)).to.deep.equal({
             title: "The Incredible Hulk Feature Film",
             year: 2008,
-            container: "mp4"
+            container: "mp4",
+            extension: "mp4"
         });
     });
 
@@ -280,6 +281,7 @@ describe("Random releases", () => {
             source: "BDRip",
             audio: "aac",
             container: "mkv",
+            extension: "mkv",
             episodeCode: "5F1911ED",
             group: "Commie"
         });
