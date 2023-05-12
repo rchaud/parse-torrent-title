@@ -130,4 +130,9 @@ describe("Parsing title", () => {
         const releaseName = "Книгоноши / Кнiганошы (1987) TVRip от AND03AND | BLR";
         expect(parse(releaseName)).to.deep.include({ title: "Кнiганошы" });
     });
+
+    it("should remove extension fully", () => {
+        const releaseName = "Yurusarezaru_mono2.srt";
+        expect(parse(releaseName)).to.deep.include({ title: "Yurusarezaru mono2" });
+    });
 });
