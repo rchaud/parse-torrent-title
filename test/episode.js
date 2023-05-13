@@ -378,6 +378,11 @@ describe("Parsing episode", () => {
         expect(parse(releaseName)).to.deep.include({ episode: 10 });
     });
 
+    it("should detect episode with E symbols without season v2", () => {
+        const releaseName = "E5.mkv";
+        expect(parse(releaseName)).to.deep.include({ episode: 5 });
+    });
+
     it("should detect episode without season", () => {
         const releaseName = "[OMDA] Bleach - 002 (480p x264 AAC) [rich_jc].mkv";
         expect(parse(releaseName)).to.deep.include({ episode: 2 });
@@ -749,7 +754,7 @@ describe("Parsing episode", () => {
         expect(parse(releaseName)).to.deep.include({ season: 8, episode: 6 });
     });
 
-    it("should not detect season episode pattern but absolute episdeo", () => {
+    it("should not detect season episode pattern but absolute episode", () => {
         const releaseName = "523 23.mp4";
         expect(parse(releaseName)).to.not.have.property("season");
         expect(parse(releaseName)).to.deep.include({ episode: 523 });
