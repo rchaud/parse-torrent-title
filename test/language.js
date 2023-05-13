@@ -470,6 +470,24 @@ describe("Parsing language", () => {
         expect(parse(releaseName)).to.deep.include({ languages: ["english", "romanian"] });
     });
 
+    it("26_Romanian.srt", () => {
+        const releaseName = "26_Romanian.srt";
+
+        expect(parse(releaseName)).to.deep.include({ languages: ["romanian"] });
+    });
+
+    it("4_Bulgarian.srt", () => {
+        const releaseName = "4_Bulgarian.srt";
+
+        expect(parse(releaseName)).to.deep.include({ languages: ["bulgarian"] });
+    });
+
+    it("18_srp.srt", () => {
+        const releaseName = "18_srp.srt";
+
+        expect(parse(releaseName)).to.deep.include({ languages: ["serbian"] });
+    });
+
     it("Aranyelet.S01.HUNGARIAN.1080p.WEBRip.DDP5.1.x264-SbR[rartv]", () => {
         const releaseName = "Aranyelet.S01.HUNGARIAN.1080p.WEBRip.DDP5.1.x264-SbR[rartv]";
 
@@ -665,6 +683,12 @@ describe("Parsing language", () => {
 
     it("The Adams Family (1991) (Greek Subs integratet)", () => {
         const releaseName = "The Adams Family (1991) (Greek Subs integratet)";
+
+        expect(parse(releaseName)).to.deep.include({ languages: ["greek"] });
+    });
+
+    it("6_Greek.srt", () => {
+        const releaseName = "6_Greek.srt";
 
         expect(parse(releaseName)).to.deep.include({ languages: ["greek"] });
     });

@@ -292,7 +292,7 @@ exports.addDefaults = /** @type Parser */ parser => {
     parser.addHandler("languages", /\bITA\b/i, uniqConcat(value("italian")), { skipIfAlreadyFound: false });
     parser.addHandler("languages", /\b(?<!w{3}\.\w+\.)IT(?=[ .,/-]+(?:[a-zA-Z]{2}[ .,/-]+){2,})\b/, uniqConcat(value("italian")), { skipFromTitle: true, skipIfAlreadyFound: false });
     parser.addHandler("languages", /\bitaliano?\b/i, uniqConcat(value("italian")), { skipIfFirst: true, skipIfAlreadyFound: false });
-    parser.addHandler("languages", /\bgreek[ .-]*(?:audio|lang(?:uage)?|sub(?:s|titles?)?)\b/i, uniqConcat(value("greek")), { skipIfAlreadyFound: false });
+    parser.addHandler("languages", /\bgreek[ .-]*(?:audio|lang(?:uage)?|subs?(?:titles?)?)?\b/i, uniqConcat(value("greek")), { skipIfFirst: true, skipIfAlreadyFound: false });
     parser.addHandler("languages", /\b(?:GER|DEU)\b/i, uniqConcat(value("german")), { skipFromTitle: true, skipIfAlreadyFound: false });
     parser.addHandler("languages", /\bde(?=[ .,/-]+(?:[A-Z]{2}[ .,/-]+){2,})\b/i, uniqConcat(value("german")), { skipFromTitle: true, skipIfAlreadyFound: false });
     parser.addHandler("languages", /\b(?<=[ .,/-]+(?:[A-Z]{2}[ .,/-]+){2,})de\b/i, uniqConcat(value("german")), { skipFromTitle: true, skipIfAlreadyFound: false });
@@ -313,8 +313,10 @@ exports.addDefaults = /** @type Parser */ parser => {
     parser.addHandler("languages", /\bslo(?:vak|vakian)\b/i, uniqConcat(value("slovakian")), { skipFromTitle: true, skipIfAlreadyFound: false });
     parser.addHandler("languages", /\bHU\b/, uniqConcat(value("hungarian")), { skipFromTitle: true, skipIfAlreadyFound: false });
     parser.addHandler("languages", /\bHUN(?:garian)?\b/i, uniqConcat(value("hungarian")), { skipFromTitle: true, skipIfAlreadyFound: false });
-    parser.addHandler("languages", /\bROM(?:manian)?\b/i, uniqConcat(value("romanian")), { skipIfAlreadyFound: false });
+    parser.addHandler("languages", /\bROM(?:anian)?\b/i, uniqConcat(value("romanian")), { skipFromTitle: true, skipIfAlreadyFound: false });
     parser.addHandler("languages", /\bRO(?=[ .,/-]*(?:[A-Z]{2}[ .,/-]+)*sub)/i, uniqConcat(value("romanian")), { skipIfAlreadyFound: false });
+    parser.addHandler("languages", /\bbul(?:garian)?\b/i, uniqConcat(value("bulgarian")), { skipFromTitle: true, skipIfAlreadyFound: false });
+    parser.addHandler("languages", /\b(?:srp|serbian)\b/i, uniqConcat(value("serbian")), { skipIfAlreadyFound: false });
     parser.addHandler("languages", /\b(?:HRV|croatian)\b/i, uniqConcat(value("croatian")), { skipIfAlreadyFound: false });
     parser.addHandler("languages", /\bHR(?=[ .,/-]*(?:[A-Z]{2}[ .,/-]+)*sub)\b/i, uniqConcat(value("croatian")), { skipIfAlreadyFound: false });
     parser.addHandler("languages", /\bslovenian\b|\bslo(?=[\]_)]?\.\w{2,4}$|subs\b)/i, uniqConcat(value("slovenian")), { skipFromTitle: true, skipIfAlreadyFound: false });
