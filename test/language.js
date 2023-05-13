@@ -828,6 +828,11 @@ describe("Parsing language", () => {
         expect(parse(releaseName)).to.deep.include({ languages: ["slovenian"] });
     });
 
+    it("Seinfeld.COMPLETE.SLOSUBS.DVDRip.XviD", () => {
+        const releaseName = "Seinfeld.COMPLETE.SLOSUBS.DVDRip.XviD";
+        expect(parse(releaseName)).to.deep.include({ languages: ["slovenian"] });
+    });
+
     it("The House Bunny (2008) BDRemux 1080p MediaClub [RUS, UKR, ENG]", () => {
         const releaseName = "The House Bunny (2008) BDRemux 1080p MediaClub [RUS, UKR, ENG]";
         expect(parse(releaseName)).to.deep.include({ languages: ["english", "russian", "ukrainian"] });
