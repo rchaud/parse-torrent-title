@@ -338,6 +338,11 @@ describe("Parsing episode", () => {
         expect(parse(releaseName)).to.deep.include({ episode: 2 });
     });
 
+    it("should detect episode with of separator v2", () => {
+        const releaseName = "Das Boot Miniseries Original Uncut-Reevel Cd2 Of 3.avi";
+        expect(parse(releaseName)).to.deep.include({ episode: 2 });
+    });
+
     it("should detect multiple episodes with multiple E sign and no separator", () => {
         const releaseName = "Stargate Universe S01E01E02E03.mp4";
         expect(parse(releaseName)).to.deep.include({ episodes: [1, 2, 3] });
