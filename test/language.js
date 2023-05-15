@@ -518,6 +518,23 @@ describe("Parsing language", () => {
         expect(parse(releaseName)).to.deep.include({ languages: ["lithuanian"] });
     });
 
+    it("24_Lithuanian.srt", () => {
+        const releaseName = "24_Lithuanian.srt";
+
+        expect(parse(releaseName)).to.deep.include({ languages: ["lithuanian"] });
+    });
+
+    it("25_Latvian.srt", () => {
+        const releaseName = "25_Latvian.srt";
+
+        expect(parse(releaseName)).to.deep.include({ languages: ["latvian"] });
+    });
+    it("13_Estonian.srt", () => {
+        const releaseName = "13_Estonian.srt";
+
+        expect(parse(releaseName)).to.deep.include({ languages: ["estonian"] });
+    });
+
     it("Ip.Man.4.The.Finale.2019.CHINESE.1080p.BluRay.x264.TrueHD.7.1.Atmos-HDC", () => {
         const releaseName = "Ip.Man.4.The.Finale.2019.CHINESE.1080p.BluRay.x264.TrueHD.7.1.Atmos-HDC";
 

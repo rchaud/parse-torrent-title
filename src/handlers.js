@@ -306,6 +306,9 @@ exports.addDefaults = /** @type Parser */ parser => {
     parser.addHandler("languages", /\b(?:(?<!w{3}\.\w+\.)tel(?!\W*aviv)|telugu)\b/i, uniqConcat(value("telugu")), { skipIfAlreadyFound: false });
     parser.addHandler("languages", /\bt[aâ]m(?:il)?\b/i, uniqConcat(value("tamil")), { skipIfAlreadyFound: false });
     parser.addHandler("languages", /\b(?<!YTS\.)LT\b/, uniqConcat(value("lithuanian")), { skipFromTitle: true, skipIfAlreadyFound: false });
+    parser.addHandler("languages", /\blithuanian\b/i, uniqConcat(value("lithuanian")), { skipIfFirst: true, skipIfAlreadyFound: false });
+    parser.addHandler("languages", /\blatvian\b/i, uniqConcat(value("latvian")), { skipIfFirst: true, skipIfAlreadyFound: false });
+    parser.addHandler("languages", /\bestonian\b/i, uniqConcat(value("estonian")), { skipIfFirst: true, skipIfAlreadyFound: false });
     parser.addHandler("languages", /\b(?:(?<!w{3}\.\w+\.)PL|pol)\b/i, uniqConcat(value("polish")), { skipIfAlreadyFound: false });
     parser.addHandler("languages", /\b(polish|polon[eê]s|polaco)\b/i, uniqConcat(value("polish")), { skipIfFirst: true, skipIfAlreadyFound: false });
     parser.addHandler("languages", /\bCZ[EH]?\b/i, uniqConcat(value("czech")), { skipIfFirst: true, skipIfAlreadyFound: false });
