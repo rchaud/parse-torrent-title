@@ -62,6 +62,18 @@ describe("Parsing language", () => {
         expect(parse(releaseName)).to.deep.include({ languages: ["italian"] });
     });
 
+    it("2- English- {SDH}.srt", () => {
+        const releaseName = "2- English- {SDH}.srt";
+
+        expect(parse(releaseName)).to.deep.include({ languages: ["english"] });
+    });
+
+    it("1_ English-Subs.srt", () => {
+        const releaseName = "1_ English-Subs.srt";
+
+        expect(parse(releaseName)).to.deep.include({ languages: ["english"] });
+    });
+
     it("House S 1 CD 1-6 svensk, danska, norsk, finsk sub", () => {
         const releaseName = "House S 1 CD 1-6 svensk, danska, norsk, finsk sub";
 

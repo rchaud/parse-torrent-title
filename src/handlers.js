@@ -261,6 +261,7 @@ exports.addDefaults = /** @type Parser */ parser => {
     parser.addHandler("languages", /\bengl?(?:sub[A-Z]*)?\b/i, uniqConcat(value("english")), { skipIfAlreadyFound: false });
     parser.addHandler("languages", /\beng?sub[A-Z]*\b/i, uniqConcat(value("english")), { skipIfAlreadyFound: false });
     parser.addHandler("languages", /\bing(?:l[eéê]s)?\b/i, uniqConcat(value("english")), { skipIfAlreadyFound: false });
+    parser.addHandler("languages", /\benglish\W+(?:subs?|sdh|hi)\b/i, uniqConcat(value("english")), { skipIfAlreadyFound: false });
     parser.addHandler("languages", /\bEN\b/i, uniqConcat(value("english")), { skipFromTitle: true, skipIfAlreadyFound: false });
     parser.addHandler("languages", /\benglish?\b/i, uniqConcat(value("english")), { skipIfFirst: true, skipIfAlreadyFound: false });
     parser.addHandler("languages", /\b(?:JP|JAP|JPN)\b/i, uniqConcat(value("japanese")), { skipIfAlreadyFound: false });
