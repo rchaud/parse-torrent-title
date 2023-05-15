@@ -842,18 +842,18 @@ describe("Parsing language", () => {
         expect(parse(releaseName)).to.deep.include({ languages: ["slovakian"] });
     });
 
-    it("Subs/36_Slovenian.srt", () => {
-        const releaseName = "Subs/36_Slovenian.srt";
-        expect(parse(releaseName)).to.deep.include({ languages: ["slovenian"] });
-    });
-
     it("Subs/35_slo.srt", () => {
         const releaseName = "Subs/35_slo.srt";
-        expect(parse(releaseName)).to.deep.include({ languages: ["slovenian"] });
+        expect(parse(releaseName)).to.deep.include({ languages: ["slovakian"] });
     });
 
     it("Seinfeld.COMPLETE.SLOSUBS.DVDRip.XviD", () => {
         const releaseName = "Seinfeld.COMPLETE.SLOSUBS.DVDRip.XviD";
+        expect(parse(releaseName)).to.deep.include({ languages: ["slovakian"] });
+    });
+
+    it("Subs/36_Slovenian.srt", () => {
+        const releaseName = "Subs/36_Slovenian.srt";
         expect(parse(releaseName)).to.deep.include({ languages: ["slovenian"] });
     });
 
