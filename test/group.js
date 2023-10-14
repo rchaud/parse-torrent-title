@@ -87,9 +87,15 @@ describe("Parsing group", () => {
     });
 
     it("should detect anime group in brackets with spaces", () => {
-        const releaseName = "[KNK E MMS Fansubs] Nisekoi - 20 Final [PT-BR]";
+        const releaseName = "[KNK E MMS Fansubs] Nisekoi - 20 Final [PT-BR].mkv";
 
         expect(parse(releaseName)).to.deep.include({ group: "KNK E MMS Fansubs" });
+    });
+
+    it("should detect anime group in brackets when bracket part exist at the end", () => {
+        const releaseName = "[ToonsHub] JUJUTSU KAISEN - S02E01 (Japanese 2160p x264 AAC) [Multi-Subs].mkv";
+
+        expect(parse(releaseName)).to.deep.include({ group: "ToonsHub" });
     });
 
     it("should detect anime group in brackets with a link", () => {
@@ -102,6 +108,12 @@ describe("Parsing group", () => {
         const releaseName = "[Russ]Lords.Of.London.2014.XviD.H264.AC3-BladeBDP";
 
         expect(parse(releaseName)).to.deep.include({ group: "BladeBDP" });
+    });
+
+    it("should detect group in parenthesis", () => {
+        const releaseName = "Jujutsu Kaisen S02E01 2160p WEB H.265 AAC -Tsundere-Raws (B-Global).mkv";
+
+        expect(parse(releaseName)).to.deep.include({ group: "B-Global" });
     });
 
     it("should not detect brackets group when it contains other parsed parameters", () => {
