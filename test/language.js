@@ -170,6 +170,12 @@ describe("Parsing language", () => {
         expect(parse(releaseName)).to.deep.include({ languages: ["spanish"] });
     });
 
+    it("10_Spanish-Subs.srt", () => {
+        const releaseName = "10_Spanish-Subs.srt";
+
+        expect(parse(releaseName)).to.deep.include({ languages: ["spanish"] });
+    });
+
     it("Patriot Games [1992] Eng, Ger, Cze, Hun, Pol + multisub  DVDrip", () => {
         const releaseName = "Patriot Games [1992] Eng, Ger, Cze, Hun, Pol + multisub  DVDrip";
 
