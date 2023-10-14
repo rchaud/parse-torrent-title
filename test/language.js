@@ -482,6 +482,48 @@ describe("Parsing language", () => {
         expect(parse(releaseName)).to.deep.include({ languages: ["multi subs", "english", "french", "russian", "hungarian", "romanian"] });
     });
 
+    it("Frieren - Beyond Journey's End - S01E01 - TBA WEBDL-1080p.Latin American es.ass", () => {
+        const releaseName = "Frieren - Beyond Journey's End - S01E01 - TBA WEBDL-1080p.Latin American es.ass";
+
+        expect(parse(releaseName)).to.deep.include({ languages: ["latino"] });
+    });
+
+    it("Frieren - Beyond Journey's End - S01E01 - TBA WEBDL-1080p.Brazilian pt.ass", () => {
+        const releaseName = "Frieren - Beyond Journey's End - S01E01 - TBA WEBDL-1080p.Brazilian pt.ass";
+
+        expect(parse(releaseName)).to.deep.include({ languages: ["portuguese"] });
+    });
+
+    it("Frieren - Beyond Journey's End - S01E01 - TBA WEBDL-1080p.pt.ass", () => {
+        const releaseName = "Frieren - Beyond Journey's End - S01E01 - TBA WEBDL-1080p.pt.ass";
+
+        expect(parse(releaseName)).to.deep.include({ languages: ["portuguese"] });
+    });
+
+    it("Frieren - Beyond Journey's End - S01E01 - TBA WEBDL-1080p.es.ass", () => {
+        const releaseName = "Frieren - Beyond Journey's End - S01E01 - TBA WEBDL-1080p.es.ass";
+
+        expect(parse(releaseName)).to.deep.include({ languages: ["spanish"] });
+    });
+
+    it("Frieren - Beyond Journey's End - S01E01 - TBA WEBDL-1080p.de.ass", () => {
+        const releaseName = "Frieren - Beyond Journey's End - S01E01 - TBA WEBDL-1080p.de.ass";
+
+        expect(parse(releaseName)).to.deep.include({ languages: ["german"] });
+    });
+
+    it("Frieren - Beyond Journey's End - S01E01 - TBA WEBDL-1080p.it.ass", () => {
+        const releaseName = "Frieren - Beyond Journey's End - S01E01 - TBA WEBDL-1080p.it.ass";
+
+        expect(parse(releaseName)).to.deep.include({ languages: ["italian"] });
+    });
+
+    it("Frieren - Beyond Journey's End - S01E01 - TBA WEBDL-1080p.ar.ass", () => {
+        const releaseName = "Frieren - Beyond Journey's End - S01E01 - TBA WEBDL-1080p.ar.ass";
+
+        expect(parse(releaseName)).to.deep.include({ languages: ["arabic"] });
+    });
+
     it("Miami.Bici.2020.1080p.NETFLIX.WEB-DL.DDP5.1.H.264.EN-ROSub-ExtremlymTorrents", () => {
         const releaseName = "Miami.Bici.2020.1080p.NETFLIX.WEB-DL.DDP5.1.H.264.EN-ROSub-ExtremlymTorrents";
 
