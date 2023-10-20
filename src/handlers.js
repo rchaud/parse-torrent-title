@@ -1,4 +1,4 @@
-const { value, integer, boolean, lowercase, uppercase, date, range, yearRange, array, uniqConcat } = require("./transformers");
+const { none, value, integer, boolean, lowercase, uppercase, date, range, yearRange, array, uniqConcat } = require("./transformers");
 
 exports.addDefaults = /** @type Parser */ parser => {
 
@@ -58,7 +58,7 @@ exports.addDefaults = /** @type Parser */ parser => {
     parser.addHandler("unrated", /\bunrated|uncensored\b/i, boolean);
 
     // Region
-    parser.addHandler("region", /R\d/);
+    parser.addHandler("region", /R\d\b/, none, { skipIfFirst: true });
 
     // Source
     parser.addHandler("source", /\b(?:H[DQ][ .-]*)?CAM(?:H[DQ])?(?:[ .-]*Rip)?\b/i, value("CAM"), { remove: true });
