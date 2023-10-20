@@ -97,6 +97,11 @@ describe("Parsing episode", () => {
         expect(parse(releaseName)).to.deep.include({ season: 7, episodes: [23, 24] });
     });
 
+    it("should detect episode when separated with x and has three digit episode", () => {
+        const releaseName = "Yu-Gi-Oh 3x089 - Awakening of Evil (Part 4).avi";
+        expect(parse(releaseName)).to.deep.include({ season: 3, episodes: [89] });
+    });
+
     it("should detect multiple episodes with hyphen no spaces separator", () => {
         const releaseName = "611-612 - Desperate Measures, Means & Ends.mp4";
         expect(parse(releaseName)).to.deep.include({ episodes: [611, 612] });
