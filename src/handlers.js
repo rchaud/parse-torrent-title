@@ -108,7 +108,7 @@ exports.addDefaults = /** @type Parser */ parser => {
     parser.addHandler("hdr", /\bHDR(?:10)?\b/i, uniqConcat(value("HDR")), { remove: true, skipIfAlreadyFound: false });
 
     // Codec
-    parser.addHandler("codec", /[xh][-. ]?26[45]/i, lowercase, { remove: true });
+    parser.addHandler("codec", /\b[xh][-. ]?26[45]/i, lowercase, { remove: true });
     parser.addHandler("codec", /\bhevc(?:\s?10)?\b/i, value("hevc"), { remove: true, skipIfAlreadyFound: false });
     parser.addHandler("codec", /\b(?:dvix|mpeg2|divx|xvid|avc)\b/i, lowercase, { remove: true, skipIfAlreadyFound: false });
     parser.addHandler("codec", ({ result }) => {

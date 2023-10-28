@@ -43,4 +43,16 @@ describe("Parsing codec", () => {
 
         expect(parse(releaseName)).to.deep.include({ codec: "hevc", bitDepth: "10bit" });
     });
+
+    it("should not detect 264 codec from episode number", () => {
+        const releaseName = "[DB]_Bleach_264_[012073FE].avi";
+
+        expect(parse(releaseName)).to.not.have.property("codec");
+    });
+
+    it("should not detect 265 codec from episode number", () => {
+        const releaseName = "[DB]_Bleach_265_[B4A04EC9].avi";
+
+        expect(parse(releaseName)).to.not.have.property("codec");
+    });
 });
