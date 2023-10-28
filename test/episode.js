@@ -754,6 +754,16 @@ describe("Parsing episode", () => {
         expect(parse(releaseName)).to.deep.include({ season: 3, episode: 5 });
     });
 
+    it("should detect episode in brackets", () => {
+        const releaseName = "[KTKJ]_[BLEACH]_[DVDRIP]_[116]_[x264_640x480_aac].mkv";
+        expect(parse(releaseName)).to.deep.include({ episode: 116 });
+    });
+
+    it("should detect episode in brackets but not years", () => {
+        const releaseName = "[GM-Team][国漫][绝代双骄][Legendary Twins][2022][08][HEVC][GB][4K].mp4";
+        expect(parse(releaseName)).to.deep.include({ episode: 8 });
+    });
+
     xit("should not detect season-episode pattern when it's a date", () => {
         const releaseName = "8-6 2006.07.16.avi";
         expect(parse(releaseName)).to.deep.include({ season: 8, episode: 6 });
