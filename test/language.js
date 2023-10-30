@@ -656,6 +656,12 @@ describe("Parsing language", () => {
         expect(parse(releaseName)).to.deep.include({ languages: ["dual audio", "english", "japanese"] });
     });
 
+    it("FLCL S05.1080p HMAX WEB-DL DD2.0 H 264-VARYG (FLCL: Shoegaze Dual-Audio Multi-Subs)", () => {
+        const releaseName = "FLCL S05.1080p HMAX WEB-DL DD2.0 H 264-VARYG (FLCL: Shoegaze Dual-Audio Multi-Subs)";
+
+        expect(parse(releaseName)).to.deep.include({ languages: ["multi subs", "dual audio"] });
+    });
+
     it("Shinjuku Swan 2015 JAP 1080p BluRay x264 DTS-JYK", () => {
         const releaseName = "Shinjuku Swan 2015 JAP 1080p BluRay x264 DTS-JYK";
 
