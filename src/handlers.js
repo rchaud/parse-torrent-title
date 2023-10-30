@@ -343,7 +343,7 @@ exports.addDefaults = /** @type Parser */ parser => {
     parser.addHandler("languages", /\b(swedish|sueco)\b/i, uniqConcat(value("swedish")), { skipFromTitle: true, skipIfAlreadyFound: false });
     parser.addHandler("languages", /\b(?:NOR|norsk|norsub|nordic)\b/i, uniqConcat(value("norwegian")), { skipIfAlreadyFound: false });
     parser.addHandler("languages", /\b(norwegian|noruegu[eê]s|bokm[aå]l|nob|nor(?=[\]_)]?\.\w{2,4}$))\b/i, uniqConcat(value("norwegian")), { skipFromTitle: true, skipIfAlreadyFound: false });
-    parser.addHandler("languages", /\b(?:arabic|[aá]rabe)\b/i, uniqConcat(value("arabic")), { skipFromTitle: true, skipIfAlreadyFound: false });
+    parser.addHandler("languages", /\b(?:arabic|[aá]rabe|ara)\b/i, uniqConcat(value("arabic")), { skipIfFirst: true, skipIfAlreadyFound: false });
     parser.addHandler("languages", /\barab.*(?:audio|lang(?:uage)?|sub(?:s|titles?)?)\b/i, uniqConcat(value("arabic")), { skipFromTitle: true, skipIfAlreadyFound: false });
     parser.addHandler("languages", /\bar(?=\.(?:ass|ssa|srt|sub|idx)$)/i, uniqConcat(value("arabic")), { skipFromTitle: true, skipIfAlreadyFound: false });
     parser.addHandler("languages", /\b(?:turkish|tur(?:co)?)\b/i, uniqConcat(value("turkish")), { skipFromTitle: true, skipIfAlreadyFound: false });

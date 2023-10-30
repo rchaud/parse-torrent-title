@@ -524,6 +524,12 @@ describe("Parsing language", () => {
         expect(parse(releaseName)).to.deep.include({ languages: ["arabic"] });
     });
 
+    it("Subs(ara,fre,ger).srt", () => {
+        const releaseName = "Subs(ara,fre,ger).srt";
+
+        expect(parse(releaseName)).to.deep.include({ languages: ["french", "german", "arabic"] });
+    });
+
     it("Miami.Bici.2020.1080p.NETFLIX.WEB-DL.DDP5.1.H.264.EN-ROSub-ExtremlymTorrents", () => {
         const releaseName = "Miami.Bici.2020.1080p.NETFLIX.WEB-DL.DDP5.1.H.264.EN-ROSub-ExtremlymTorrents";
 
@@ -1128,6 +1134,16 @@ describe("Parsing language", () => {
 
     it("should not detect dan language v2", () => {
         const releaseName = "Dan Browns The Lost Symbol S01E03 1080p WEB H264-GLHF";
+        expect(parse(releaseName)).to.not.have.property("languages");
+    });
+
+    it("should not detect ara language", () => {
+        const releaseName = "Ben.Ara.2015.1080p.WEBRip.x265-RARBG.mp4";
+        expect(parse(releaseName)).to.not.have.property("languages");
+    });
+
+    it("should not detect ara language v2", () => {
+        const releaseName = "Ara.(A.Break).2008.DVDRip";
         expect(parse(releaseName)).to.not.have.property("languages");
     });
 });
