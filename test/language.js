@@ -530,9 +530,14 @@ describe("Parsing language", () => {
         expect(parse(releaseName)).to.deep.include({ languages: ["french", "german", "arabic"] });
     });
 
+    it("Subs(chi,eng,ind,kor,may,tha,vie).srt", () => {
+        const releaseName = "Subs(chi,ind,kor,may,tha,vie).srt";
+
+        expect(parse(releaseName)).to.deep.include({ languages: ["korean", "chinese", "vietnamese", "indonesian", "thai", "malay"] });
+    });
+
     it("Miami.Bici.2020.1080p.NETFLIX.WEB-DL.DDP5.1.H.264.EN-ROSub-ExtremlymTorrents", () => {
         const releaseName = "Miami.Bici.2020.1080p.NETFLIX.WEB-DL.DDP5.1.H.264.EN-ROSub-ExtremlymTorrents";
-
         expect(parse(releaseName)).to.deep.include({ languages: ["english", "romanian"] });
     });
 
@@ -973,7 +978,7 @@ describe("Parsing language", () => {
 
     it("Subs/Dear.S01E05.WEBRip.x265-ION265/25_may.srt", () => {
         const releaseName = "Subs/Dear.S01E05.WEBRip.x265-ION265/25_may.srt";
-        expect(parse(releaseName)).to.deep.include({ languages: ["vietnamese"] });
+        expect(parse(releaseName)).to.deep.include({ languages: ["malay"] });
     });
 
     it("Midnight.Diner.Tokyo.Stories.S02E10.WEBRip.x264-ION10/14_Indonesian.srt", () => {
