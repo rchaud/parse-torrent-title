@@ -92,6 +92,11 @@ describe("Parsing episode", () => {
         expect(parse(releaseName)).to.deep.include({ season: 8, episode: 18 });
     });
 
+    it("should detect episode when separated with X", () => {
+        const releaseName = "Archivo 81 1X7 HDTV XviD Castellano.avi";
+        expect(parse(releaseName)).to.deep.include({ season: 1, episode: 7 });
+    });
+
     it("should detect multiple episodes with x prefix and hyphen separator", () => {
         const releaseName = "Friends - [7x23-24] - The One with Monica and Chandler's Wedding + Audio Commentary.mkv";
         expect(parse(releaseName)).to.deep.include({ season: 7, episodes: [23, 24] });
