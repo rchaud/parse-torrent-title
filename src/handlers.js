@@ -107,6 +107,13 @@ exports.addDefaults = /** @type Parser */ parser => {
     parser.addHandler("hdr", /HDR10(?:\+|plus)/i, uniqConcat(value("HDR10+")), { remove: true, skipIfAlreadyFound: false });
     parser.addHandler("hdr", /\bHDR(?:10)?\b/i, uniqConcat(value("HDR")), { remove: true, skipIfAlreadyFound: false });
 
+    // 3D
+    parser.addHandler("threeD", /\b(3D)\b.*\b(Half-?SBS|H[-\\/]?SBS)\b/i, value("3D HSBS"));
+    parser.addHandler("threeD", /\b(3D)\b.*\b(Full-?SBS|SBS)\b/i, value("3D SBS"));
+    parser.addHandler("threeD", /\b(3D)\b.*\b(Half-?OU|H[-\\/]?OU)\b/i, value("3D HOU"));
+    parser.addHandler("threeD", /\b(3D)\b.*\b(OU)\b/i, value("3D OU"));
+    parser.addHandler("threeD", /\b(3D)\b/i, value("3D"), { skipIfFirst: true });
+
     // Codec
     parser.addHandler("codec", /\b[xh][-. ]?26[45]/i, lowercase, { remove: true });
     parser.addHandler("codec", /\bhevc(?:\s?10)?\b/i, value("hevc"), { remove: true, skipIfAlreadyFound: false });
