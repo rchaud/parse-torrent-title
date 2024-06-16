@@ -176,6 +176,12 @@ describe("Parsing date", () => {
         expect(parse(releaseName)).to.deep.include({ date: "2000-09-18" });
     });
 
+    it("The Colbert Report - 10-30-2010 - Rally to Restore Sanity and or Fear.avi", () => {
+        const releaseName = "The Colbert Report - 10-30-2010 - Rally to Restore Sanity and or Fear.avi";
+
+        expect(parse(releaseName)).to.deep.include({ date: "2010-10-30" });
+    });
+
     it("should not detect date from series title", () => {
         const releaseName = "11 22 63 - Temporada 1 [HDTV][Cap.103][Español Castellano]";
         expect(parse(releaseName)).to.not.have.property("date");
