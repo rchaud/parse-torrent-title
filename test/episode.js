@@ -544,6 +544,11 @@ describe("Parsing episode", () => {
         expect(parse(releaseName)).to.deep.include({ episode: 1103 });
     });
 
+    it("should detect spanish partial episode identifier with common typo", () => {
+        const releaseName = "Para toda la humanidad [4k 2160p][Caap.406](wolfmax4k.com).mkv";
+        expect(parse(releaseName)).to.deep.include({ episode: 406 });
+    });
+
     it("should detect spanish partial episode identifier v2", () => {
         const releaseName = "Mazinger-Z-Cap-52.avi";
         expect(parse(releaseName)).to.deep.include({ episode: 52 });
@@ -767,6 +772,11 @@ describe("Parsing episode", () => {
     it("should detect episode in brackets but not years", () => {
         const releaseName = "[GM-Team][国漫][绝代双骄][Legendary Twins][2022][08][HEVC][GB][4K].mp4";
         expect(parse(releaseName)).to.deep.include({ episode: 8 });
+    });
+
+    it("should not detect season-episode pattern when with dot split", () => {
+        const releaseName = "SG-1. Season 4.16. (2010).avi";
+        expect(parse(releaseName)).to.deep.include({ season: 4, episode: 16 });
     });
 
     xit("should not detect season-episode pattern when it's a date", () => {
