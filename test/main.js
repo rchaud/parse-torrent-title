@@ -340,4 +340,17 @@ describe("Random releases", () => {
             languages: ["latino"]
         });
     });
+
+    it("Sprint.2024.S01.COMPLETE.1080p.WEB.h264-EDITH[TGx]", () => {
+        const releaseName = "Sprint.2024.S01.COMPLETE.1080p.WEB.h264-EDITH[TGx]";
+        expect(parse(releaseName)).to.deep.equal({
+            title: "Sprint",
+            year: 2024,
+            seasons: [1],
+            season: 1,
+            resolution: "1080p",
+            codec: "h264",
+            group: "EDITH"
+        });
+    });
 });
