@@ -674,6 +674,11 @@ describe("Parsing episode", () => {
         expect(parse(releaseName)).to.deep.include({ episode: 35 });
     });
 
+    it("should detect anime episode with hyphen number in title", () => {
+        const releaseName = "[SubsPlease] Fairy Tail - 100 Years Quest - 05 (1080p) [1107F3A9].mkv";
+        expect(parse(releaseName)).to.deep.include({ episode: 5 });
+    });
+
     it("should detect anime episode recap episode", () => {
         const releaseName = "[KH] Sword Art Online II - 14.5 - Debriefing.mkv";
         expect(parse(releaseName)).to.deep.include({ episode: 14 });
