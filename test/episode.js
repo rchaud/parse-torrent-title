@@ -17,6 +17,11 @@ describe("Parsing episode", () => {
         expect(parse(releaseName)).to.deep.include({ episode: 23 });
     });
 
+    it("should detect regular episode above 1000", () => {
+        const releaseName = "One.Piece.S01E1116.Lets.Go.Get.It!.Buggys.Big.Declaration.2160p.B-Global.WEB-DL.JPN.AAC2.0.H.264.MSubs-ToonsHub.mkv";
+        expect(parse(releaseName)).to.deep.include({ episode: 1116 });
+    });
+
     it("should detect regular episode without e symbol after season", () => {
         const releaseName = "The.Witcher.S01.07.2019.Dub.AVC.ExKinoRay.mkv";
         expect(parse(releaseName)).to.deep.include({ episode: 7 });
@@ -280,6 +285,11 @@ describe("Parsing episode", () => {
     it("should detect detect absolute episode with a version", () => {
         const releaseName = "[F-D] Fairy.Tail.-.004v2.-. [480P][Dual-Audio].mkv";
         expect(parse(releaseName)).to.deep.include({ episode: 4 });
+    });
+
+    it("should detect detect anime episode when title contains number range", () => {
+        const releaseName = "[Erai-raws] 2-5 Jigen no Ririsa - 08 [480p][Multiple Subtitle][972D0669].mkv";
+        expect(parse(releaseName)).to.deep.include({ episode: 8 });
     });
 
     it("should detect detect absolute episode with a version and ep suffix", () => {
