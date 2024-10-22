@@ -42,4 +42,14 @@ describe("Parsing episode code", () => {
         const releaseName = "Lost.[Perdidos].6x05.HDTV.XviD.[www.DivxTotaL.com].avi";
         expect(parse(releaseName)).to.not.have.property("episodeCode");
     });
+
+    it("should not detect episode code when it's a word", () => {
+        const releaseName = "Lost - Stagioni 01-06 (2004-2010) [COMPLETA] SD x264 AAC ITA SUB ITA";
+        expect(parse(releaseName)).to.not.have.property("episodeCode");
+    });
+
+    it("should not detect episode code when it's only numbers", () => {
+        const releaseName = "The voice of Holland S05E08 [20141017]  NL Battles 1.mp4";
+        expect(parse(releaseName)).to.not.have.property("episodeCode");
+    });
 });

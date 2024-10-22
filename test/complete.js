@@ -122,6 +122,11 @@ describe("Parsing complete collection", () => {
         expect(parse(releaseName)).to.deep.include({ complete: true });
     });
 
+    it("should detect italian complete", () => {
+        const releaseName = "Inganno - Miniserie (2024) [COMPLETA] SD H264 ITA AAC-UBi";
+        expect(parse(releaseName)).to.deep.include({ complete: true });
+    });
+
     it("should not remove collection from title", () => {
         const releaseName = "[Erai-raws] Ninja Collection - 05 [720p][Multiple Subtitle].mkv";
         expect(parse(releaseName)).to.deep.include({ title: "Ninja Collection", complete: true });

@@ -488,6 +488,16 @@ describe("Parsing season", () => {
         expect(parse(releaseName)).to.deep.include({ season: 22 });
     });
 
+    it("should detect italian season word", () => {
+        const releaseName = "Nobody Wants This - Stagione 1 (2024) [COMPLETA] 720p H264 ITA AAC 2.0-Zer0landia";
+        expect(parse(releaseName)).to.deep.include({ season: 1 });
+    });
+
+    it("should detect italian season range", () => {
+        const releaseName = "Red Oaks - Stagioni 01-03 (2014-2017) [COMPLETA] SD x264 AAC ITA SUB ITA - mkeagle3";
+        expect(parse(releaseName)).to.deep.include({ seasons: [1, 2, 3] });
+    });
+
     it("should not detect season when it's part of the name", () => {
         const releaseName = "Ranma-12-86.mp4";
         expect(parse(releaseName)).to.not.have.property("season");
