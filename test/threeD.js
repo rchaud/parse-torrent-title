@@ -107,6 +107,31 @@ describe("Parsing 3D", () => {
         expect(parse(releaseName)).to.deep.include({ threeD: "3D" });
     });
 
+    it("should detect HD3D", () => {
+        const releaseName = "Бамблби / Bumblebee [2018, BDRemux, 1080p] BD3D";
+        expect(parse(releaseName)).to.deep.include({ threeD: "3D" });
+    });
+
+    it("should detect SideBySide", () => {
+        const releaseName = "Дэдпул и Росомаха / Deadpool & Wolverine [2024, BDRip, 1080p] SideBySide";
+        expect(parse(releaseName)).to.deep.include({ threeD: "3D SBS" });
+    });
+
+    it("should detect Half SideBySide", () => {
+        const releaseName = "Вий / Forbidden Kingdom [2014, WEB-DL] Half SideBySide";
+        expect(parse(releaseName)).to.deep.include({ threeD: "3D HSBS" });
+    });
+
+    it("should detect OverUnder", () => {
+        const releaseName = "Дэдпул и Росомаха / Deadpool & Wolverine [2024, BDRip, 1080p] OverUnder";
+        expect(parse(releaseName)).to.deep.include({ threeD: "3D OU" });
+    });
+
+    it("should detect Half OverUnder", () => {
+        const releaseName = "Миссия «Луна» / Лунный / Mooned [2023, BDRip] Half OverUnder";
+        expect(parse(releaseName)).to.deep.include({ threeD: "3D HOU" });
+    });
+
     it("should not detect 3D in name", () => {
         const releaseName = "Texas.Chainsaw.3D.2013.PROPER.1080p.BluRay.x264-LiViDiTY";
         expect(parse(releaseName)).to.not.have.property("threeD");

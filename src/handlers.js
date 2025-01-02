@@ -110,10 +110,14 @@ exports.addDefaults = /** @type Parser */ parser => {
 
     // 3D
     parser.addHandler("threeD", /\b(3D)\b.*\b(Half-?SBS|H[-\\/]?SBS)\b/i, value("3D HSBS"));
+    parser.addHandler("threeD", /\bHalf.Side.?By.?Side\b/i, value("3D HSBS"));
     parser.addHandler("threeD", /\b(3D)\b.*\b(Full-?SBS|SBS)\b/i, value("3D SBS"));
+    parser.addHandler("threeD", /\bSide.?By.?Side\b/i, value("3D SBS"));
     parser.addHandler("threeD", /\b(3D)\b.*\b(Half-?OU|H[-\\/]?OU)\b/i, value("3D HOU"));
+    parser.addHandler("threeD", /\bHalf.?Over.?Under\b/i, value("3D HOU"));
     parser.addHandler("threeD", /\b(3D)\b.*\b(OU)\b/i, value("3D OU"));
-    parser.addHandler("threeD", /\b(3D)\b/i, value("3D"), { skipIfFirst: true });
+    parser.addHandler("threeD", /\bOver.?Under\b/i, value("3D OU"));
+    parser.addHandler("threeD", /\b((?:BD)?3D)\b/i, value("3D"), { skipIfFirst: true });
 
     // Codec
     parser.addHandler("codec", /\b[xh][-. ]?26[45]/i, lowercase, { remove: true });
