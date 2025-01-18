@@ -8,6 +8,12 @@ describe("Parsing extended", () => {
         expect(parse(releaseName)).to.deep.include({ extended: true });
     });
 
+    it("should detect extended in the title when separated", () => {
+        const releaseName = "Ghostbusters - Extended (2016) 1080p H265 BluRay Rip ita eng AC3 5.1";
+
+        expect(parse(releaseName)).to.deep.include({ extended: true });
+    });
+
     it("should not detect extended when the release is not flagged as such", () => {
         const releaseName = "Better.Call.Saul.S03E04.CONVERT.720p.WEB.h264-TBS";
 

@@ -36,6 +36,7 @@ exports.addDefaults = /** @type Parser */ parser => {
 
     // Extended
     parser.addHandler("extended", /EXTENDED/, boolean);
+    parser.addHandler("extended", /- Extended/i, boolean);
 
     // Convert
     parser.addHandler("convert", /CONVERT/, boolean);
