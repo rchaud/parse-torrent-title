@@ -498,6 +498,11 @@ describe("Parsing season", () => {
         expect(parse(releaseName)).to.deep.include({ seasons: [1, 2, 3] });
     });
 
+    it("should detect polish season", () => {
+        const releaseName = "Star.Wars.Skeleton.Crew.Sezon01.PLDUB.480p.DSNP.WEB-DL.H264.DDP5.1-K83";
+        expect(parse(releaseName)).to.deep.include({ seasons: [1] });
+    });
+
     it("should not detect season when it's part of the name", () => {
         const releaseName = "Ranma-12-86.mp4";
         expect(parse(releaseName)).to.not.have.property("season");

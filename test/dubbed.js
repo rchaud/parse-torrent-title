@@ -50,14 +50,14 @@ describe("Parsing dubbed", () => {
         expect(parse(releaseName)).to.deep.include({ dubbed: true });
     });
 
-    it("should detect dubbing correctly", () => {
-        const releaseName = "Toy.Story.1080p.BluRay.x264-HD[Dubbing PL].mkv";
+    it("should detect dual correctly", () => {
+        const releaseName = "Fame (1980) [DVDRip][Dual][Ac3][Eng-Spa]";
 
         expect(parse(releaseName)).to.deep.include({ dubbed: true });
     });
 
-    it("should detect dual correctly", () => {
-        const releaseName = "Fame (1980) [DVDRip][Dual][Ac3][Eng-Spa]";
+    it("should detect dubbing correctly", () => {
+        const releaseName = "Vaiana Skarb oceanu / Moana (2016) [720p] [WEB-DL] [x264] [Dubbing]";
 
         expect(parse(releaseName)).to.deep.include({ dubbed: true });
     });

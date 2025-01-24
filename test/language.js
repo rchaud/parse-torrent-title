@@ -326,6 +326,42 @@ describe("Parsing language", () => {
         expect(parse(releaseName)).to.deep.include({ languages: ["polish"] });
     });
 
+    it("Na Wspólnej (2024) [E3951-3954][1080p][WEB-DL][PL][x264-GhN]", () => {
+        const releaseName = "Na Wspólnej (2024) [E3951-3954][1080p][WEB-DL][PL][x264-GhN]";
+
+        expect(parse(releaseName)).to.deep.include({ languages: ["polish"] });
+    });
+
+    it("Kulej.2024.PL.1080p.AMZN.WEB-DL.x264-KiT", () => {
+        const releaseName = "Kulej.2024.PL.1080p.AMZN.WEB-DL.x264-KiT";
+
+        expect(parse(releaseName)).to.deep.include({ languages: ["polish"] });
+    });
+
+    it("Star.Wars.Skeleton.Crew.Sezon01.PLDUB.480p.DSNP.WEB-DL.H264.DDP5.1-K83", () => {
+        const releaseName = "Star.Wars.Skeleton.Crew.Sezon01.PLDUB.480p.DSNP.WEB-DL.H264.DDP5.1-K83";
+
+        expect(parse(releaseName)).to.deep.include({ languages: ["polish"] });
+    });
+
+    it("Bukmacher / Bookie [E02E07] [MULTi] [1080p] [AMZN] [WEB-DL] [H264] [DDP5.1.Atmos-K83] [Lektor PL]", () => {
+        const releaseName = "Bukmacher / Bookie [E02E07] [MULTi] [1080p] [AMZN] [WEB-DL] [H264] [DDP5.1.Atmos-K83] [Lektor PL]";
+
+        expect(parse(releaseName)).to.deep.include({ languages: ["multi audio", "polish"] });
+    });
+
+    it("Wallace i Gromit: Zemsta pingwina / Wallace & Gromit: Vengeance Most Fowl (2024) [480p] [WEB-DL] [XviD] [DD5.1-K83] [Dubbing PL]", () => {
+        const releaseName = "Wallace i Gromit: Zemsta pingwina / Wallace & Gromit: Vengeance Most Fowl (2024) [480p] [WEB-DL] [XviD] [DD5.1-K83] [Dubbing PL]";
+
+        expect(parse(releaseName)).to.deep.include({ languages: ["polish"] });
+    });
+
+    it("Strażniczka smoków / Dragonkeeper (2024) [1080p] [H264] [Napisy PL]", () => {
+        const releaseName = "Strażniczka smoków / Dragonkeeper (2024) [1080p] [H264] [Napisy PL]";
+
+        expect(parse(releaseName)).to.deep.include({ languages: ["polish"] });
+    });
+
     it("Carros 2 Dublado - Portugues BR (2011)", () => {
         const releaseName = "Carros 2 Dublado - Portugues BR (2011)";
 
