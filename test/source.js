@@ -286,4 +286,9 @@ describe("Parsing source", () => {
         const releaseName = "Avatar La Voie de l'eau.FRENCH.CAMHD.H264.AAC";
         expect(parse(releaseName)).to.deep.include({ source: "CAM" });
     });
+
+    it("should not parse VHS in title", () => {
+        const releaseName = "VHS 3 Viral (2014)PL.mp4";
+        expect(parse(releaseName)).to.not.have.property("source");
+    });
 });
