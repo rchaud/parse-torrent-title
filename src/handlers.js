@@ -3,7 +3,7 @@ const { none, value, integer, boolean, lowercase, uppercase, date, range, yearRa
 exports.addDefaults = /** @type Parser */ parser => {
 
     // Episode code
-    parser.addHandler("episodeCode", /[[(]([a-zA-Z0-9]{8})[\])](?=\.[a-zA-Z0-9]{1,5}$|$)/, uppercase, { remove: true });
+    parser.addHandler("episodeCode", /[[(]([a-z0-9]{8}|[A-Z0-9]{8})[\])](?=\.[a-zA-Z0-9]{1,5}$|$)/, uppercase, { remove: true });
     parser.addHandler("episodeCode", /\[(?=[A-Z]+\d|\d+[A-Z])([A-Z0-9]{8})]/, uppercase, { remove: true });
 
     // Resolution
@@ -29,9 +29,9 @@ exports.addDefaults = /** @type Parser */ parser => {
     parser.addHandler("date", /(?<=\W|^)([([]?20[012][0-9](?:0[1-9]|1[012])(?:0[1-9]|[12][0-9]|3[01])[)\]]?)(?=\W|$)/, date("YYYYMMDD"), { remove: true });
 
     // Year
-    parser.addHandler("year", /[([]?[ .]?((?:19\d|20[012])\d[ .]?-[ .]?(?:19\d|20[012])\d)[ .]?[)\]]?/, yearRange, { remove: true });
-    parser.addHandler("year", /[([][ .]?((?:19\d|20[012])\d[ .]?-[ .]?\d{2})[ .]?[)\]]/, yearRange, { remove: true });
-    parser.addHandler("year", /[([]?(?!^)(?<!\d|Cap[. ]?)((?:19\d|20[012])\d)(?!\d|kbps)[)\]]?/i, integer, { remove: true });
+    parser.addHandler("year", /[([*]?[ .]?((?:19\d|20[012])\d[ .]?-[ .]?(?:19\d|20[012])\d)[ .]?[*)\]]?/, yearRange, { remove: true });
+    parser.addHandler("year", /[([*][ .]?((?:19\d|20[012])\d[ .]?-[ .]?\d{2})[ .]?[*)\]]/, yearRange, { remove: true });
+    parser.addHandler("year", /[([*]?(?!^)(?<!\d|Cap[. ]?)((?:19\d|20[012])\d)(?!\d|kbps)[*)\]]?/i, integer, { remove: true });
     parser.addHandler("year", /^[([]?((?:19\d|20[012])\d)(?!\d|kbps)[)\]]?/i, integer, { remove: true });
 
     // Extended
@@ -53,8 +53,9 @@ exports.addDefaults = /** @type Parser */ parser => {
     // Retail
     parser.addHandler("retail", /\bRetail\b/i, boolean);
 
-    // Remastered
+    // RemasteredREKONSTRUKCJA
     parser.addHandler("remastered", /\bRemaster(?:ed)?\b/i, boolean);
+    parser.addHandler("remastered", /\b[[(]?REKONSTRUKCJA[\])]?\b/i, boolean);
 
     // Unrated
     parser.addHandler("unrated", /\bunrated|uncensored\b/i, boolean);
@@ -166,8 +167,8 @@ exports.addDefaults = /** @type Parser */ parser => {
     parser.addHandler("seasons", /(?:complete\W|seasons?\W|\W|^)((?:s\d{1,2}[., +/\\&-]+)+s\d{1,2}\b)/i, range, { remove: true });
     parser.addHandler("seasons", /(?:complete\W|seasons?\W|\W|^)[([]?(s\d{2,}-\d{2,}\b)[)\]]?/i, range, { remove: true });
     parser.addHandler("seasons", /(?:complete\W|seasons?\W|\W|^)[([]?(s[1-9]-[2-9]\b)[)\]]?/i, range, { remove: true });
-    parser.addHandler("seasons", /(?:(?:\bthe\W)?\bcomplete\W)?(?:seasons?|[Сс]езони?|temporadas?|stagioni)[. ]?[-:]?[. ]?[([]?((?:\d{1,2}[, /\\&]+)+\d{1,2}\b)[)\]]?/i, range, { remove: true });
-    parser.addHandler("seasons", /(?:(?:\bthe\W)?\bcomplete\W)?(?:seasons|[Сс]езони?|temporadas?|stagioni)[. ]?[-:]?[. ]?[([]?((?:\d{1,2}[. -]+)+0?[1-9]\d?\b)[)\]]?/i, range, { remove: true });
+    parser.addHandler("seasons", /(?:(?:\bthe\W)?\bcomplete\W)?(?:seasons?|[Сс]езони?|sezon|temporadas?|stagioni)[. ]?[-:]?[. ]?[([]?((?:\d{1,2}[, /\\&]+)+\d{1,2}\b)[)\]]?/i, range, { remove: true });
+    parser.addHandler("seasons", /(?:(?:\bthe\W)?\bcomplete\W)?(?:seasons|[Сс]езони?|sezon|temporadas?|stagioni)[. ]?[-:]?[. ]?[([]?((?:\d{1,2}[. -]+)+0?[1-9]\d?\b)[)\]]?/i, range, { remove: true });
     parser.addHandler("seasons", /(?:(?:\bthe\W)?\bcomplete\W)?season[. ]?[([]?((?:\d{1,2}[. -]+)+[1-9]\d?\b)[)\]]?(?!.*\.\w{2,4}$)/i, range, { remove: true });
     parser.addHandler("seasons", /(?:(?:\bthe\W)?\bcomplete\W)?\bseasons?\b[. -]?(\d{1,2}[. -]?(?:to|thru|and|\+|:)[. -]?\d{1,2})\b/i, range, { remove: true });
     parser.addHandler("seasons", /(\d{1,2})(?:-?й)?[. _]?(?:[Сс]езон|sez(?:on)?)(?:\W?\D|$)/i, array(integer));
@@ -331,8 +332,8 @@ exports.addDefaults = /** @type Parser */ parser => {
     parser.addHandler("languages", /\blithuanian\b/i, uniqConcat(value("lithuanian")), { skipIfFirst: true, skipIfAlreadyFound: false });
     parser.addHandler("languages", /\blatvian\b/i, uniqConcat(value("latvian")), { skipIfFirst: true, skipIfAlreadyFound: false });
     parser.addHandler("languages", /\bestonian\b/i, uniqConcat(value("estonian")), { skipIfFirst: true, skipIfAlreadyFound: false });
-    parser.addHandler("languages", /\b(?:PLDUB|Dubbing.PL|Lektor.PL)\b/i, uniqConcat(value("polish")), { skipIfAlreadyFound: false, remove: true });
-    parser.addHandler("languages", /\bNapisy.PL\b/i, uniqConcat(value("polish")), { skipIfAlreadyFound: false, remove: true });
+    parser.addHandler("languages", /\b(?:PLDUB|Dubbing.PL|Lektor.PL|Film.Polski)\b/i, uniqConcat(value("polish")), { skipIfAlreadyFound: false, remove: true });
+    parser.addHandler("languages", /\b(?:Napisy.PL|PLSUB(?:BED)?)\b/i, uniqConcat(value("polish")), { skipIfAlreadyFound: false, remove: true });
     parser.addHandler("languages", /\b(?:(?<!w{3}\.\w+\.)PL|pol)\b/i, uniqConcat(value("polish")), { skipIfAlreadyFound: false });
     parser.addHandler("languages", /\b(polish|polon[eê]s|polaco)\b/i, uniqConcat(value("polish")), { skipIfFirst: true, skipIfAlreadyFound: false });
     parser.addHandler("languages", /\bCZ[EH]?\b/i, uniqConcat(value("czech")), { skipIfFirst: true, skipIfAlreadyFound: false });

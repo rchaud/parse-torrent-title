@@ -353,4 +353,28 @@ describe("Random releases", () => {
             group: "EDITH"
         });
     });
+
+    it("High Heat *2022* [BRRip.XviD] Lektor PL", () => {
+        const releaseName = "High Heat *2022* [BRRip.XviD] Lektor PL";
+        expect(parse(releaseName)).to.deep.equal({
+            title: "High Heat",
+            year: 2022,
+            codec: "xvid",
+            source: "BRRip",
+            languages: ["polish"]
+        });
+    });
+
+    it("Ghost Busters *1984-2021* [720p] [BDRip] [AC-3] [XviD] [Lektor + Dubbing PL] [DYZIO]", () => {
+        const releaseName = "Ghost Busters *1984-2021* [720p] [BDRip] [AC-3] [XviD] [Lektor + Dubbing PL] [DYZIO]";
+        expect(parse(releaseName)).to.deep.equal({
+            title: "Ghost Busters",
+            year: "1984-2021",
+            resolution: "720p",
+            audio: "ac3",
+            codec: "xvid",
+            source: "BDRip",
+            languages: ["polish"]
+        });
+    });
 });

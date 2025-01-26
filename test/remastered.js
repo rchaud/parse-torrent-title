@@ -14,6 +14,12 @@ describe("Parsing remastered", () => {
         expect(parse(releaseName)).to.deep.include({ remastered: true });
     });
 
+    it("should detect polish rekonstrukcija", () => {
+        const releaseName = "Gra 1968 [REKONSTRUKCJA] [1080p.WEB-DL.H264.AC3-FT] [Napisy PL] [Film Polski]";
+
+        expect(parse(releaseName)).to.deep.include({ remastered: true });
+    });
+
     it("should not detect remastered when the release is not flagged as such", () => {
         const releaseName = "Have I Got News For You S53E02 EXTENDED 720p HDTV x264-QPEL";
 

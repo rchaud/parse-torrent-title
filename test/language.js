@@ -350,6 +350,18 @@ describe("Parsing language", () => {
         expect(parse(releaseName)).to.deep.include({ languages: ["multi audio", "polish"] });
     });
 
+    it("Gra 1968 [REKONSTRUKCJA] [1080p.WEB-DL.H264.AC3-FT] [Film Polski]", () => {
+        const releaseName = "Gra 1968 [REKONSTRUKCJA] [1080p.WEB-DL.H264.AC3-FT] [Film Polski]";
+
+        expect(parse(releaseName)).to.deep.include({ languages: ["polish"] });
+    });
+
+    it("Evil.Dead.Rise.2023.PLSUB.720p.MA.WEB-DL.H264.E-AC3-CMRG", () => {
+        const releaseName = "Evil.Dead.Rise.2023.PLSUB.720p.MA.WEB-DL.H264.E-AC3-CMRG";
+
+        expect(parse(releaseName)).to.deep.include({ languages: ["polish"] });
+    });
+
     it("Wallace i Gromit: Zemsta pingwina / Wallace & Gromit: Vengeance Most Fowl (2024) [480p] [WEB-DL] [XviD] [DD5.1-K83] [Dubbing PL]", () => {
         const releaseName = "Wallace i Gromit: Zemsta pingwina / Wallace & Gromit: Vengeance Most Fowl (2024) [480p] [WEB-DL] [XviD] [DD5.1-K83] [Dubbing PL]";
 

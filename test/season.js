@@ -503,6 +503,12 @@ describe("Parsing season", () => {
         expect(parse(releaseName)).to.deep.include({ seasons: [1] });
     });
 
+    it("should detect polish season range", () => {
+        const releaseName = "Rizzoli & Isles 2010-2016 [Sezon 01-07] [1080p.WEB-DL.H265.EAC3-FT][Alusia]";
+        expect(parse(releaseName)).to.deep.include({ seasons: [1, 2, 3, 4, 5, 6, 7] });
+    });
+
+
     it("should not detect season when it's part of the name", () => {
         const releaseName = "Ranma-12-86.mp4";
         expect(parse(releaseName)).to.not.have.property("season");
