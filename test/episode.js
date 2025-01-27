@@ -12,6 +12,11 @@ describe("Parsing episode", () => {
         expect(parse(releaseName)).to.deep.include({ episode: 1 });
     });
 
+    it("should detect regular season with O instead of zero", () => {
+        const releaseName = "Arrested Development SO2E04.avi";
+        expect(parse(releaseName)).to.deep.include({ episode: 4 });
+    });
+
     it("should detect regular episode with a space between", () => {
         const releaseName = "Dragon Ball Super S01 E23 French 1080p HDTV H264-Kesni";
         expect(parse(releaseName)).to.deep.include({ episode: 23 });
