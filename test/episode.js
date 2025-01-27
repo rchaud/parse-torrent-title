@@ -816,6 +816,11 @@ describe("Parsing episode", () => {
         expect(parse(releaseName)).to.deep.include({ episode: 2 });
     });
 
+    it("should detect regular episode with year range before", () => {
+        const releaseName = "'Lucky.Luke.1983-1992.S01E04.PL.720p.WEB-DL.H264-zyl.mkv'";
+        expect(parse(releaseName)).to.deep.include({ episodes: [4] });
+    });
+
     it("should detect only episode v2", () => {
         const releaseName = "Watch Gary And His Demons Episode 10 - 0.00.07-0.11.02.mp4";
         expect(parse(releaseName)).to.not.have.property("season");
