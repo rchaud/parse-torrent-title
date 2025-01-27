@@ -182,7 +182,7 @@ exports.addDefaults = /** @type Parser */ parser => {
     parser.addHandler("seasons", /\bSn([1-9])(?:\D|$)/, array(integer));
     parser.addHandler("seasons", /[[(](\d{1,2})\.\d{1,3}[)\]]/, array(integer));
     parser.addHandler("seasons", /-\s?(\d{1,2})\.\d{2,3}\s?-/, array(integer));
-    parser.addHandler("seasons", /(?:^|\/)(\d{1,2})-\d{2}\b(?!-\d)/, array(integer));
+    parser.addHandler("seasons", /(?:^|\/)(?!20-20)(\d{1,2})-\d{2}\b(?!-\d)/, array(integer));
     parser.addHandler("seasons", /[^\w-](\d{1,2})-\d{2}(?=\.\w{2,4}$)/, array(integer));
     parser.addHandler("seasons", /(?<!\bEp?(?:isode)? ?\d+\b.*)\b(\d{2})[ ._]\d{2}(?:.F)?\.\w{2,4}$/, array(integer));
     parser.addHandler("seasons", /\bEp(?:isode)?\W+(\d{1,2})\.\d{1,3}\b/i, array(integer));
@@ -206,11 +206,11 @@ exports.addDefaults = /** @type Parser */ parser => {
     parser.addHandler("episodes", /(?:\W|^)(\d{1,3}(?:[ .]*~[ .]*\d{1,3})+)(?:\W|$)/i, range);
     parser.addHandler("episodes", /-\s(\d{1,3}[ .]*-[ .]*\d{1,3})(?!-\d)(?:\W|$)/i, range);
     parser.addHandler("episodes", /s\d{1,2}\s?\((\d{1,3}[ .]*-[ .]*\d{1,3})\)/i, range);
-    parser.addHandler("episodes", /(?:^|\/)\d{1,2}-(\d{2})\b(?!-\d)/, array(integer));
+    parser.addHandler("episodes", /(?:^|\/)(?!20-20)\d{1,2}-(\d{2})\b(?!-\d)/, array(integer));
     parser.addHandler("episodes", /(?<!\d-)\b\d{1,2}-(\d{2})(?=\.\w{2,4}$)/, array(integer));
     parser.addHandler("episodes", /(?<=^\[.+].+)[. ]+-[. ]+(\d{1,4})[. ]+(?=\W)/i, array(integer));
     parser.addHandler("episodes", /(?<!(?:seasons?|[Сс]езони?)\W*)(?:[ .([-]|^)(\d{1,3}(?:[ .]?[,&+~][ .]?\d{1,3})+)(?:[ .)\]-]|$)/i, range);
-    parser.addHandler("episodes", /(?<!(?:seasons?|[Сс]езони?)\W*)(?:[ .([-]|^)(\d{1,3}(?:-\d{1,3})+)(?:[ .)(\]]|-\D|$)/i, range);
+    parser.addHandler("episodes", /(?<!(?:seasons?|[Сс]езони?)\W*)(?!20-20)(?:[ .([-]|^)(\d{1,3}(?:-\d{1,3})+)(?:[ .)(\]]|-\D|$)/i, range);
     parser.addHandler("episodes", /\bEp(?:isode)?\W+\d{1,2}\.(\d{1,3})\b/i, array(integer));
     parser.addHandler("episodes", /(?:\b[ée]p?(?:isode)?|[Ээ]пизод|[Сс]ер(?:ии|ия|\.)?|caa?p(?:itulo)?|epis[oó]dio)[. ]?[-:#№]?[. ]?(\d{1,4})(?:[abc]|v0?[1-4]|\W|$)/i, array(integer));
     parser.addHandler("episodes", /\b(\d{1,3})(?:-?я)?[ ._-]*(?:ser(?:i?[iyj]a|\b)|[Сс]ер(?:ии|ия|\.)?)/i, array(integer));
@@ -240,7 +240,7 @@ exports.addDefaults = /** @type Parser */ parser => {
 
             // try to match the episode inside the title with a separator, if not found include the start of the title as well
             const matches = Array.from(beginningTitle.matchAll(/(?<!movie\W*|film\W*|^)(?:[ .]+-[ .]+|[([][ .]*)(\d{1,4})(?:a|b|v\d|\.\d)?(?:\W|$)(?!movie|film|\d+)/gi)).pop() ||
-                middleTitle.match(/^(?:[([-][ .]?)?(\d{1,4})(?:a|b|v\d)?(?:\W|$)(?!movie|film)/i);
+                middleTitle.match(/^(?:[([-][ .]?)?(\d{1,4})(?:a|b|v\d)?(?!\Wmovie|\Wfilm|-\d)(?:\W|$)/i);
 
             if (matches) {
                 result.episodes = [matches[matches.length - 1]]

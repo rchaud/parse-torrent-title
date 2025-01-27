@@ -377,4 +377,17 @@ describe("Random releases", () => {
             languages: ["polish"]
         });
     });
+
+    it("20-20.2024.11.15.Fatal.Disguise.XviD-AFG[EZTVx.to].avi", () => {
+        const releaseName = "20-20.2024.11.15.Fatal.Disguise.XviD-AFG[EZTVx.to].avi";
+        expect(parse(releaseName)).to.deep.equal({
+            title: "20-20",
+            date: "2024-11-15",
+            codec: "xvid",
+            source: "XviD",
+            group: "AFG",
+            container: "avi",
+            extension: "avi"
+        });
+    });
 });
