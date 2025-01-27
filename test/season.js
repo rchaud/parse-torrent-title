@@ -503,6 +503,11 @@ describe("Parsing season", () => {
         expect(parse(releaseName)).to.deep.include({ seasons: [1] });
     });
 
+    it("should detect polish season with S prefix", () => {
+        const releaseName = "Bitten.SezonSO3.PL.480p.NF.WEB-DL.DD5.1.XviD-Ralf";
+        expect(parse(releaseName)).to.deep.include({ seasons: [3] });
+    });
+
     it("should detect polish season range", () => {
         const releaseName = "Rizzoli & Isles 2010-2016 [Sezon 01-07] [1080p.WEB-DL.H265.EAC3-FT][Alusia]";
         expect(parse(releaseName)).to.deep.include({ seasons: [1, 2, 3, 4, 5, 6, 7] });
