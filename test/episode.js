@@ -835,7 +835,43 @@ describe("Parsing episode", () => {
 
     it("should not detect season.episode pattern when it's a date without other pattern", () => {
         const releaseName = "wwf.raw.is.war.18.09.00.avi";
-        expect(parse(releaseName)).to.not.have.property("season");
+        expect(parse(releaseName)).to.not.have.property("seasons");
         expect(parse(releaseName)).to.not.have.property("episode");
+    });
+
+    it("should not detect episodes when it's 2.0 sound", () => {
+        const releaseName = "The Rat Race (1960) [1080p] [WEB-DL] [x264] [DD] [2-0] [DReaM] [LEKTOR PL]";
+        expect(parse(releaseName)).to.not.have.property("seasons");
+        expect(parse(releaseName)).to.not.have.property("episodes");
+    });
+
+    it("should not detect episodes when it's 2.0 sound v2", () => {
+        const releaseName = "Avatar 2009 [1080p.BDRip.x264.AC3-azjatycki] [2.0] [Lektor PL]";
+        expect(parse(releaseName)).to.not.have.property("seasons");
+        expect(parse(releaseName)).to.not.have.property("episodes");
+    });
+
+    it("should not detect episodes when it's 5.1 sound", () => {
+        const releaseName = "A Quiet Place: Day One (2024) [1080p] [WEB-DL] [x264] [AC3] [DD] [5-1] [LEKTOR PL]";
+        expect(parse(releaseName)).to.not.have.property("seasons");
+        expect(parse(releaseName)).to.not.have.property("episodes");
+    });
+
+    it("should not detect episodes when it's 5.1 sound v2", () => {
+        const releaseName = "Avatar 2009 [1080p.BDRip.x264.AC3-azjatycki] [5.1] [Lektor PL]";
+        expect(parse(releaseName)).to.not.have.property("seasons");
+        expect(parse(releaseName)).to.not.have.property("episodes");
+    });
+
+    it("should not detect episodes when it's 7.1 sound", () => {
+        const releaseName = "Frequency (2000) [1080p] [BluRay] [REMUX] [AVC] [DTS] [HD] [MA] [7-1] [MR]";
+        expect(parse(releaseName)).to.not.have.property("seasons");
+        expect(parse(releaseName)).to.not.have.property("episodes");
+    });
+
+    it("should not detect episodes when it's 7.1 sound v2", () => {
+        const releaseName = "Avatar 2009 [1080p.BDRip.x264.AC3-azjatycki] [7.1] [Lektor PL]";
+        expect(parse(releaseName)).to.not.have.property("seasons");
+        expect(parse(releaseName)).to.not.have.property("episodes");
     });
 });

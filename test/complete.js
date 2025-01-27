@@ -131,4 +131,9 @@ describe("Parsing complete collection", () => {
         const releaseName = "[Erai-raws] Ninja Collection - 05 [720p][Multiple Subtitle].mkv";
         expect(parse(releaseName)).to.deep.include({ title: "Ninja Collection", complete: true });
     });
+
+    it("should not remove kolekcja from title", () => {
+        const releaseName = "Kolekcja Halloween (1978-2022) [720p] [BRRip] [XviD] [AC3-ELiTE] [Lektor PL]";
+        expect(parse(releaseName)).to.deep.include({ title: "Halloween", complete: true });
+    });
 });

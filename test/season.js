@@ -12,6 +12,16 @@ describe("Parsing season", () => {
         expect(parse(releaseName)).to.deep.include({ season: 1 });
     });
 
+    it("should detect regular season with high number", () => {
+        const releaseName = "48 Hours S51E15 720p WEB x264-CookieMonster";
+        expect(parse(releaseName)).to.deep.include({ season: 51 });
+    });
+
+    it("should detect regular season with high number v2", () => {
+        const releaseName = "Bargain.Hunt.S66E02.Builth Wells4.720p.WEB.H264-BeechyBoy.mp4";
+        expect(parse(releaseName)).to.deep.include({ season: 66 });
+    });
+
     it("should detect regular season with O instead of zero", () => {
         const releaseName = "Arrested Development SO2E04.avi";
         expect(parse(releaseName)).to.deep.include({ season: 2 });
@@ -523,8 +533,23 @@ describe("Parsing season", () => {
         expect(parse(releaseName)).to.deep.include({ seasons: [1, 2, 3, 4, 5, 6, 7] });
     });
 
+    it("should detect season episode when not in boundary", () => {
+        const releaseName = "Those.About.to.DieS01E06.MULTi.720p.AMZN.WEB-DL.H264.DDP5.1-K83.mkv";
+        expect(parse(releaseName)).to.deep.include({ seasons: [1], episodes: [6] });
+    });
+
     it("should not detect season when it's part of the name", () => {
         const releaseName = "Ranma-12-86.mp4";
+        expect(parse(releaseName)).to.not.have.property("season");
+    });
+
+    it("should not detect season when it's part of group", () => {
+        const releaseName = "The Killer's Game 2024 PL 1080p WEB-DL H264 DD5.1-S56";
+        expect(parse(releaseName)).to.not.have.property("season");
+    });
+
+    it("should not detect season when it's part of group v2", () => {
+        const releaseName = "Apollo 13 (1995) [1080p] [WEB-DL] [x264] [E-AC3-S78] [Lektor PL]";
         expect(parse(releaseName)).to.not.have.property("season");
     });
 });
