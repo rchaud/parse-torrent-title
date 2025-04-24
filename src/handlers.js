@@ -297,6 +297,7 @@ exports.addDefaults = /** @type Parser */ parser => {
     parser.addHandler("languages", /\b(Truefrench|VF[FI])\b/i, uniqConcat(value("french")), { skipIfAlreadyFound: false });
     parser.addHandler("languages", /\b(VOST(?:FR?|A)?|SUBFRENCH)\b/i, uniqConcat(value("french")), { skipIfAlreadyFound: false });
     parser.addHandler("languages", /\bspanish\W?latin|american\W*(?:spa|esp?)/i, uniqConcat(value("latino")), { skipFromTitle: true, skipIfAlreadyFound: false, remove: true });
+    parser.addHandler("languages", /\b(spanish[-_. ]?lat(?:in[ao])?)\b/i, uniqConcat(value("latino")), { skipIfAlreadyFound: false });
     parser.addHandler("languages", /\b(?:audio.)?lat(?:i|ino)?\b/i, uniqConcat(value("latino")), { skipIfAlreadyFound: false });
     parser.addHandler("languages", /\b(?:audio.)?(?:ESP|spa|(en[ .]+)?espa[nñ]ola?|castellano)\b/i, uniqConcat(value("spanish")), { skipIfAlreadyFound: false });
     parser.addHandler("languages", /\bes(?=[ .,/-]+(?:[A-Z]{2}[ .,/-]+){2,})\b/i, uniqConcat(value("spanish")), { skipFromTitle: true, skipIfAlreadyFound: false });
