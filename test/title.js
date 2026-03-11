@@ -135,4 +135,9 @@ describe("Parsing title", () => {
         const releaseName = "Yurusarezaru_mono2.srt";
         expect(parse(releaseName)).to.deep.include({ title: "Yurusarezaru mono2" });
     });
+
+    it("should remove tamil sites", () => {
+        const releaseName = "www.1TamilBlasters.fi - Vampires The Turning (2004)[1080p HDRip - [Tamil + Eng] - x264 - 1.4GB - ESub].mkv";
+        expect(parse(releaseName)).to.deep.include({ title: "Vampires The Turning" });
+    });
 });

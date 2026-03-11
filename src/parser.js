@@ -74,6 +74,9 @@ function createHandlerFromRegExp(name, regExp, transformer, options) {
 function cleanTitle(rawTitle) {
     let cleanedTitle = rawTitle;
 
+    // Remove common piracy site prefixes
+    cleanedTitle = cleanedTitle.replace(/^(www\.)?(1?tamilmv|1?tamilblasters)\.[a-z]+\s*-\s*/i, '');
+
     if (cleanedTitle.indexOf(" ") === -1 && cleanedTitle.indexOf(".") !== -1) {
         cleanedTitle = cleanedTitle.replace(/\./g, " ");
     }
