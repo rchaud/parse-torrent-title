@@ -874,4 +874,9 @@ describe("Parsing episode", () => {
         expect(parse(releaseName)).to.not.have.property("seasons");
         expect(parse(releaseName)).to.not.have.property("episodes");
     });
+
+    it("should detect episode when yearly", () => {
+        const releaseName = "The One Show S2026E62-65 720p WEB H264-JFF";
+        expect(parse(releaseName)).to.deep.include({ seasons: [2026], episodes: [62, 63, 64, 65] });
+    });
 });

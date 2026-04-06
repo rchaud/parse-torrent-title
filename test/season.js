@@ -552,4 +552,8 @@ describe("Parsing season", () => {
         const releaseName = "Apollo 13 (1995) [1080p] [WEB-DL] [x264] [E-AC3-S78] [Lektor PL]";
         expect(parse(releaseName)).to.not.have.property("season");
     });
+    it("should detect season episode when yearly", () => {
+        const releaseName = "The One Show S2026 720p WEB H264-JFF";
+        expect(parse(releaseName)).to.deep.include({ seasons: [2026] });
+    });
 });
