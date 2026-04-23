@@ -207,7 +207,8 @@ exports.addDefaults = /** @type Parser */ parser => {
     parser.addHandler("episodes", /(?:[\W\d]|^)(?:episodes?|[Сс]ерии:?)[ .]?[([]?(\d{1,3}(?:[ .+]*[&+][ .]?\d{1,3})+)(?:\W|$)/i, range);
     parser.addHandler("episodes", /[([]?(?:\D|^)(\d{1,3}[ .]?ao[ .]?\d{1,3})[)\]]?(?:\W|$)/i, range);
     parser.addHandler("episodes", /(?:[\W\d]|^)(?:e|eps?|episodes?|[Сс]ерии:?|\d+[xх])[ .]*[([]?(\d{1,3}(?:-\d{1,3})+)(?:\W|$)/i, range);
-    parser.addHandler("episodes", /(?:so?|t)\d{1,2}[. ]?[xх-]?[. ]?(?:e|x|х|ep|-|\.)[. ]?(\d{1,4})(?:[abc]|v0?[1-4]|\D|$)/i, array(integer));
+    parser.addHandler("episodes", /(?:so?|t)\d{1,2}[. ]?[xх-]?[. ]?(?:e|x|х|ep)[. ]?(\d{1,4})(?:[abc]|v0?[1-4]|\D|$)/i, array(integer));
+    parser.addHandler("episodes", /(?:so?|t)\d{1,2}\s?[-.]\s?(\d{1,4})(?:[abc]|v0?[1-4]|\D|$)/i, array(integer));
     parser.addHandler("episodes", /\b(?:so?|t)\d{2}(\d{2})\b/i, array(integer));
     parser.addHandler("episodes", /(?:\W|^)(\d{1,3}(?:[ .]*~[ .]*\d{1,3})+)(?:\W|$)/i, range);
     parser.addHandler("episodes", /-\s(\d{1,3}[ .]*-[ .]*\d{1,3})(?!-\d)(?:\W|$)/i, range);
@@ -224,10 +225,12 @@ exports.addDefaults = /** @type Parser */ parser => {
     parser.addHandler("episodes", /[[(]\d{1,2}\.(\d{1,3})[)\]]/, array(integer));
     parser.addHandler("episodes", /\b[Ss](?:eason\W?)?\d{1,2}[ .](\d{1,2})\b/, array(integer));
     parser.addHandler("episodes", /-\s?\d{1,2}\.(\d{2,3})\s?-/, array(integer));
+    parser.addHandler("episodes", /^\d{1,2}\.(\d{2,3}) - /, array(integer), { skipIfBefore: ["year, source", "resolution"] });
     parser.addHandler("episodes", /(?<=\D|^)(\d{1,3})[. ]?(?:of|из|iz)[. ]?\d{1,3}(?=\D|$)/i, array(integer));
     parser.addHandler("episodes", /\b\d{2}[ ._-](\d{2})(?:.F)?\.\w{2,4}$/, array(integer));
     parser.addHandler("episodes", /(?<!^)\[(\d{2,3})](?!(?:\.\w{2,4})?$)/, array(integer));
     parser.addHandler("episodes", /S(?:19\d|20[012])\dE(\d{1,4})/i, array(integer));
+    parser.addHandler("episodes", /\bodc[. ]+(\d{1,3})\b/i, array(integer));
 
     // can be both absolute episode and season+episode in format 101
     parser.addHandler("episodes", ({ title, result, matched }) => {
