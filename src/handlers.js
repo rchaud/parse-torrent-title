@@ -7,6 +7,7 @@ exports.addDefaults = /** @type Parser */ parser => {
     parser.addHandler("episodeCode", /\[(?=[A-Z]+\d|\d+[A-Z])([A-Z0-9]{8})]/, uppercase, { remove: true });
 
     // Resolution
+    parser.addHandler("resolution", /\b[([]?8k[)\]]?\b/i, value("8k"), { remove: true });
     parser.addHandler("resolution", /43200?[pi]/i, value("8k"), { skipIfAlreadyFound: false, remove: true });
     parser.addHandler("resolution", /\b[([]?4k[)\]]?\b/i, value("4k"), { remove: true });
     parser.addHandler("resolution", /21600?[pi]/i, value("4k"), { skipIfAlreadyFound: false, remove: true });
